@@ -112,7 +112,9 @@ Pequena documentação de estudo do framework
 @endforeach
 ```
 
-> O framework disponibiliza um objeto chamado $loop, que possibilita obter o primeiro e último elemento do laço de repetição. Reference: https://tutsforweb.com/loop-variable-foreach-blade-laravel/
+> O framework disponibiliza um objeto chamado $loop, que possibilita obter o primeiro e último elemento do laço de repetição.
+ 
+> Reference: <https://tutsforweb.com/loop-variable-foreach-blade-laravel/>
 
 ### For
 
@@ -127,6 +129,27 @@ Pequena documentação de estudo do framework
 @empty
     <code>
 @endempty
+```
+
+### Section
+
+#### Passagem de variáveis como parâmetro
+
+```
+@yield('variable')
+
+@section('<variable>', '<string>')
+```
+
+#### Passagem de um trecho de código html como parâmetro
+```
+@yield('<string>')
+
+@section('<string>')
+
+    <html-code-here>
+
+@endsection('<string>')
 ```
 
 ### CSS

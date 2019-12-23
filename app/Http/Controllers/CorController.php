@@ -116,11 +116,11 @@ class CorController extends Controller
 
         foreach ($data as $key => $dado) {
             if ($dado->cd_cor == $id) {
-                unset($data[$key]);
+                unset($data->{$key});
             }
         }
 
-        $this->insert($data);
+        $this->insert((object) $data);
 
         $this->data->list = $this->find();
         $this->data->action = "Listagem";
@@ -186,7 +186,7 @@ class CorController extends Controller
             ];
 
             if ($fl_can_save) {
-                $this->insert($data);
+                $this->insert((object) $data);
             } else {
                 echo "Cadastro duplicado";
             }
@@ -206,7 +206,7 @@ class CorController extends Controller
 
             $nr_registro = $data_save['cd_cor'];
 
-            $this->insert($data);
+            $this->insert((object) $data);
         }
 
         return $nr_registro;
@@ -215,7 +215,7 @@ class CorController extends Controller
     /**
      * Método responsável pela centralização da gerência de salvar os dados.
      */
-    private function insert(array $data = []): bool
+    private function insert(\stdClass $data = null): bool
     {
         file_put_contents("../database/tb_cor.JSON", json_encode($data));
 

@@ -2,18 +2,12 @@
 
 @section('conteudo')
 
-<table class="table">
+<table class="table table-hover">
 
     <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Descrição</th>
-            <th scope="col">Hexadecimal</th>
-            <th scope="col">Informação</th>
-            <th scope="col">Edição</th>
-            <th scope="col">Exclusão</th>
-            <th scope="col">Imagem</th>
-        </tr>
+        @foreach($data->header as $key => $header)
+            <th scope="col">{{$header['alias']}}</th>
+        @endforeach
     </thead>
 
     @foreach($data->list as $key => $dado)
@@ -60,3 +54,6 @@
 </table>
 
 @endsection
+
+@component('components.list', ['msg' => 'Conteúdo html sendo inserido no componente'])
+@endcomponent

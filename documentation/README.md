@@ -164,4 +164,48 @@ Pequena documentação de estudo do framework
     <link href="{{ asset('css/simple-sidebar.css') }}" rel="stylesheet">
 ```
 
+### COMPONENTES
+
+Dentro do diretório resources/views, criar uma pasta chamada component.
+
+Criamos o arquivo `list.blade.php` e inserimos um pequeno código html.
+
+```
+    <div style="border: 1px solid red">
+        <h1>Component</h1>
+        <p align="center"> Lista Component</p>
+    </div>
+```
+
+Assim, chamamos nosso componente da seguinte forma:
+
+```
+@component('components.list')
+
+@endcomponent
+```
+
+É possível passar conteúdo html para o componente, que será armazenado numa variável chamada $slot, da seguinte forma
+
+```
+@component('components.list')
+    <h1>Conteúdo html sendo inserido no componente</h1>
+@endcomponent
+```
+O conteúdo é recuperado então da seguinte forma
+
+```
+    <div style="border: 1px solid red">
+        <h1>Component</h1>
+        <p align="center"> Lista Component</p>
+        <p>{{ $slot }}</p>
+    </div>
+```
+
+Uma segunda forma é passar os parâmetros através de um array associativo.
+
+```
+
+```
+
 ## Models

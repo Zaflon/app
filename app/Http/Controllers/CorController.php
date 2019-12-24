@@ -7,6 +7,42 @@ use Illuminate\Http\Request;
 class CorController extends Controller
 {
     /**
+     * Cabeçalho da listagem.
+     *
+     * @var array
+     */
+    private $optionsIconsList = [
+        "#" => [
+            'alias' => "#",
+            'body' => 'cd_cor'
+        ],
+        "Descrição" => [
+            'alias' => "Descrição",
+            'body' => 'ds_cor'
+        ],
+        "Hexadecimal" => [
+            'alias' => "Hexadecimal",
+            'body' => 'ds_hexadecimal'
+        ],
+        "Informação" => [
+            'alias' => "Informação",
+            "body" => "icon_url_info"
+        ],
+        "Edição" => [
+            'alias' => "Edição",
+            "body" => "icon_url_edit"
+        ],
+        "Exclusão" => [
+            'alias' => "Exclusão",
+            "body" => "icon_url_delete"
+        ],
+        "Imagem" => [
+            'alias' => "Imagem",
+            "body" => "icon_url_ds_color_hexadecimal"
+        ]
+    ];
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -15,6 +51,14 @@ class CorController extends Controller
     {
         $this->data->list = $this->find();
         $this->data->action = 'Listagem';
+
+        $tmp = json_decode(json_encode($this->optionsIconsList), false);
+
+        echo "<pre>";
+        var_dump($tmp->{"#"}->{"alias"});
+        echo "</pre>";
+
+        $this->data->header = (object) $this->optionsIconsList;
 
         return view('cor.index', ['data' => $this->data]);
     }
@@ -100,6 +144,7 @@ class CorController extends Controller
 
         $this->data->list = $this->find();
         $this->data->action = "Listagem";
+        $this->data->header = (object) $this->optionsIconsList;
 
         return view('cor.index', ['data' => $this->data]);
     }
@@ -124,13 +169,14 @@ class CorController extends Controller
 
         $this->data->list = $this->find();
         $this->data->action = "Listagem";
+        $this->data->header = (object) $this->optionsIconsList;
 
         return view('cor.index', ['data' => $this->data]);
     }
 
     /**
      * Método responsável por simular uma consulta à base de dados do sistema.
-     * 
+     *
      * @param void
      */
     private function find(int $id = 0)
@@ -152,9 +198,9 @@ class CorController extends Controller
 
     /**
      * Método responsável por simular uma consulta à base de dados do sistema.
-     * 
+     *
      * Se a chave primária não for informada, deve-se crir um novo registro
-     * 
+     *
      * @param void
      */
     private function save(array $data_save = []): int
@@ -196,7 +242,6 @@ class CorController extends Controller
             $data = (array) $data;
 
             foreach ($data as $key => $dado) {
-
                 if ($dado->cd_cor == $data_save['cd_cor']) {
                     $data[$key]->cd_cor = $data_save['cd_cor'];
                     $data[$key]->ds_cor = $data_save['ds_cor'];

@@ -50,6 +50,8 @@ Pequena documentação de estudo do framework
 
 > Open the link <http://127.0.0.1:8000>
 
+> Ao iniciar o projeto a partir do download de um repositório, rodar o comando `cp .env.example .env`
+
 ## Route
 
 - Listando todas as rotas do meu projeto

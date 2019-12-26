@@ -44,6 +44,7 @@
             </form>
         </td>
 
+        <!-- Correção a ser realizada quando empregarmos helpers -->
         <td>
             <span class="dot" style="background-color: #{{$dado->ds_hexadecimal}};"></span>
         </td>

@@ -233,5 +233,14 @@ Na na view, chamamos esse componente usando a seguinte sintaxe
 
     @end<component-name>
 ```
+### Adicionando Bootstrap 4
+
+No terminal, no diretório do nosso projeto, rodar os seguintes comandos:
+
+    * composer require laravel/ui
+
+    * php artisan ui bootstrap
+
+    * npm install && npm run dev
 
 ## Models

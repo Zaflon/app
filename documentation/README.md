@@ -207,7 +207,31 @@ O conteúdo é recuperado então da seguinte forma
 Uma segunda forma é passar os parâmetros através de um array associativo.
 
 ```
+    @component('components.list', ['msg' => 'Conteúdo html sendo inserido no componente'])
 
+    @endcomponent
+```
+
+E recuperar o conteúdo através da variável criada a partir do índice.
+
+```
+    <div style="border: 1px solid red">
+        <h1>Component</h1>
+        <p align="center"> Lista Component</p>
+        <p align="center">{{ $msg }}</p>
+    </div>
+```
+
+Uma terceira forma de usar componentes é através da declaração dos mesmos. Na classe AppServiceProvider, inserimos a declaração do componente, através da sintaxe `Blade::component("<directory>", "<component-name>")` dentro do método boot();
+
+Após isso incluímos a classe, inserindo a declaração `use Illuminate\Support\Facades\Blade`
+
+Na na view, chamamos esse componente usando a seguinte sintaxe
+
+```
+    @<component-name>(['<variable>' => '<string>'])
+
+    @end<component-name>
 ```
 
 ## Models

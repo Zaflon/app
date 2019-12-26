@@ -6,7 +6,7 @@
 
     <thead>
         @foreach($data->header as $key => $header)
-            <th scope="col">{{$header['alias']}}</th>
+        <th scope="col">{{$header['alias']}}</th>
         @endforeach
     </thead>
 
@@ -55,5 +55,6 @@
 
 @endsection
 
-@component('components.list', ['msg' => 'Conteúdo html sendo inserido no componente'])
-@endcomponent
+@listing(['msg' => 'Conteúdo html sendo inserido no componente'])
+
+@endlisting

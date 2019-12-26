@@ -1,1 +1,47 @@
-[{"cd_cor":"1","ds_cor":"Bege","ds_hexadecimal":"F5F5DC"},{"cd_cor":"2","ds_cor":"Bord\u00f4","ds_hexadecimal":"800000"},{"cd_cor":"3","ds_cor":"Anil","ds_hexadecimal":"1860A7"},{"cd_cor":"4","ds_cor":"Azul","ds_hexadecimal":"0000FF"},{"cd_cor":"5","ds_cor":"Aquamarine","ds_hexadecimal":"70DB93"},{"cd_cor":"6","ds_cor":"Verde","ds_hexadecimal":"00FF00"},{"cd_cor":"7","ds_cor":"Vermelho","ds_hexadecimal":"FF0000"},{"cd_cor":8,"ds_cor":"Preto","ds_hexadecimal":"000000"},{"cd_cor":"9","ds_cor":"Branco2","ds_hexadecimal":"FFFFFF"}]
+[
+    {
+        "cd_cor": "1",
+        "ds_cor": "Bege",
+        "ds_hexadecimal": "F5F5DC"
+    },
+    {
+        "cd_cor": "2",
+        "ds_cor": "Bord\u00f4",
+        "ds_hexadecimal": "800000"
+    },
+    {
+        "cd_cor": "3",
+        "ds_cor": "Anil",
+        "ds_hexadecimal": "1860A7"
+    },
+    {
+        "cd_cor": "4",
+        "ds_cor": "Azul",
+        "ds_hexadecimal": "0000FF"
+    },
+    {
+        "cd_cor": "5",
+        "ds_cor": "Aquamarine",
+        "ds_hexadecimal": "70DB93"
+    },
+    {
+        "cd_cor": "6",
+        "ds_cor": "Verde",
+        "ds_hexadecimal": "00FF00"
+    },
+    {
+        "cd_cor": "7",
+        "ds_cor": "Vermelho",
+        "ds_hexadecimal": "FF0000"
+    },
+    {
+        "cd_cor": 8,
+        "ds_cor": "Preto",
+        "ds_hexadecimal": "000000"
+    },
+    {
+        "cd_cor": "9",
+        "ds_cor": "Branco",
+        "ds_hexadecimal": "FFFFFF"
+    }
+]

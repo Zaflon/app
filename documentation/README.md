@@ -237,10 +237,23 @@ Na na view, chamamos esse componente usando a seguinte sintaxe
 
 No terminal, no diretório do nosso projeto, rodar os seguintes comandos:
 
-    * composer require laravel/ui
+    1. composer require laravel/ui
 
-    * php artisan ui bootstrap
+    2. php artisan ui bootstrap
 
-    * npm install && npm run dev
+    3. npm install && npm run dev
 
 ## Models
+
+### Configuração do Banco de Dados e das Migrações
+
+    1. Instalar o mysql
+
+    2. Habilitar o driver do mysql ` extension=pdo_mysql `
+
+    2. Verificar se o driver está habilitado corretamente, rodando o seguinte comando:
+
+        php -r "echo defined('PDO::ATTR_DRIVER_NAME');";
+
+
+    3. Rodar as migrações ` php artisan migrate `

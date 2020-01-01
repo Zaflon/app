@@ -255,5 +255,4 @@ No terminal, no diretório do nosso projeto, rodar os seguintes comandos:
 
         php -r "echo defined('PDO::ATTR_DRIVER_NAME');";
 
-
     3. Rodar as migrações ` php artisan migrate `

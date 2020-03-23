@@ -12,8 +12,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    /** @var object */
-    public $data = null;
+    /** @var stdClass */
+    protected stdClass $data;
 
     /**
      * Set global configuration.
@@ -23,16 +23,6 @@ class Controller extends BaseController
     public function __construct()
     {
         $this->data = new stdClass();
-        $this->set_module_name();
-    }
-
-    /**
-     * Set the module name in 
-     * 
-     * @param void
-     */
-    public function set_module_name(): void
-    {
         $this->data->controller = preg_replace('/(App\\\\Http\\\\Controllers\\\\)|(Controller)/', '', get_called_class());
     }
 }

@@ -5,5 +5,5 @@
 <h1 align="center">Aplicativo de Gerenciamento de Tarefas</h1>
 
 <div align="center">
-    <a href="{{ route('Cor.index') }}">Cor</a>
+    <a href="{{ route('Color.index') }}">Color</a>
 </div>

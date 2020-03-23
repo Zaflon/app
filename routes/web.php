@@ -49,7 +49,7 @@ Route::prefix('/app')->group(function () {
     /**
      * Método responsável pela criação de rotas para todos os métodos padrões do framework presentes no controlador MarcaController
      */
-    Route::resource('Cor', 'CorController');
+    Route::resource('Color', 'ColorController');
 
     /**
      * Exemplo de redirecionamento de rotas, ao chamar a url /Marca, retornamos /config
@@ -59,6 +59,8 @@ Route::prefix('/app')->group(function () {
     Route::get('/Marca', function () {
         return redirect()->route('app.config');
     });
+
+    Route::get('Archive/{controller}/{format}', 'ArchiveController@download')->name('Archive');
 });
 
 /**

@@ -12,7 +12,8 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^1.1"
+        "laravel/ui": "^1.1",
+        "setasign/fpdf": "1.8.1"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
@@ -38,6 +39,9 @@
         "classmap": [
             "database/seeds",
             "database/factories"
+        ],
+        "files": [
+            "app/Helpers/HtmlHelper.php"
         ]
     },
     "autoload-dev": {

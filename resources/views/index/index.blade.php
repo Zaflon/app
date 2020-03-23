@@ -5,28 +5,22 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <!-- Page tittle -->
     <title>{{$data->controller}} - {{$data->action}}</title>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <!-- js dependency-->
+    <script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/script.js') }}"></script>
+    <!-- css dependency-->
+    <link rel="stylesheet" href="{{URL::asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('css/general.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('css/popup.css')}}">
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/simple-sidebar.css') }}" rel="stylesheet">
-
-    <style>
-        .dot {
-            height: 25px;
-            width: 25px;
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-        }
-    </style>
 </head>
 
 <body>
@@ -34,10 +28,17 @@
     <!-- @see https://startbootstrap.com/templates/simple-sidebar/ -->
     <div class="d-flex" id="wrapper">
 
-        <!-- @TODO Tornar essa listagem dinâmica-->
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">Wesley Flôres</div>
+
+            <!-- attibutes of this module-->
+            <form style="display: hidden" id="data">
+                <input type="hidden" name="controller" value="{{$data->controller}}">
+                <input type="hidden" name="date" value="{{date('Y/m/d H:i:s')}}">
+                <input type="hidden" name="address" value="{{ request()->fullUrl() }}">
+            </form>
+
             <div class="list-group list-group-flush">
                 <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
@@ -45,7 +46,7 @@
                 <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
-                <a href="{{ route('Cor.index') }}" class="list-group-item list-group-item-action bg-light">Color</a>
+                <a href="{{ route('Color.index') }}" class="list-group-item list-group-item-action bg-light">Color</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -62,8 +63,20 @@
                         <a />
                 </button>
 
-                <button class="btn btn-secondary ml-1">{{ $data->action }}</button>
+                <!-- PDF -->
+                <a href='{{ route("Archive", [$data->controller, "pdf"]) }}'>
+                    <img src="https://img.icons8.com/nolan/64/pdf.png">
+                </a>
 
+                <!-- XML -->
+                <a href='{{ route("Archive", [$data->controller, "xml"]) }}'>
+                    <img src="https://img.icons8.com/nolan/64/xml.png">
+                </a>
+
+                <!-- CSV -->
+                <a href='{{ route("Archive", [$data->controller, "csv"]) }}'>
+                    <img src="https://img.icons8.com/nolan/64/csv.png">
+                </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -108,8 +121,9 @@
 
             $("#wrapper").toggleClass("toggled");
         });
-    </script>
 
+        $('.toast').toast('show');
+    </script>
 </body>
 
 </html>

@@ -256,3 +256,207 @@ No terminal, no diretório do nosso projeto, rodar os seguintes comandos:
         php -r "echo defined('PDO::ATTR_DRIVER_NAME');";
 
     3. Rodar as migrações ` php artisan migrate `
+
+### Criação de uma migração
+
+    1. Criação de uma tabela chamada tb_colors
+
+       php artisan make:migration create_table_colors
+
+    2. Adicionar um campo chamado color a uma tabela chamada chemical_elements
+
+       php artisan make:migration add_color_to_chemical_elements
+
+    3. Criação de um relacionamento muitos para muitos (CORRIGIR ISSO - AULA 51)
+
+    ```
+        public function up()
+        {
+            Schema::create('product_department', function (Blueprint $table) {
+                $table->unsignedBigInteger('product_id');
+                $table->unsignedBigInteger('department_id');
+                $table->foreign('product_id')->references('id')
+                    ->on('products')->onDelete('cascade');
+                $table->foreign('department_id')->references('id')
+                    ->on('departments')->onDelete('cascade');
+                $table->primary(['product_id','department_id']);
+            });
+        }
+    ```
+
+    ```
+        public function down()
+        {
+            Schema::dropIfExists('product_department');
+        }
+    ```
+
+    4. Criação de um modelo para a cor
+
+        php aritsan make:model Cor
+
+    5. Criação de um registro para a cor ,através do tinker
+
+        php artisan tinker;
+
+        use App\Colors;
+
+        $colors = Colors::create(['color' => 'Preto', 'hexadecimal' => '000000']);
+
+    6. Listagem de todos os registros para a cor, através do tinker
+
+        use \App\Colors;
+        
+        php Colors::all();
+
+    7. Número de registros
+
+        use App\Colors;
+
+        Colors::count();
+
+    8. Select usando where
+
+        use App\Colors;
+
+        Colors::where('id', '>=', 2)->first();
+
+        Colors::where('id', 2)->get();
+
+        Colors::whereBetween('id', [1,2])->get();
+
+        Colors::whereNotBetween('id', [2, 3])->get();
+
+        Colors::whereIn('id', [2, 3])->get();
+
+        Colors::whereNotIn('id', [2, 3])->get();
+
+        Colors::where('color', 'like', '%k')->get();
+
+        > As duas consultas abaixo são equivalentes
+
+        Colors::where('color', 'like', 'B%')->orWhere('id', '>=', 7)->get();
+
+        Colors::where(function($query){$query->where('color', 'like', 'B%')->orWhere('id', '>=', 7);})->get();
+
+        Colors::where(function($query){
+                $query->where('color', 'like', 'B%')->orWhere('id', '>=', 7);
+            })
+                ->where(function($query) {
+                    $query->where('color', 'like', '%e%')
+                    ->where('id', '>=', 10 );
+                })->get();
+
+        Colors::where('id', '>', '1')->orderBy('color', 'ASC')->get();
+
+        Colors::where('id', '>', '1')->get()->pluck('id')->sum();
+
+    9. Set Custom Primary Key
+
+        No model, incluir a linha ` protected $primaryKey = 'id' `
+
+    10. Atualizar um campo
+
+        ```
+            use App\Colors;
+
+            $colors = Colors::find(2);
+            $colors->color = "White2";
+            $colors->save();
+        ```
+
+        ```
+            Colors::find(6)->update(['color' => 'Bordô']);
+        ```
+
+    11. Soft Delete
+
+        No model, incluir a trait, usando ` use SoftDeletes ` e incluir o namespace da mesma, com ` use Illuminate\Database\Eloquent\SoftDeletes `
+
+        Inclusão do campo, através da seguinte migração ` $table->softDeletes() `
+
+    12. Listar incluive os registros deletados
+
+        use App\Colors;
+
+        Colors::withTrashed->get();
+
+    12. Verificar se um registro em particular, no caso, o id de número 2, está deletado
+
+        use App\Colors;
+
+        Colors::withTrashed()->find(2)->trashed();
+
+    13. Excluir um registro de id igual a 3 com SoftDelete
+
+        use App\Colors;
+
+        Colors::find(5)->forceDelete();
+
+## Helpers
+
+    Criação de um arquivo HtmlHelper.php em app/Helpers
+
+    No arquivo composer.json, inserir o código
+
+    ```
+        "files": [
+            "app/Helpers/HtmlHelper.php"
+        ]
+    ```
+    dentro da chave autoload.
+
+    Rodar composer dump-autoload
+
+    Adicionar, no diretório config, no arquivo app.php, em aliases, a linha ` 'Helper' => App\Helpers\Helper::class `
+
+
+## Validação Formulário
+
+No objeto request é possível acessar o método validate, bastando inserir um array associativo com a chave contendo o name do campo e o valor required, sendo
+validado se existe conteúdo. No exemplo abaixo, estamos verificando se o campo color foi informado:
+
+    ```
+        $request->validate([
+            "color" => "required"
+        ]);
+    ```
+Para inserir mais validações simultaneamente, basta concatenar usando o pipe. No exemplo abaixo, não queremos mais de 10 caracteres no campo color.
+
+    ```
+        $request->validate([
+            "color" => "required|max:10"
+        ]);
+    ```
+
+Para validação única, basta informar unique:<nome-da-tabela>, para o camṕ desejado, o seguinte exemplo pode ser útil:
+
+```
+        $request->validate([
+            "color" => "required|unique:colors",
+            "hexadecimal" => "required|min:6|max:6|unique:colors,hexadecimal"
+        ]);
+```
+
+Validação email:
+
+```
+        $request->validate([
+            "email" => "required|email",
+        ]);
+```
+
+Para utilização de mensagens genéricas, pode-se usar uma chave com o nome da validação, com a mensagem, sendo passsado o place holder :attribute. Exemplo:
+
+```
+        $request->validate([
+            "color" => "required|unique:colors",
+            "hexadecimal" => "required|min:6|max:6|unique:colors"
+        ,[
+            "hexadecimal.min" => "O hexadecimal deve conter seis caracteres",
+            "unique" => "O atributo :attribute deve ser único"
+        ]);
+```
+
+Para criação de mensagens abaixo do campo com erro / sucesso, o Laravel possui, dentro do objeto $errors, um método chamado `has()`, em que é
+passado o name, sendo retornado um booleano indicando se aquele campo contém erros.

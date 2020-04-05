@@ -24,7 +24,7 @@
                     @switch($field['type'])
                         @case('info')
                             <td>
-                                <a onclick="show( {{ $dado['id'] }} )" class="alias">
+                                <a onclick="App.Show( {{ $dado['id'] }} )" class="alias">
                                     <img title="More Information?" src="https://img.icons8.com/nolan/32/info.png">
                                 </a>
                                 
@@ -42,7 +42,7 @@
 
                         @case('delete')
                             <td>
-                                <a onclick="del({{$dado['id']}})">
+                                <a onclick="App.Del({{$dado['id']}})">
                                     <img title="Delete?" src="https://img.icons8.com/nolan/32/delete-sign.png">
                                 </a>
                             </td>

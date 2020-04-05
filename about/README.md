@@ -50,7 +50,19 @@ Pequena documentação de estudo do framework
 
 > Open the link <http://127.0.0.1:8000>
 
-> Ao iniciar o projeto a partir do download de um repositório, rodar o comando `cp .env.example .env`
+## Executando o projeto a partir do repositório presente no github
+
+> `git clone https://github.com/MagicalStrangeQuark/ecommerce-laravel.git`
+
+> `cd ecommerce-laravel && cp .env.example .env && php artisan key:generate`
+
+> `composer install && composer update`
+
+> `npm install && npm audit fix && npm run watch`
+
+> `sudo systemctl start mariadb`
+
+> `php artisan serve`
 
 ## Route
 
@@ -127,6 +139,7 @@ Pequena documentação de estudo do framework
 ```
 
 #### Vazio
+
 ```
 @empty
     <code>
@@ -143,7 +156,8 @@ Pequena documentação de estudo do framework
 @section('<variable>', '<string>')
 ```
 
-#### Passagem de um trecho de código html como parâmetro
+#### Passagem de um trecho de código HTML como parâmetro
+
 ```
 @yield('<string>')
 

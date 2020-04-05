@@ -2,12 +2,10 @@
 <html lang="en">
 
 <head>
-
-    <meta charset="utf-8">
+    <!-- @see https://www.seomarketing.com.br/meta-tags-google.php -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Wesley Flôres">
 
     <!-- Page tittle -->
     <title>{{$data->controller}} - {{$data->action}}</title>
@@ -15,10 +13,12 @@
     <!-- js dependency-->
     <script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/script.js') }}"></script>
+
     <!-- css dependency-->
     <link rel="stylesheet" href="{{URL::asset('css/app.css')}}">
     <link rel="stylesheet" href="{{URL::asset('css/general.css')}}">
     <link rel="stylesheet" href="{{URL::asset('css/popup.css')}}">
+
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/simple-sidebar.css') }}" rel="stylesheet">
 </head>
@@ -32,11 +32,12 @@
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">Wesley Flôres</div>
 
-            <!-- attibutes of this module-->
+            <!-- attributes of this module -->
             <form style="display: hidden" id="data">
-                <input type="hidden" name="controller" value="{{$data->controller}}">
-                <input type="hidden" name="date" value="{{date('Y/m/d H:i:s')}}">
-                <input type="hidden" name="address" value="{{ request()->fullUrl() }}">
+                <input type="hidden" name="controller" value="{{ $data->controller }}">
+                <input type="hidden" name="date" value="{{ date('Y/m/d H:i:s') }}">
+                <input type="hidden" name="url" value="{{ request()->fullUrl() }}">
+                <input type="hidden" name="csrf" value="{{ csrf_token() }}">
             </form>
 
             <div class="list-group list-group-flush">

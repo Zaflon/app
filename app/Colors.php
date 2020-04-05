@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Colors extends Model
 {
+    /** @var array */
     protected $fillable = ['color', 'hexadecimal'];
 
     use SoftDeletes;

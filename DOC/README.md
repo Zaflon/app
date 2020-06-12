@@ -62,6 +62,18 @@ Pequena documentação de estudo do framework
 
 > `sudo systemctl start mariadb`
 
+#### $LOGAR$ $NO$ $MARIADB$
+
+`CREATE DATABASE laravel`
+
+`CREATE USER 'laravel'@'localhost' IDENTIFIED BY 'P@ssw0rd'`
+
+`GRANT ALL PRIVILEGES ON * . * TO 'laravel'@'localhost'`
+
+`FLUSH PRIVILEGES`
+
+> `php artisan migrate`
+
 > `php artisan serve`
 
 ## Route
@@ -409,13 +421,13 @@ No terminal, no diretório do nosso projeto, rodar os seguintes comandos:
 
 ## Helpers
 
-    Criação de um arquivo HtmlHelper.php em app/Helpers
+    Criação de um arquivo Html.php em app/Helpers
 
     No arquivo composer.json, inserir o código
 
     ```
         "files": [
-            "app/Helpers/HtmlHelper.php"
+            "app/Helpers/Html.php"
         ]
     ```
     dentro da chave autoload.
@@ -423,7 +435,6 @@ No terminal, no diretório do nosso projeto, rodar os seguintes comandos:
     Rodar composer dump-autoload
 
     Adicionar, no diretório config, no arquivo app.php, em aliases, a linha ` 'Helper' => App\Helpers\Helper::class `
-
 
 ## Validação Formulário
 

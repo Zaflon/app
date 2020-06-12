@@ -50,7 +50,7 @@
                         
                         @case('hexadecimal')
                             <td>
-                                {{ Helper::span("id_".$dado['id'], ["class" => "dot", "style" => "background-color: #{$dado[$field['body']]} "] ) }}
+                                {{ Html::span("id_".$dado['id'], ["class" => "dot", "style" => "background-color: #{$dado[$field['body']]} "] ) }}
                             </td>
                             @break
 

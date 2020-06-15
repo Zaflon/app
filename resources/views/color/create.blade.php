@@ -8,7 +8,7 @@
     <input type="text" name="color" placeholder="Color Name" required><br />
 
     <label for="hexadecimal">Hexadecimal</label>
-    <input type="text" name="hexadecimal" placeholder="Hexadecimal Value" required><br />
+    <input type="color" name="hexadecimal" value="FFFFFF" required><br />
 
     <button type="submit" value="Save">Salvar</button>
 

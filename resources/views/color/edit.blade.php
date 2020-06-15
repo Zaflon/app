@@ -11,8 +11,8 @@
     <label for="color">Color</label>
     <input type="text" name="color" value={{$data->list->color}}><br />
 
-    <label for="hexadecimal">Hexadecimal</label>
-    <input type="text" name="hexadecimal" value={{$data->list->hexadecimal}}>
+    <label for="hexadecimal" title={{$data->list->hexadecimal}}>Hexadecimal</label>
+    <input type="color" name="hexadecimal" value="#{{$data->list->hexadecimal}}">
 
     <button type="submit" value="Save">Salvar</button>
     <!-- TODO Transformar esse trecho de código em um componente -->

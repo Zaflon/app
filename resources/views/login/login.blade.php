@@ -7,9 +7,12 @@
     <!-- Page tittle -->
     <title>Login</title>
 
+    <!-- js dependency-->
+    <script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script>
+
     <!-- css dependency-->
     <link rel="stylesheet" href="css/login.css">
-
+    <link rel="stylesheet" href="{{URL::asset('css/app.css')}}">
 </head>
 
 <body>
@@ -25,8 +28,8 @@
         <form action="{{ route('autenticate') }}" method="POST">
             @csrf
             <img src="img/logo.jpg" alt="Login Logo"><br>
-            <input type="text" value="@AmJustSam" name="email" required><br>
-            <input type="password" name="password" required><br>
+            <input type="email" name="email" title="Email" required><br>
+            <input type="password" name="password" title="Password" required><br>
             <input type="submit" value="SIGN IN"><br>
 
             <span>
@@ -54,6 +57,14 @@
             </div>
         </form>
     </div>
+    @if($errors->any())
+    <div class=container>
+        <div class="alert alert-danger alert-dismissable text-center">
+            <a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="close">×</a>
+            <strong>{{ $errors->first() }}</strong>
+        </div>
+    </div>
+    @endif
 </body>
 
 </html>

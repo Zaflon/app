@@ -29,7 +29,7 @@
 
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading text-center">Wesley Flôres</div>
+            <div class="sidebar-heading text-center"> {{ $data->user->name }}</div>
 
             <!-- attributes of this module -->
             <form style="display: hidden" id="data">

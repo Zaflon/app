@@ -319,7 +319,7 @@ No terminal, no diretório do nosso projeto, rodar os seguintes comandos:
 
     4. Criação de um modelo para a cor
 
-        php aritsan make:model Cor
+        php artisan make:model Cor
 
     5. Criação de um registro para a cor ,através do tinker
 

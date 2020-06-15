@@ -37,18 +37,23 @@ body {
     filter: blur(10px);
 }
 
-form img {
-    width: 120px;
-    height: 120px;
-    border-radius: 100%;
-}
-
 form {
     text-align: center;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+}
+
+form input {
+    margin-bottom: 1pc;
+}
+
+form img {
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+    margin-bottom: 2pc;
 }
 
 input {

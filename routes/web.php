@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 /**
  * Todas as rotas estão inseridas no /app
@@ -56,9 +56,11 @@ Route::prefix('/app')->group(function () {
      * 
      * @see 127.0.0.1:8000/app/cor
      */
-    Route::get('/Marca', function () {
+    Route::get('/Brand', function () {
         return redirect()->route('app.config');
     });
+
+    Route::resource('User', 'UserController');
 
     Route::get('Archive/{controller}/{format}', 'ArchiveController@download')->name('Archive');
 });
@@ -69,6 +71,12 @@ Route::prefix('/app')->group(function () {
 Route::post('/exit', function (Request $request) {
     return json_encode(["status" => true, "mensagem" => "usuário deslogado do sistema"]);
 });
+
+/** Rota responsável pelo retorno da página de login */
+Route::get('/login', 'UserController@login')->name('login');
+
+/** Rota de autenticação do usuário, no momento de login junto à página inicial do sistema */
+Route::post('/autenticate', 'UserController@autenticate')->name('autenticate');
 
 /**
  * Método DELETE, análogo á lógica empregada para o método get, bastando alterar o tipo de requisição.

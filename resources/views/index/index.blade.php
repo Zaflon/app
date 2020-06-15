@@ -42,9 +42,9 @@
             <!-- Chunck elements-->
             <div class="{{ $data->chunk->xGen->xClass }}">
                 @foreach ($data->chunk->Chunk->AttachedElement->Child->xBit as $key => $chunk)
-                    @if ( (bool) (int) $chunk->ActiveElement === true )
-                        <a href="{{ $chunk->CompletePath }}" class="{{ $data->chunk->xGen->xClassBit }}">{{ $chunk->PropertyText }}</a>
-                    @endif
+                @if ( (bool) (int) $chunk->ActiveElement === true )
+                <a href="{{ $chunk->CompletePath }}" class="{{ $data->chunk->xGen->xClassBit }}">{{ $chunk->PropertyText }}</a>
+                @endif
                 @endforeach
             </div>
         </div>
@@ -85,7 +85,7 @@
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('app') }}">Main <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{ route('welcome') }}">Laravel <span class="sr-only">(current)</span></a>
                         </li>
 
                         <li class="nav-item">
@@ -104,7 +104,7 @@
                                     <img src="https://img.icons8.com/nolan/32/exit.png" alt="Logout Image"> Another action
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('login') }}">
                                     <img src="https://img.icons8.com/nolan/32/exit.png" alt="Logout Image"> Log Out
                                 </a>
                             </div>

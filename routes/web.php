@@ -61,8 +61,6 @@ Route::prefix('/app')->group(function () {
     });
 
     Route::resource('User', 'UserController');
-
-    Route::get('Archive/{controller}/{format}', 'ArchiveController@download')->name('Archive');
 });
 
 /**

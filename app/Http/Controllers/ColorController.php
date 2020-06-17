@@ -16,21 +16,9 @@ class ColorController extends Controller
      */
     public function index()
     {
-        return $this->list();
-    }
-
-    /**
-     * Lista os registros
-     * 
-     * @param void
-     */
-    private function list()
-    {
-        $this->data->action = 'Listing';
-        $this->data->list = (object) Colors::all()->toArray();
-        $this->data->header = Colors::data();
-
-        return view('color.index', ['data' => $this->data]);
+        return view('index.listing', [
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\Colors())
+        ]);
     }
 
     /**
@@ -42,9 +30,9 @@ class ColorController extends Controller
      */
     public function create()
     {
-        $this->data->action = "Register";
-
-        return view('color.create', ['data' => $this->data]);
+        return view('colors.create', [
+            'view' => \App\Helpers\Utils::important(Self::class, \App\Helpers\Utils::CREATE, (object) [])
+        ]);
     }
 
     /**
@@ -57,7 +45,7 @@ class ColorController extends Controller
     {
         $rules =  [
             "color" => "required|unique:colors",
-            "hexadecimal" => "required|min:6|max:6|unique:colors"
+            "hexadecimal" => "required|min:7|max:7|unique:colors"
         ];
 
         $messages = [
@@ -67,21 +55,26 @@ class ColorController extends Controller
 
         $request->validate($rules, $messages);
 
-        $this->data->action = "Register";
-
-        if (empty($request->color) || empty($request->hexadecimal)) {
-            return view('color.create', ['data' => $this->data]);
+        if (empty($request->color) || empty(str_replace('#', NULL, $request->hexadecimal))) {
+            return view('color.create', ['view' => $this->data]);
         }
 
-        Colors::create(['color' => $request->color, 'hexadecimal' => $request->hexadecimal]);
+        Colors::create([
+            'color' => $request->color,
+            'hexadecimal' => strtoupper(str_replace('#', NULL, $request->hexadecimal))
+        ]);
 
-        return view('color.create', ['data' => $this->data]);
+        return view('index.listing', [
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\Colors())
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
      * @return \Illuminate\Http\Response
+     * 
+     * @return string
      */
     public function show(int $id = 0): string
     {
@@ -89,17 +82,38 @@ class ColorController extends Controller
     }
 
     /**
+     * Show all colors via api.
+     * 
+     * @param void
+     * 
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function listing(): \Illuminate\Http\JsonResponse
+    {
+        return response()->json([
+            'name' => 'Abigail',
+            'state' => 'CA'
+        ], 200, [
+            'Content-Type' => 'application/json',
+        ]);
+    }
+
+    /**
      * Show the form for editing the specified resource.
+     * 
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
     public function edit(int $id = 0)
     {
-        $this->data->list = (object) Colors::find($id)->toArray();
-
-        $this->data->action = "Edition";
-
-        return view('color.edit', ['data' => $this->data]);
+        return view('colors.edit', [
+            'view' => \App\Helpers\Utils::important(
+                Self::class,
+                \App\Helpers\Utils::EDIT,
+                (object) Colors::find($id)->toArray()
+            )
+        ]);
     }
 
     /**
@@ -114,7 +128,7 @@ class ColorController extends Controller
     {
         $rules =  [
             "color" => "required",
-            "hexadecimal" => "required|min:6|max:6"
+            "hexadecimal" => "required|min:7|max:7"
         ];
 
         $messages = [
@@ -123,9 +137,11 @@ class ColorController extends Controller
 
         $request->validate($rules, $messages);
 
-        Colors::where('id', $id)->update(['hexadecimal' => $request->hexadecimal, 'color' => $request->color]);
+        Colors::where('id', $id)->update(['hexadecimal' => strtoupper(str_replace('#', NULL, $request->hexadecimal)), 'color' => $request->color]);
 
-        return $this->list();
+        return view('index.listing', [
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\Colors())
+        ]);
     }
 
     /**

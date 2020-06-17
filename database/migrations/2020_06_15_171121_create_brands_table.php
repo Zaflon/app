@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableStates extends Migration
+class CreateBrandsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateTableStates extends Migration
      */
     public function up()
     {
-        Schema::create('states', function (Blueprint $table) {
+        Schema::create('brands', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('abbreviation', 2)->unique();
-            $table->string('name', 32)->unique();
-            $table->smallInteger('cUF')->unique();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +27,6 @@ class CreateTableStates extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('states');
+        Schema::dropIfExists('brands');
     }
 }

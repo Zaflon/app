@@ -75,7 +75,7 @@ function POST(Url = App.Url()) {
             console.log(response);
         },
         error: (err) => {
-            console.log(err);
+            //
         }
     });
 }
@@ -192,5 +192,5 @@ const App = {
 };
 
 window.onload = (e) => {
-    console.log(e);
+    //
 }

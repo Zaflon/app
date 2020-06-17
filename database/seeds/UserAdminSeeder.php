@@ -13,10 +13,9 @@ class UserAdminSeeder extends Seeder
      */
     public function run()
     {
-
         DB::table('users')->insert([
             'name' => 'Admin',
-            'email' => 'wesleyfloresterres@gmail.com',
+            'email' => 'admin@gmail.com',
             'password' => 'P@ssw0rd',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')

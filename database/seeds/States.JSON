@@ -1,0 +1,164 @@
+[
+    {
+        "Name": "Acre",
+        "Abbreviation": "AC",
+        "Capital": "Rio Branco",
+        "cUF": 12
+    },
+    {
+        "Name": "Alagoas",
+        "Abbreviation": "AL",
+        "Capital": "Maceió",
+        "cUF": 27
+    },
+    {
+        "Name": "Amapá",
+        "Abbreviation": "AP",
+        "Capital": "Macapá",
+        "cUF": 16
+    },
+    {
+        "Name": "Amazonas",
+        "Abbreviation": "AM",
+        "Capital": "Manaus",
+        "cUF": 13
+    },
+    {
+        "Name": "Bahia",
+        "Abbreviation": "BA",
+        "Capital": "Salvador",
+        "cUF": 29
+    },
+    {
+        "Name": "Ceará",
+        "Abbreviation": "CE",
+        "Capital": "Fortaleza",
+        "cUF": 23
+    },
+    {
+        "Name": "Distrito Federal",
+        "Abbreviation": "DF",
+        "Capital": "Brasília",
+        "cUF": 53
+    },
+    {
+        "Name": "Espirito Santo",
+        "Abbreviation": "ES",
+        "Capital": "Vitória",
+        "cUF": 32
+    },
+    {
+        "Name": "Goiás",
+        "Abbreviation": "GO",
+        "Capital": "Goiânia",
+        "cUF": 52
+    },
+    {
+        "Name": "Maranhão",
+        "Abbreviation": "MA",
+        "Capital": "São Luís",
+        "cUF": 21
+    },
+    {
+        "Name": "Mato Grosso",
+        "Abbreviation": "MT",
+        "Capital": "Cuiabá",
+        "cUF": 51
+    },
+    {
+        "Name": "Mato Grosso do Sul",
+        "Abbreviation": "MS",
+        "Capital": "Campo Grande",
+        "cUF": 50
+    },
+    {
+        "Name": "Minas Gerais",
+        "Abbreviation": "MG",
+        "Capital": "Belo  Horizonte",
+        "cUF": 31
+    },
+    {
+        "Name": "Pará",
+        "Abbreviation": "PA",
+        "Capital": "Belém",
+        "cUF": 15
+    },
+    {
+        "Name": "Paraíba",
+        "Abbreviation": "PB",
+        "Capital": "João Pessoa",
+        "cUF": 25
+    },
+    {
+        "Name": "Paraná",
+        "Abbreviation": "PR",
+        "Capital": "Curitiba",
+        "cUF": 41
+    },
+    {
+        "Name": "Pernambuco",
+        "Abbreviation": "PE",
+        "Capital": "Recife",
+        "cUF": 26
+    },
+    {
+        "Name": "Piauí",
+        "Abbreviation": "PI",
+        "Capital": "Teresina",
+        "cUF": 22
+    },
+    {
+        "Name": "Rio de Janeiro",
+        "Abbreviation": "RJ",
+        "Capital": "Rio de Janeiro",
+        "cUF": 33
+    },
+    {
+        "Name": "Rio Grande do Norte",
+        "Abbreviation": "RN",
+        "Capital": "Natal",
+        "cUF": 24
+    },
+    {
+        "Name": "Rio Grande do Sul",
+        "Abbreviation": "RS",
+        "Capital": "Porto Alegre",
+        "cUF": 43
+    },
+    {
+        "Name": "Rondônia",
+        "Abbreviation": "RO",
+        "Capital": "Porto Velho",
+        "cUF": 11
+    },
+    {
+        "Name": "Roraima",
+        "Abbreviation": "RR",
+        "Capital": "Boa Vista",
+        "cUF": 14
+    },
+    {
+        "Name": "Santa Catarina",
+        "Abbreviation": "SC",
+        "Capital": "Florianópolis",
+        "cUF": 42
+    },
+    {
+        "Name": "São Paulo",
+        "Abbreviation": "SP",
+        "Capital": "São Paulo",
+        "cUF": 35
+    },
+    {
+        "Name": "Sergipe",
+        "Abbreviation": "SE",
+        "Capital": "Aracaju",
+        "cUF": 28
+    },
+    {
+        "Name": "Tocantins",
+        "Abbreviation": "TO",
+        "Capital": "Palmas",
+        "cUF": 17
+    }
+]

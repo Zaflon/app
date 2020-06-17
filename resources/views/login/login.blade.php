@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 
     <!-- Page tittle -->
-    <title>Login</title>
+    <title>{{ $view->action }}</title>
 
     <!-- js dependency-->
     <script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script>
@@ -19,7 +19,7 @@
     <div id="container">
         <!-- attributes of this module -->
         <form style="display: hidden" id="data">
-            <input type="hidden" name="controller" value="{{ $data->controller }}">
+            <input type="hidden" name="controller" value="{{ $view->controller }}">
             <input type="hidden" name="date" value="{{ date('Y/m/d H:i:s') }}">
             <input type="hidden" name="url" value="{{ request()->fullUrl() }}">
             <input type="hidden" name="csrf" value="{{ csrf_token() }}">

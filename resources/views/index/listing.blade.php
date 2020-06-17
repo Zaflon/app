@@ -5,16 +5,16 @@
 <table class="table table-hover">
 
     <thead>
-        @foreach($data->header as $key => $header)
+        @foreach($view->header as $key => $header)
         <th scope="col">{{$header['alias']}}</th>
         @endforeach
     </thead>
 
-    @foreach($data->list as $key => $dado)
+    @foreach($view->list as $key => $dado)
 
         <tr id="{{ $dado['id'] }}">
 
-            @foreach($data->header as $kkey => $field)
+            @foreach($view->header as $kkey => $field)
 
                 @if($field['type'] === 'column')
                     <td>
@@ -24,9 +24,15 @@
                     @switch($field['type'])
                         @case('info')
                             <td>
-                                <a onclick="App.Show( {{ $dado['id'] }} )" class="alias">
+
+
+
+                                <a onclick="App.Show( {{ ($dado['id'] }} )" class="alias">
                                     <img title="More Information?" src="https://img.icons8.com/nolan/32/info.png">
                                 </a>
+                                
+
+
                                 
                             </td>
                             @break

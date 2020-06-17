@@ -8,7 +8,7 @@
     <meta name="author" content="Wesley Flôres">
 
     <!-- Page tittle -->
-    <title>{{$data->controller}} - {{$data->action}}</title>
+    <title>{{$view->controller}} - {{$view->action}}</title>
 
     <!-- js dependency-->
     <script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script>
@@ -29,21 +29,21 @@
 
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading text-center"> {{ $data->user->name }}</div>
+            <div class="sidebar-heading text-center"> {{ $view->user->name }}</div>
 
             <!-- attributes of this module -->
             <form style="display: hidden" id="data">
-                <input type="hidden" name="controller" value="{{ $data->controller }}">
+                <input type="hidden" name="controller" value="{{ $view->controller }}">
                 <input type="hidden" name="date" value="{{ date('Y/m/d H:i:s') }}">
                 <input type="hidden" name="url" value="{{ request()->fullUrl() }}">
                 <input type="hidden" name="csrf" value="{{ csrf_token() }}">
             </form>
 
             <!-- Chunck elements-->
-            <div class="{{ $data->chunk->xGen->xClass }}">
-                @foreach ($data->chunk->Chunk->AttachedElement->Child->xBit as $key => $chunk)
+            <div class="{{ $view->chunk->xGen->xClass }}">
+                @foreach ($view->chunk->Chunk->AttachedElement->Child->xBit as $key => $chunk)
                 @if ( (bool) (int) $chunk->ActiveElement === true )
-                <a href="{{ $chunk->CompletePath }}" class="{{ $data->chunk->xGen->xClassBit }}">{{ $chunk->PropertyText }}</a>
+                <a href="{{ $chunk->CompletePath }}" class="{{ $view->chunk->xGen->xClassBit }}">{{ $chunk->PropertyText }}</a>
                 @endif
                 @endforeach
             </div>
@@ -56,24 +56,26 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <button class="btn btn-secondary" id="menu-toggle">Toggle Menu</button>
 
-                <button class="btn btn-success ml-1" title="Cadastrar {{ $data->controller }}">
-                    <a href='{{ route("{$data->controller}.create") }}' style="color: white;">
+                <button class="btn btn-success ml-1" title="Cadastrar {{ $view->controller }}">
+                    <a href='{{ route("{$view->controller}.create") }}' style="color: white;">
                         Cadastro (+)
                         <a />
                 </button>
 
+                <!-- CORRIGIR A ROTA DE GERAÇÃO DE RELATÓRIOS -->
+                
                 <!-- PDF -->
-                <a href='{{ route("Archive", [$data->controller, "pdf"]) }}'>
+                <a href='route("Archive", [$view->controller, "pdf"])'>
                     <img src="https://img.icons8.com/nolan/64/pdf.png" alt="Pdf Image">
                 </a>
 
                 <!-- XML -->
-                <a href='{{ route("Archive", [$data->controller, "xml"]) }}'>
+                <a href='route("Archive", [$view->controller, "xml"])'>
                     <img src="https://img.icons8.com/nolan/64/xml.png" alt="Xml Image">
                 </a>
 
                 <!-- CSV -->
-                <a href='{{ route("Archive", [$data->controller, "csv"]) }}'>
+                <a href='route("Archive", [$view->controller, "csv"])'>
                     <img src="https://img.icons8.com/nolan/64/csv.png" alt="Csv Image">
                 </a>
 

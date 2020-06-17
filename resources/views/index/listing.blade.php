@@ -25,14 +25,9 @@
                         @case('info')
                             <td>
 
-
-
-                                <a onclick="App.Show( {{ ($dado['id'] }} )" class="alias">
+                                <a onclick="App.Show( {{ $dado['id'] }} )" class="alias">
                                     <img title="More Information?" src="https://img.icons8.com/nolan/32/info.png">
                                 </a>
-                                
-
-
                                 
                             </td>
                             @break
@@ -48,7 +43,7 @@
 
                         @case('delete')
                             <td>
-                                <a onclick="App.Del({{$dado['id']}})">
+                                <a onclick="App.Del( {{ $dado['id'] }} )">
                                     <img title="Delete?" src="https://img.icons8.com/nolan/32/delete-sign.png">
                                 </a>
                             </td>

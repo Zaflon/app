@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(StatesSeeder::class);
         $this->call(UserAdminSeeder::class);
+        $this->call(MeasurementUnitsSeeder::class);
     }
 }

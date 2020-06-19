@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableDifficulties extends Migration
+class CreateMeasurementUnitsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateTableDifficulties extends Migration
      */
     public function up()
     {
-        Schema::create('difficulties', function (Blueprint $table) {
+        Schema::create('measurement_units', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('color_id');
-            $table->softDeletes();
+            $table->string('measurement_unit', 32)->unique();
+            $table->string('abbreviation', 8)->unique();
             $table->timestamps();
-            $table->foreign('color_id')->references('id')->on('colors');
+            $table->softDeletes();
         });
     }
 
@@ -29,6 +29,6 @@ class CreateTableDifficulties extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('difficulties');
+        Schema::dropIfExists('measurement_units');
     }
 }

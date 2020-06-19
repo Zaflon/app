@@ -106,6 +106,8 @@ class UserController extends Controller
             (bool) is_null($LoggerFacts) === false &&
             (bool) ((int) $LoggerFacts->count() === 1) === true
         ) {
+            session_start();
+
             Session::put(self::USER_CREDENTIALS, $LoggerFacts->toArray());
 
             return redirect('/app');

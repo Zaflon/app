@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use stdClass;
+use Illuminate\Support\Facades\Session;
 
 final class Utils
 {
@@ -81,7 +82,7 @@ final class Utils
         $list->controller = self::ctrlr2string($str);
 
         if (!((string) $act === self::LOGIN)) {
-            $list->user = (object) $_SESSION[\App\Http\Controllers\UserController::USER_CREDENTIALS];
+            $list->user = (object) Session::get(\App\Http\Controllers\UserController::USER_CREDENTIALS);
         }
 
         $list->action = $act;
@@ -98,12 +99,12 @@ final class Utils
     {
         $xmlChunk = self::ReadChunk();
 
-        $dadosRetorno = array_filter(array_map(function (object $data) {
+        $routes = array_filter(array_map(function (object $data) {
             return $data->getName();
         }, app()->routes->getRoutes()));
 
         foreach ($xmlChunk->Chunk->AttachedElement->Child->xBit as $x) {
-            $x->CompletePath = in_array((string) $x->BasicPath, $dadosRetorno) ? route((string) $x->BasicPath) : route('app');
+            $x->CompletePath = in_array((string) $x->BasicPath, $routes) ? route((string) $x->BasicPath) : route('app');
         }
 
         return $xmlChunk;

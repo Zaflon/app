@@ -10,10 +10,14 @@
         @endforeach
     </thead>
 
+    <!-- FOREACH IN EACH REGISTER -->
+
     @foreach($view->list as $key => $dado)
 
         <tr id="{{ $dado['id'] }}">
 
+            <!-- FOREACH IN EACH COLUMN -->
+            
             @foreach($view->header as $kkey => $field)
 
                 @if($field['type'] === 'column')

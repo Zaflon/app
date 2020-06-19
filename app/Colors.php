@@ -16,6 +16,8 @@ class Colors extends Model
      * Retorna informações para a listagem.
      * 
      * @param void
+     * 
+     * @return object
      */
     public static function data(): object
     {
@@ -58,7 +60,9 @@ class Colors extends Model
     /**
      * Retorna informações para o popup presente na listagem.
      * 
-     * @param void
+     * @param int $id
+     * 
+     * @return array
      */
     public static function info(int $id = 0): array
     {

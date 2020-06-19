@@ -63,19 +63,19 @@
                 </button>
 
                 <!-- CORRIGIR A ROTA DE GERAÇÃO DE RELATÓRIOS -->
-                
+
                 <!-- PDF -->
-                <a href='route("Archive", [$view->controller, "pdf"])'>
+                <a href="{{ route( strtolower($view->controller). '.pdf') }}">
                     <img src="https://img.icons8.com/nolan/64/pdf.png" alt="Pdf Image">
                 </a>
 
                 <!-- XML -->
-                <a href='route("Archive", [$view->controller, "xml"])'>
+                <a href="{{ route( strtolower($view->controller). '.xml') }}">
                     <img src="https://img.icons8.com/nolan/64/xml.png" alt="Xml Image">
                 </a>
 
                 <!-- CSV -->
-                <a href='route("Archive", [$view->controller, "csv"])'>
+                <a href="{{ route( strtolower($view->controller). '.csv') }}">
                     <img src="https://img.icons8.com/nolan/64/csv.png" alt="Csv Image">
                 </a>
 

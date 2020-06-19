@@ -69,6 +69,21 @@ class ColorController extends Controller
         ]);
     }
 
+    public static function pdf()
+    {
+        dd("PDF");
+    }
+
+    public static function csv()
+    {
+        dd("CSV");
+    }
+
+    public static function xml()
+    {
+        dd("XML");
+    }
+
     /**
      * Display the specified resource.
      *

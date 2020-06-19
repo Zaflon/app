@@ -80,7 +80,9 @@ final class Utils
 
         $list->controller = self::ctrlr2string($str);
 
-        $list->user = (object) $_SESSION[\App\Http\Controllers\UserController::USER_CREDENTIALS];
+        if (!((string) $act === self::LOGIN)) {
+            $list->user = (object) $_SESSION[\App\Http\Controllers\UserController::USER_CREDENTIALS];
+        }
 
         $list->action = $act;
 

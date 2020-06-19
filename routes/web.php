@@ -46,10 +46,19 @@ Route::prefix('/app')->group(function () {
         return view('config');
     })->name('app.config');
 
+
     /**
-     * Método responsável pela criação de rotas para todos os métodos padrões do framework presentes no controlador MarcaController
+     * Color Route.
      */
     Route::resource('Color', 'ColorController');
+
+    /**
+     * Report Route for Color Controller.
+     */
+    Route::get('Color/pdf', 'ColorController@pdf')->name('color.pdf');
+    Route::get('Color/csv', 'ColorController@csv')->name('color.csv');
+    Route::get('Color/xml', 'ColorController@xml')->name('color.xml');
+
 
     /**
      * Exemplo de redirecionamento de rotas, ao chamar a url /Marca, retornamos /config

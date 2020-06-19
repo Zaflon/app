@@ -20,15 +20,6 @@ final class Utils
     public const LOGIN = 'Login';
 
     /**
-     * Constructor Method.
-     * 
-     * @param void
-     */
-    private function __construct()
-    {
-    }
-
-    /**
      * Returns the input CamelCasedString as an underscored_string.
      * 
      * @param string $str
@@ -77,8 +68,6 @@ final class Utils
             $list->register = $reg;
         }
 
-        $list->chunk = self::Chunk();
-
         $list->controller = self::ctrlr2string($str);
 
         if (!((string) $act === self::LOGIN)) {
@@ -88,26 +77,6 @@ final class Utils
         $list->action = $act;
 
         return $list;
-    }
-
-    /**
-     * Set routes list into SimpleXMLElement.
-     * 
-     * @param void
-     */
-    public static function Chunk(): \SimpleXMLElement
-    {
-        $xmlChunk = self::ReadChunk();
-
-        $routes = array_filter(array_map(function (object $data) {
-            return $data->getName();
-        }, app()->routes->getRoutes()));
-
-        foreach ($xmlChunk->Chunk->AttachedElement->Child->xBit as $x) {
-            $x->CompletePath = in_array((string) $x->BasicPath, $routes) ? route((string) $x->BasicPath) : route('app');
-        }
-
-        return $xmlChunk;
     }
 
     /**
@@ -123,17 +92,5 @@ final class Utils
     private static function ctrlr2string(string $str): string
     {
         return (string) preg_replace('/(App\\\\Http\\\\Controllers\\\\)|(Controller)/', '', $str);
-    }
-
-    /**
-     * Get an SimpleXMLElement of Chunk Elements.
-     * 
-     * @param void
-     * 
-     * @return \SimpleXMLElement
-     */
-    public static function ReadChunk(): \SimpleXMLElement
-    {
-        return simplexml_load_string(file_get_contents(dirname(dirname(__DIR__)) . '/resources/Chunk.XML'));
     }
 }

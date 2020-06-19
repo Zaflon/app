@@ -39,14 +39,53 @@
                 <input type="hidden" name="csrf" value="{{ csrf_token() }}">
             </form>
 
-            <!-- Chunck elements-->
-            <div class="{{ $view->chunk->xGen->xClass }}">
-                @foreach ($view->chunk->Chunk->AttachedElement->Child->xBit as $key => $chunk)
-                @if ( (bool) (int) $chunk->ActiveElement === true )
-                <a href="{{ $chunk->CompletePath }}" class="{{ $view->chunk->xGen->xClassBit }}">{{ $chunk->PropertyText }}</a>
-                @endif
-                @endforeach
+            <!-- Wrapper Modules -->
+            <div class="list-group list-group-flush">
+                <a href="#" class="list-group-item list-group-item-action bg-light font-weight-bold group" data-target="widespread">🔑 Widespread</a>
+                    <div class="wrapper-widespread">
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Dashboard</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Shortcuts</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Overview</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Profile</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Status</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Parameter</a>
+                    </div>
+                <a href="#" class="list-group-item list-group-item-action bg-light font-weight-bold group" data-target="user">🔑 User</a>
+                    <div class="wrapper-user">
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Panel</a>
+                    </div>
+                <a href="#" class="list-group-item list-group-item-action bg-light font-weight-bold group" data-target="register">🔑 Register</a>
+                    <div class="wrapper-register">
+                        <a href="{{ route('Color.index') }}" class="list-group-item list-group-item-action bg-light">🗝 Color</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Brand</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Category</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Event</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Inventory</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Measurement Unit</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 NCM</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Person</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Printer</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Product</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Schedule</a>
+                    </div>
+                <a href="#" class="list-group-item list-group-item-action bg-light font-weight-bold group" data-target="stock">🔑 Stock</a>
+                    <div class="wrapper-stock">
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Product Logger</a>
+                    </div>
+                <a href="#" class="list-group-item list-group-item-action bg-light font-weight-bold group" data-target="sale">🔑 Sale</a>
+                    <div class="wrapper-sale">
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Devolution</a>
+                    </div>
+                <a href="#" class="list-group-item list-group-item-action bg-light font-weight-bold group" data-target="report">🔑 Report</a>
+                    <div class="wrapper-report">
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Sale Commission Report</a>
+                    </div>
+                <a href="#" class="list-group-item list-group-item-action bg-light font-weight-bold group" data-target="finance">🔑 Finance</a>
+                    <div class="wrapper-finance">
+                        <a href="#" class="list-group-item list-group-item-action bg-light">🗝 installment</a>
+                    </div>
             </div>
+            
         </div>
         <!-- /#sidebar-wrapper -->
 
@@ -54,15 +93,14 @@
         <div id="page-content-wrapper">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+
                 <button class="btn btn-secondary" id="menu-toggle">Toggle Menu</button>
 
                 <button class="btn btn-success ml-1" title="Cadastrar {{ $view->controller }}">
                     <a href='{{ route("{$view->controller}.create") }}' style="color: white;">
-                        Cadastro (+)
+                        Register (+)
                         <a />
                 </button>
-
-                <!-- CORRIGIR A ROTA DE GERAÇÃO DE RELATÓRIOS -->
 
                 <!-- PDF -->
                 <a href="{{ route( strtolower($view->controller). '.pdf') }}">
@@ -85,10 +123,6 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('welcome') }}">Laravel <span class="sr-only">(current)</span></a>
-                        </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="#" title="User Profile">User</a>
@@ -134,6 +168,10 @@
         });
 
         $('.toast').toast('show');
+
+        jQuery(`a.group`).on(`click`, (e) => {
+            $(`div.wrapper-${$(e.target).data(`target`)}`).toggle();
+        });
     </script>
 </body>
 

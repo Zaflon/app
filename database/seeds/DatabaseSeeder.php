@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserAdminSeeder::class);
         $this->call(MeasurementUnitsSeeder::class);
         $this->call(ColorsSeeder::class);
+        $this->call(BrandsSeeder::class);
     }
 }

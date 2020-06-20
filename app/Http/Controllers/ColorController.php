@@ -69,39 +69,6 @@ class ColorController extends Controller
         ]);
     }
 
-    // /**
-    //  * Render PDF.
-    //  * 
-    //  * @param void
-    //  */
-    // public static function pdf(\Illuminate\Http\Request $request)
-    // {
-    //     $pdf = new \FPDF('P');
-
-    //     $pdf->SetFont('Arial', 'B', 8);
-    //     $pdf->SetMargins(5, 5, 5);
-    //     $pdf->AddPage();
-
-    //     $pdf->Cell(50, 4, 'Hello World!',true, 0, false);
-    //     $pdf->Cell(50, 4, 'Hello World!',true, 0, false);
-    //     $pdf->Cell(50, 4, 'Hello World!',true, 0, false);
-    //     $pdf->Cell(50, 4, 'Hello World!',true, 0, false);
-
-    //     $pdf->Ln();
-
-    //     $pdf->Output('D');
-    // }
-
-    // public static function csv()
-    // {
-    //     dd("CSV");
-    // }
-
-    // public static function xml()
-    // {
-    //     dd("XML");
-    // }
-
     /**
      * Display the specified resource.
      *

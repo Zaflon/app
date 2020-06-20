@@ -103,7 +103,7 @@ const App = {
                     App.SetDate(response.timestamp);
                     jQuery(`table tr[id=${response.id}]`).remove();
                 },
-                error: () => {}
+                error: () => { }
             });
         }
     },
@@ -111,6 +111,7 @@ const App = {
      * Função responsável pela exibição resumida do registro em questão, conforme array definido no modelo.
      * 
      * @param {Integer} primaryKey 
+     * @param {String} Url
      */
     Show: (primaryKey, Url = App.Url()) => {
         const url = new URL(`${Url}/${primaryKey}`);

@@ -103,17 +103,16 @@
                 </button>
 
                 <!-- PDF -->
-                <a href="{{ route( strtolower($view->controller). '.pdf') }}">
+                <a href="{{ route('GenericPDFReport.show', 1) }}">
                     <img src="https://img.icons8.com/nolan/64/pdf.png" alt="Pdf Image">
                 </a>
 
                 <!-- XML -->
-                <a href="{{ route( strtolower($view->controller). '.xml') }}">
+                <a href="{{ route('GenericXMLReport.show', 1) }}">
                     <img src="https://img.icons8.com/nolan/64/xml.png" alt="Xml Image">
                 </a>
 
-                <!-- CSV -->
-                <a href="{{ route( strtolower($view->controller). '.csv') }}">
+                <a href="{{ route('GenericCSVReport.show', 1) }}">
                     <img src="https://img.icons8.com/nolan/64/csv.png" alt="Csv Image">
                 </a>
 

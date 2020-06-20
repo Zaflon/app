@@ -89,7 +89,7 @@ final class Utils
      * 
      * @return string
      */
-    private static function ctrlr2string(string $str): string
+    public static function ctrlr2string(string $str): string
     {
         return (string) preg_replace('/(App\\\\Http\\\\Controllers\\\\)|(Controller)/', '', $str);
     }

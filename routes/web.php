@@ -46,18 +46,25 @@ Route::prefix('/app')->group(function () {
         return view('config');
     })->name('app.config');
 
-
     /**
      * Color Route.
      */
     Route::resource('Color', 'ColorController');
 
     /**
-     * Report Route for Color Controller.
+     * Reneric PDF Report Route.
      */
-    Route::get('Color/pdf', 'ColorController@pdf')->name('color.pdf');
-    Route::get('Color/csv', 'ColorController@csv')->name('color.csv');
-    Route::get('Color/xml', 'ColorController@xml')->name('color.xml');
+    Route::resource('GenericPDFReport', 'GenericPDFReportController');
+
+    /**
+     * Reneric CSV Report Route.
+     */
+    Route::resource('GenericCSVReport', 'GenericCSVReportController');
+
+    /**
+     * Reneric XML Report Route.
+     */
+    Route::resource('GenericXMLReport', 'GenericXMLReportController');
 
     /**
      * Exemplo de redirecionamento de rotas, ao chamar a url /Marca, retornamos /config

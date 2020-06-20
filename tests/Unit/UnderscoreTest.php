@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 
-class TestUnderscore extends TestCase
+class UnderscoreTest extends TestCase
 {
     /**
      * A basic unit test example.

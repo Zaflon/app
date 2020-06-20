@@ -29,7 +29,7 @@
                         @case('info')
                             <td>
 
-                                <a onclick="App.Show( {{ $dado['id'] }} )" class="alias">
+                                <a onclick="App.Show( `{{ $dado['id'] }}` )" class="alias">
                                     <img title="More Information?" src="https://img.icons8.com/nolan/32/info.png">
                                 </a>
                                 
@@ -47,7 +47,7 @@
 
                         @case('delete')
                             <td>
-                                <a onclick="App.Del( {{ $dado['id'] }} )">
+                                <a onclick="App.Del( `{{ $dado['id'] }}` )">
                                     <img title="Delete?" src="https://img.icons8.com/nolan/32/delete-sign.png">
                                 </a>
                             </td>
@@ -72,5 +72,19 @@
     @endforeach
 
 </table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+        </li>
+    </ul>
+</nav>
 
 @endsection

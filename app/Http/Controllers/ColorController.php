@@ -69,20 +69,38 @@ class ColorController extends Controller
         ]);
     }
 
-    public static function pdf()
-    {
-        dd("PDF");
-    }
+    // /**
+    //  * Render PDF.
+    //  * 
+    //  * @param void
+    //  */
+    // public static function pdf(\Illuminate\Http\Request $request)
+    // {
+    //     $pdf = new \FPDF('P');
 
-    public static function csv()
-    {
-        dd("CSV");
-    }
+    //     $pdf->SetFont('Arial', 'B', 8);
+    //     $pdf->SetMargins(5, 5, 5);
+    //     $pdf->AddPage();
 
-    public static function xml()
-    {
-        dd("XML");
-    }
+    //     $pdf->Cell(50, 4, 'Hello World!',true, 0, false);
+    //     $pdf->Cell(50, 4, 'Hello World!',true, 0, false);
+    //     $pdf->Cell(50, 4, 'Hello World!',true, 0, false);
+    //     $pdf->Cell(50, 4, 'Hello World!',true, 0, false);
+
+    //     $pdf->Ln();
+
+    //     $pdf->Output('D');
+    // }
+
+    // public static function csv()
+    // {
+    //     dd("CSV");
+    // }
+
+    // public static function xml()
+    // {
+    //     dd("XML");
+    // }
 
     /**
      * Display the specified resource.

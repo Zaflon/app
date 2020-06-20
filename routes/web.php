@@ -59,7 +59,6 @@ Route::prefix('/app')->group(function () {
     Route::get('Color/csv', 'ColorController@csv')->name('color.csv');
     Route::get('Color/xml', 'ColorController@xml')->name('color.xml');
 
-
     /**
      * Exemplo de redirecionamento de rotas, ao chamar a url /Marca, retornamos /config
      * 

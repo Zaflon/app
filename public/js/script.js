@@ -1,3 +1,5 @@
+const REGEX_LOCALHOST = 'https?:\/\/[0-9]{3}\.[0-9]{1}\.[0-9]{1}\.[0-9]{1}\:[0-9]{4}\/app\/[A-z]*';
+
 var movePopUp = () => {
 
     let startX = 0;
@@ -185,7 +187,7 @@ const App = {
         jQuery(`#data input[name=date]`).val(date);
     },
     Url: () => {
-        return jQuery(`#data input[name=url]`).val().toString();
+        return jQuery(`#data input[name=url]`).val().toString().match(REGEX_LOCALHOST).join(``).toString();
     },
     Csrf: () => {
         return jQuery(`#data input[name=csrf]`).val().toString();

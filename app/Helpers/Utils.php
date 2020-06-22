@@ -43,9 +43,24 @@ final class Utils
         $list = self::important($str, self::LISTING, (object) []);
 
         $list->header = $rules::data();
-        $list->list = $rules::all()->toArray();
+
+        $list->paginate = self::arr2obj($rules::paginate(10)->toArray());
+
+        $list->list = $list->paginate->data;
 
         return $list;
+    }
+
+    /**
+     * Converts an array in object.
+     * 
+     * @param array $arr
+     * 
+     * @return object
+     */
+    public static function arr2obj(array $arr): object
+    {
+        return json_decode(json_encode($arr, JSON_FORCE_OBJECT));
     }
 
     /**

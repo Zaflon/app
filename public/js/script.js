@@ -84,11 +84,12 @@ function POST(Url = App.Url()) {
 
 const App = {
     /**
-     * Função responsável pela deleção de um registro.
+     * Function responsable for deleting a record.
      * 
-     * Ao retornar, atualiza o horário conforme timestamp do servidor.
+     * On returning, update the timestamp accordingly with server.
      * 
      * @param {Integer} primaryKey
+     * 
      * @param {String} Url
      */
     Del: (primaryKey, Url = App.Url()) => {
@@ -110,7 +111,7 @@ const App = {
         }
     },
     /**
-     * Função responsável pela exibição resumida do registro em questão, conforme array definido no modelo.
+     * Function responsable for resumed showing of actual record, accordingly with model definition.
      * 
      * @param {Integer} primaryKey 
      * @param {String} Url

@@ -12,6 +12,47 @@ class Colors extends Model
 
     use SoftDeletes;
 
+    /** @var array */
+    protected const DATA = [
+        [
+            \App\Helpers\Html::ALIAS => '#',
+            \App\Helpers\Html::BODY => 'id',
+            \App\Helpers\Html::TYPE => \App\Helpers\Html::COLUMN,
+        ],
+        [
+            \App\Helpers\Html::ALIAS => 'Description',
+            \App\Helpers\Html::BODY => 'color',
+            \App\Helpers\Html::TYPE => \App\Helpers\Html::COLUMN,
+        ],
+        [
+            \App\Helpers\Html::ALIAS => 'Descrição',
+            \App\Helpers\Html::BODY => 'cor',
+            \App\Helpers\Html::TYPE => \App\Helpers\Html::COLUMN
+        ],
+        [
+            \App\Helpers\Html::ALIAS => 'Hexadecimal',
+            \App\Helpers\Html::BODY => 'hexadecimal',
+            \App\Helpers\Html::TYPE => \App\Helpers\Html::COLUMN,
+        ],
+        [
+            \App\Helpers\Html::ALIAS => 'Information',
+            \App\Helpers\Html::TYPE => 'info',
+        ],
+        [
+            \App\Helpers\Html::ALIAS => 'Edition',
+            \App\Helpers\Html::TYPE => 'edit',
+        ],
+        [
+            \App\Helpers\Html::ALIAS => 'Delete',
+            \App\Helpers\Html::TYPE => 'delete',
+        ],
+        [
+            \App\Helpers\Html::ALIAS => 'Image',
+            \App\Helpers\Html::BODY => 'hexadecimal',
+            \App\Helpers\Html::TYPE => \App\Helpers\Html::HEXADECIMAL,
+        ]
+    ];
+
     /**
      * Retorna informações para a listagem.
      * 
@@ -21,40 +62,7 @@ class Colors extends Model
      */
     public static function data(): object
     {
-        return (object) [
-            '#' => [
-                'alias' => '#',
-                'body' => 'id',
-                'type' => 'column',
-            ],
-            'Description' => [
-                'alias' => 'Description',
-                'body' => 'color',
-                'type' => 'column',
-            ],
-            'Hexadecimal' => [
-                'alias' => 'Hexadecimal',
-                'body' => 'hexadecimal',
-                'type' => 'column',
-            ],
-            'Information' => [
-                'alias' => 'Information',
-                'type' => 'info',
-            ],
-            'Edition' => [
-                'alias' => 'Edition',
-                'type' => 'edit',
-            ],
-            'Delete' => [
-                'alias' => 'Delete',
-                'type' => 'delete',
-            ],
-            'Image' => [
-                'alias' => 'Image',
-                'body' => 'hexadecimal',
-                'type' => 'hexadecimal',
-            ]
-        ];
+        return \App\Helpers\Utils::arr2obj(self::DATA);
     }
 
     /**

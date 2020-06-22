@@ -2,23 +2,53 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Facades\Log;
+
 final class Html
 {
+    /** @var string */
+    public const TYPES = 'Types';
+
+    /** @var string */
+    public const HEXADECIMAL = 'hexadecimal';
+    /** @var string */
+    public const IMAGE = 'image';
+    /** @var string */
+    public const COLUMN = 'column';
+
+    /** @var string */
+    public const ALIAS = 'alias';
+    /** @var string */
+    public const TYPE = 'type';
+    /** @var string */
+    public const BODY = 'body';
+
+    /** @var array */
+    public const SPAN = [
+        self::TYPES => [
+            self::HEXADECIMAL => self::HEXADECIMAL,
+            self::IMAGE => self::IMAGE
+        ]
+    ];
+
     /**
-     * Mostra um span.
+     * Return an span element.
+     * 
+     * @param object $dado
+     * @param string $type
+     * @param object $field
+     * 
+     * @return string
      */
-    public static function span(string $name, array $data = []): void
+    public static function span(object $dado, string $type, object $field): string
     {
-        if (empty($name) || !is_string($name)) {
-            echo '<span style="color: #1860A7;">Please inform a name</span>';
+        if ((string) $type === self::SPAN[self::TYPES][self::HEXADECIMAL]) {
+            return "<span class = \"dot\" style = \"background-color: #{$dado->{$field->body}}\">&nbsp;</span>";
+        } else {
+            Log::alert("SPAN => ERROR!");
+
+            return '<span style="color: #1860A7;">an error occurred</span>';
         }
-
-        $class = $data["class"] ?? '';
-        $style = $data["style"] ?? '';
-        $content = $data["content"] ?? '';
-        $id = $data['id'] ?? $name;
-
-        echo "<span name = {$name} id = {$id} class = \"{$class}\" style = \"{$style}\"> {$content} </span>";
     }
 
     /**
@@ -67,7 +97,5 @@ final class Html
 
     public static function a()
     {
-        
     }
 }
-

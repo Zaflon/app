@@ -20,18 +20,6 @@ final class Utils
     public const LOGIN = 'Login';
 
     /**
-     * Returns the input CamelCasedString as an underscored_string.
-     * 
-     * @param string $str
-     * 
-     * @return string
-     */
-    public static function underscore(string $str): string
-    {
-        return mb_strtolower(preg_replace('/(?<=\\w)([A-Z])/', "_" . '\\1', $str));
-    }
-
-    /**
      * Set all parameters for main listing.
      * 
      * @param void
@@ -49,18 +37,6 @@ final class Utils
         $list->list = $list->paginate->data;
 
         return $list;
-    }
-
-    /**
-     * Converts an array in object.
-     * 
-     * @param array $arr
-     * 
-     * @return object
-     */
-    public static function arr2obj(array $arr): object
-    {
-        return json_decode(json_encode($arr, JSON_FORCE_OBJECT));
     }
 
     /**
@@ -92,6 +68,49 @@ final class Utils
         $list->action = $act;
 
         return $list;
+    }
+
+    /**
+     * Converts an array in object.
+     * 
+     * @param array $arr
+     * 
+     * @return object
+     */
+    public static function arr2obj(array $arr): object
+    {
+        return json_decode(json_encode($arr, JSON_FORCE_OBJECT));
+    }
+
+    /**
+     * Check if an $needle is subarray of $arr.
+     * 
+     * @param array $needle
+     * @param array $arr
+     * 
+     * @return bool
+     */
+    public static function ArrayContains(array $needle, array $arr): bool
+    {
+        $c = 0;
+
+        foreach ($needle as $array) {
+            $c += (int) in_array($array, $arr) ? 1 : 0;
+        }
+
+        return (int) $c === (int) count($needle) ? true : false;
+    }
+
+    /**
+     * Returns the input CamelCasedString as an underscored_string.
+     * 
+     * @param string $str
+     * 
+     * @return string
+     */
+    public static function underscore(string $str): string
+    {
+        return mb_strtolower(preg_replace('/(?<=\\w)([A-Z])/', "_" . '\\1', $str));
     }
 
     /**

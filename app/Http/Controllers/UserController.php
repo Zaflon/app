@@ -97,17 +97,16 @@ class UserController extends Controller
      */
     public function autenticate(Request $request)
     {
-        $LoggerFacts = User::where([
+        $RequestArray = [
             'password' => (string) $request->password,
             'email' => (string) $request->email
-        ])->first();
+        ];
+
+        $LoggerFacts = User::where($RequestArray)->first();
 
         if (
-            (bool) is_null($LoggerFacts) === false &&
-            (bool) ((int) $LoggerFacts->count() === 1) === true
+            (bool) ($LoggerFacts instanceof \App\User) === true
         ) {
-            session_start();
-
             Session::put(self::USER_CREDENTIALS, $LoggerFacts->toArray());
 
             return redirect('/app');
@@ -117,7 +116,7 @@ class UserController extends Controller
     }
 
     /**
-     * Render an empty login form.
+     * Render an empty login form (Log In).
      * 
      * @param void
      * 
@@ -128,5 +127,19 @@ class UserController extends Controller
         return view('login.login', [
             'view' => \App\Helpers\Utils::important(Self::class, \App\Helpers\Utils::LOGIN, (object) [])
         ]);
+    }
+
+    /**
+     * Render an empty login form (Log Out).
+     * 
+     * @param void
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(): \Illuminate\View\View
+    {
+        session_unset();
+
+        return $this->login();
     }
 }

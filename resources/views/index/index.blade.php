@@ -139,7 +139,7 @@
                                     <img src="https://img.icons8.com/nolan/32/exit.png" alt="Logout Image"> Another action
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('login') }}">
+                                <a class="dropdown-item" href="{{ route('logout') }}">
                                     <img src="https://img.icons8.com/nolan/32/exit.png" alt="Logout Image"> Log Out
                                 </a>
                             </div>

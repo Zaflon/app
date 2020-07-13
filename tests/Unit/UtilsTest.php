@@ -30,7 +30,7 @@ class UtilsTest extends TestCase
     }
 
     /**
-     * Test Array IS subarray
+     * Test if Array IS subarray
      * 
      * @param void
      * 
@@ -46,7 +46,7 @@ class UtilsTest extends TestCase
     }
 
     /**
-     * Test Array IS NOT subarray
+     * Test if Array IS NOT subarray
      * 
      * @param void
      * 

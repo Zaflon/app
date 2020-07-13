@@ -1,10 +1,8 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class FieldsSeederTest extends TestCase
 {
@@ -23,18 +21,6 @@ class FieldsSeederTest extends TestCase
             ]
         ]
     ];
-
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function testExample()
-    {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
-    }
 
     /**
      * These fields must to be present in each JSON files.

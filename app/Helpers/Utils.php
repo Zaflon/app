@@ -114,6 +114,37 @@ final class Utils
     }
 
     /**
+     * Destroy return in JSON format.
+     * 
+     * @param bool $status
+     * @param int $id
+     * 
+     * @return string
+     */
+    public static function JSONDestroyString($status = true, $id = 0): string
+    {
+        return json_encode(self::JSONDestroyArray($status, $id), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
+    /**
+     * Destroy return in Array format.
+     * 
+     * @param bool $status
+     * @param int $id
+     * 
+     * @return array
+     */
+    public static function JSONDestroyArray($status = true, $id = 0): array
+    {
+        return [
+            'status' => $status,
+            'timestamp' => date("Y/m/d H:i:s"),
+            "message" => "User #{$id} deleted from system",
+            "id" => $id
+        ];
+    }
+
+
+    /**
      * Recebe uma string contendo um controller e o namespace do mesmo e retorna o nome característico do módulo em questão.
      * 
      * @example App\Http\Controllers\ColorController Color

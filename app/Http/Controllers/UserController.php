@@ -87,7 +87,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return \App\Helpers\Utils::JSONDestroyString(true, $id);
     }
 
     /**

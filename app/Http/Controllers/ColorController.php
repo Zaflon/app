@@ -149,14 +149,10 @@ class ColorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id = 0): array
+    public function destroy(int $id = 0): string
     {
         Colors::where('id', $id)->delete();
 
-        return [
-            'timestamp' => date("Y/m/d H:i:s"),
-            'id' => $id,
-            'status' => true
-        ];
+        return \App\Helpers\Utils::JSONDestroyString(true, $id);
     }
 }

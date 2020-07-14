@@ -4,17 +4,36 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+    /** @var const */
+    private const DATA = [
+        \UserSeeder::class,
+        \StatesSeeder::class,
+        \MeasurementUnitsSeeder::class,
+        \ColorsSeeder::class,
+        \BrandsSeeder::class
+    ];
+
     /**
      * Seed the application's database.
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        $this->call(StatesSeeder::class);
-        $this->call(UserAdminSeeder::class);
-        $this->call(MeasurementUnitsSeeder::class);
-        $this->call(ColorsSeeder::class);
-        $this->call(BrandsSeeder::class);
+        foreach (self::data() as $data) {
+            $this->call($data);
+        }
+    }
+
+    /**
+     * Get Data.
+     * 
+     * @param void
+     * 
+     * @return array
+     */
+    public static function data(): array
+    {
+        return self::DATA;
     }
 }

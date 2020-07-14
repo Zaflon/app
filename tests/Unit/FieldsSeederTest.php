@@ -32,9 +32,12 @@ class FieldsSeederTest extends TestCase
     public function testFields()
     {
         foreach ($this->fields() as $field) {
-            $dado = \App\Helpers\Utils::arr2obj(json_decode(file_get_contents($field->{self::URL})));
+            $data = \App\Helpers\Utils::arr2obj(json_decode(file_get_contents($field->{self::URL})));
 
-            $this->assertTrue(\App\Helpers\Utils::ArrayContains((array) $field->{self::COLUMNS}, (array) array_keys(get_object_vars($dado->{0}))));
+            $this->assertTrue(\App\Helpers\Utils::ArrayContains(
+                (array) $field->{self::COLUMNS},
+                (array) array_keys(get_object_vars($data->{array_key_first((array)$data)}))
+            ));
         }
     }
 

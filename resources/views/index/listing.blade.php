@@ -28,20 +28,17 @@
                     @switch($field->type)
                         @case('info')
                             <td>
-
                                 <a onclick="App.Show( `{{ $dado->id }}` )" class="alias">
                                     <img title="More Information?" src="https://img.icons8.com/nolan/32/info.png">
                                 </a>
-                                
                             </td>
                             @break
 
                         @case('edit')
                             <td>
-                                <a href="{{ route('Color.edit', $dado->id) }}">
+                                <a href="{{ route("{$view->controller}.edit", $dado->id) }}">
                                     <img title="Edit?" src="https://img.icons8.com/nolan/32/multi-edit.png">
                                 </a>
-                                
                             </td>
                             @break
 

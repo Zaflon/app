@@ -2,7 +2,7 @@
 
 @section('conteudo')
 
-<form action="{{ route('Color.update', $view->register->id) }}" method='POST'>
+<form action="{{ route($view->controller.'.update', $view->register->id) }}" method='POST'>
     @csrf
     @method('PUT')
     <label for="id">Código</label>

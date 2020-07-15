@@ -2,7 +2,7 @@
 
 @section('conteudo')
 
-<form action="{{ route('Color.store') }}" method='POST'>
+<form action="{{ route($view->controller.'.store') }}" method="POST">
     @csrf
     <label for="color">Color</label>
     <input type="text" name="color" placeholder="Color Name" required><br />

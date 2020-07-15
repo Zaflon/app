@@ -121,9 +121,9 @@ final class Utils
      * 
      * @return string
      */
-    public static function JSONDestroyString($status = true, $id = 0): string
+    public static function JSONDestroyString($status = true, $id = 0, string $model): string
     {
-        return json_encode(self::JSONDestroyArray($status, $id), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        return json_encode(self::JSONDestroyArray($status, $id, $model), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
     /**
      * Destroy return in Array format.
@@ -133,12 +133,12 @@ final class Utils
      * 
      * @return array
      */
-    public static function JSONDestroyArray($status = true, $id = 0): array
+    public static function JSONDestroyArray($status = true, $id = 0, string $model): array
     {
         return [
             'status' => $status,
             'timestamp' => date("Y/m/d H:i:s"),
-            "message" => "User #{$id} deleted from system",
+            "message" => "{$model} #{$id} deleted from system",
             "id" => $id
         ];
     }

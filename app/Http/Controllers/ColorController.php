@@ -149,10 +149,10 @@ class ColorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id = 0): string
+    public function destroy(int $id = 0): array
     {
         Colors::where('id', $id)->delete();
 
-        return \App\Helpers\Utils::JSONDestroyString(true, $id);
+        return \App\Helpers\Utils::JSONDestroyArray(true, $id, 'Color');
     }
 }

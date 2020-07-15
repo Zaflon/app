@@ -7,16 +7,6 @@ use PHPUnit\Framework\TestCase;
 class UtilsTest extends TestCase
 {
     /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function testExample()
-    {
-        $this->assertTrue(true);
-    }
-
-    /**
      * Underscore Test.
      * 
      * @return void
@@ -38,11 +28,15 @@ class UtilsTest extends TestCase
      */
     public function testArrayContainsTrue()
     {
-        $sub_array = ['morango', 'laranja'];
+        $this->assertTrue(\App\Helpers\Utils::ArrayContains(
+            ['strawberry', 'orange'],
+            ['wait', 'cherry', 'avocado', 'grape', 'orange', 'passion fruit', 'strawberry']
+        ));
 
-        $array = ['pêra', 'cereja', 'acabate', 'uva', 'laranja', 'acerola', 'morango'];
-
-        $this->assertTrue(\App\Helpers\Utils::ArrayContains($sub_array, $array));
+        $this->assertTrue(\App\Helpers\Utils::ArrayContains(
+            ['ã', 'â', 'ä', '\\'],
+            ['ã', 'â', 'ä', '\\']
+        ));
     }
 
     /**
@@ -54,10 +48,9 @@ class UtilsTest extends TestCase
      */
     public function testArrayContainsFalse()
     {
-        $sub_array = ['morango', 'laranja', 'golfinho'];
-
-        $array = ['pêra', 'cereja', 'acabate', 'uva', 'laranja', 'acerola', 'morango'];
-
-        $this->assertFalse(\App\Helpers\Utils::ArrayContains($sub_array, $array));
+        $this->assertFalse(\App\Helpers\Utils::ArrayContains(
+            ['strawberry', 'orange', 'monkey'],
+            ['wait', 'cherry', 'avocado', 'grape', 'orange', 'passion fruit', 'strawberry']
+        ));
     }
 }

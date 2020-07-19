@@ -70,7 +70,7 @@
 
 </table>
 
-@if($view->paginate->total >= ($view->paginate->current_page - 1) * $view->paginate->per_page)
+@if($view->paginate->total > ($view->paginate->current_page - 1) * $view->paginate->per_page)
     <!-- PAGINATION -->
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">

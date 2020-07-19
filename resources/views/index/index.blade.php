@@ -28,7 +28,13 @@
     <div class="d-flex" id="wrapper">
 
         <!-- Sidebar -->
-        @component('components.menu', ['view' => $view])
+        @component('components.menu', [
+            'username' => $view->user->name,
+            'date' => date('Y/m/d H:i:s'),
+            'controller' => $view->controller,
+            'url' => request()->fullUrl(),
+            'csrf' => csrf_token()
+        ])
         @endcomponent
         <!-- /#sidebar-wrapper -->
 
@@ -46,17 +52,21 @@
                 </button>
 
                 <!-- PDF -->
-                <a href="{{ route('GenericPDFReport.show', 1) }}">
-                    <img src="https://img.icons8.com/nolan/64/pdf.png" alt="Pdf Image">
+                <a href="{{ route('GenericPDFReport.show', $view->report->key) }}">
+                    <img src="https://img.icons8.com/officel/48/000000/export-pdf.png" alt="Pdf Image">
                 </a>
 
                 <!-- XML -->
-                <a href="{{ route('GenericXMLReport.show', 1) }}">
-                    <img src="https://img.icons8.com/nolan/64/xml.png" alt="Xml Image">
+                <a href="{{ route('GenericXMLReport.show', $view->report->key) }}">
+                    <img src="https://img.icons8.com/office/48/000000/xml-file.png" alt="Xml Image">
                 </a>
 
-                <a href="{{ route('GenericCSVReport.show', 1) }}">
-                    <img src="https://img.icons8.com/nolan/64/csv.png" alt="Csv Image">
+                <a href="{{ route('GenericCSVReport.show', $view->report->key) }}">
+                    <img src="https://img.icons8.com/officel/48/000000/import-csv.png" alt="Csv Image">
+                </a>
+
+                <a href="{{ route('GenericChartReport.show', $view->report->key) }}">
+                    <img src="https://img.icons8.com/clouds/48/000000/combo-chart.png" alt="Chart">
                 </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

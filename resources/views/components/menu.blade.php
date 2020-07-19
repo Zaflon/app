@@ -1,12 +1,12 @@
 <div class="bg-light border-right" id="sidebar-wrapper">
-    <div class="sidebar-heading text-center"> {{ $view->user->name }}</div>
+    <div class="sidebar-heading text-center"> {{ $username }}</div>
 
     <!-- attributes of this module -->
     <form style="display: hidden" id="data">
-        <input type="hidden" name="controller" value="{{ $view->controller }}">
-        <input type="hidden" name="date" value="{{ date('Y/m/d H:i:s') }}">
-        <input type="hidden" name="url" value="{{ request()->fullUrl() }}">
-        <input type="hidden" name="csrf" value="{{ csrf_token() }}">
+        <input type="hidden" name="controller" value="{{ $controller }}">
+        <input type="hidden" name="date" value="{{ $date }}">
+        <input type="hidden" name="url" value="{{ $url }}">
+        <input type="hidden" name="csrf" value="{{ $csrf }}">
     </form>
 
     <!-- Wrapper Modules -->
@@ -35,7 +35,7 @@
             <a href="#" class="list-group-item list-group-item-action bg-light">🗝 NCM</a>
             <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Person</a>
             <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Printer</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Product</a>
+            <a href="{{ route('Product.index') }}" class="list-group-item list-group-item-action bg-light">🗝 Product</a>
             <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Schedule</a>
         </div>
         <a href="#" class="list-group-item list-group-item-action bg-light font-weight-bold group" data-target="stock">🔑 Stock</a>

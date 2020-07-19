@@ -6,6 +6,9 @@ use Carbon\Carbon;
 
 class ColorsSeeder extends Seeder
 {
+    /** @var string */
+    public const URL = "Colors.JSON";
+
     /**
      * Run the database seeds.
      *
@@ -13,7 +16,7 @@ class ColorsSeeder extends Seeder
      */
     public function run()
     {
-        foreach (json_decode(file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'Colors.JSON')) as $key => $color) {
+        foreach (\App\Helpers\Utils::getSeederJSON(self::URL) as $key => $color) {
             DB::table('colors')->insert([
                 'cor' => $color->cor,
                 'color' => $color->color,

@@ -6,6 +6,9 @@ use Carbon\Carbon;
 
 class MeasurementUnitsSeeder extends Seeder
 {
+    /** @var string */
+    public const URL = "MeasurementUnits.JSON";
+
     /**
      * Run the database seeds.
      *
@@ -13,7 +16,7 @@ class MeasurementUnitsSeeder extends Seeder
      */
     public function run()
     {
-        foreach (json_decode(file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'MeasurementUnits.JSON')) as $MeasurementUnit) {
+        foreach (\App\Helpers\Utils::getSeederJSON(self::URL) as $MeasurementUnit) {
             DB::table('measurement_units')->insert([
                 'measurement_unit' => $MeasurementUnit->measurement_unit,
                 'abbreviation' => $MeasurementUnit->abbreviation,

@@ -36,7 +36,23 @@ final class Utils
 
         $list->list = $list->paginate->data;
 
+        $list->report = new \stdClass();
+
+        $list->report->key = array_search($str, \App\Http\Controllers\GenericPDFReportController::all());;
+
         return $list;
+    }
+
+    /**
+     * User
+     * 
+     * @param void
+     * 
+     * @return stdClass
+     */
+    public static function user(): \stdClass
+    {
+        return self::arr2obj(Session::get(\App\Http\Controllers\UserController::USER_CREDENTIALS));
     }
 
     /**
@@ -142,7 +158,6 @@ final class Utils
             "id" => $id
         ];
     }
-
 
     /**
      * Recebe uma string contendo um controller e o namespace do mesmo e retorna o nome característico do módulo em questão.

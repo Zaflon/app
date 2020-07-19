@@ -38,8 +38,39 @@ class Brand extends Model
         ],
     ];
 
+    /** @var array */
+    public const REPORT = [
+        \App\Report\Report::FIELDS => [
+            'id' => [
+                \App\Report\Report::WIDTH => 10,
+                \App\Report\Report::ACTIVE => true
+            ],
+            'name' => [
+                \App\Report\Report::WIDTH => 20,
+                \App\Report\Report::ACTIVE => true
+            ],
+            'deleted_at' => [
+                \App\Report\Report::WIDTH => 15,
+                \App\Report\Report::ACTIVE => false
+            ],
+            'created_at' => [
+                \App\Report\Report::WIDTH => 30,
+                \App\Report\Report::ACTIVE => true
+            ],
+            'updated_at' => [
+                \App\Report\Report::WIDTH => 30,
+                \App\Report\Report::ACTIVE => true
+            ],
+        ],
+        \App\Report\Report::INFO => [
+            \App\Report\Report::NAME => 'BRANDS REPORT',
+            \App\Report\Report::FILENAME => 'BrandsReport',
+            \App\Report\Report::HEIGHT => 4
+        ]
+    ];
+
     /**
-     * Retorna informações para a listagem.
+     * Get informations about listing.
      * 
      * @param void
      * 

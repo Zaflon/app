@@ -4,12 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class GenericPDFReportController extends Controller
+final class GenericPDFReportController extends Controller
 {
     /** @var array */
     private const REPORT = [
-        1 => \App\Http\Controllers\ColorController::class
+        1 => \App\Http\Controllers\ColorController::class,
+        2 => \App\Http\Controllers\ProductController::class,
+        3 => \App\Http\Controllers\BrandController::class
     ];
+
+    /**
+     * Get Listing.
+     * 
+     * @param void
+     * 
+     * @return array
+     */
+    public static function all(): array
+    {
+        return self::REPORT;
+    }
 
     /**
      * Getter Method.
@@ -61,7 +75,26 @@ class GenericPDFReportController extends Controller
      */
     public function show(int $id): void
     {
-        call_user_func_array(["App" . "\\" . "Report" . "\\" . \App\Helpers\Utils::ctrlr2string($this->__get($id)) . 'Report', 'PDF'], []);
+        if (defined("{$this->pdf($id)}::REPORT")) {
+            \App\Report\Report::create()->PDF(
+                \App\Helpers\Utils::arr2obj($this->pdf($id)::REPORT),
+                $this->pdf($id)::all()->take(42)
+            );
+        } else {
+            dd("Report not found...");
+        }
+    }
+
+    /**
+     * Get Model.
+     * 
+     * @param int
+     * 
+     * @return string
+     */
+    public function pdf(int $id): string
+    {
+        return "\\App\\" . \App\Helpers\Utils::ctrlr2string($this->__get($id));
     }
 
     /**

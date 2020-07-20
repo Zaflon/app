@@ -1,74 +1,75 @@
 @extends('index.index')
 
 @section('conteudo')
+<div class="overflow-auto h-75">
+    <table class="table table-hover">
 
-<table class="table table-hover">
-
-    <thead>
-        @foreach($view->header as $key => $header)
-        <th scope="col">{{$header->alias}}</th>
-        @endforeach
-    </thead>
-
-    <!-- FOREACH IN EACH REGISTER -->
-
-    @foreach($view->list as $key => $dado)
-
-        <tr id="{{ $dado->id }}">
-
-            <!-- FOREACH IN EACH COLUMN -->
-            
-            @foreach($view->header as $kkey => $field)
-
-                @if($field->type === 'column')
-                    <td>
-                        <span>{{ $dado->{$field->body} }}</span>
-                    </td>
-                @else
-                    @switch($field->type)
-                        @case('info')
-                            <td>
-                                <a onclick="App.Show( `{{ $dado->id }}` )" class="alias">
-                                    <img title="More Information?" src="https://img.icons8.com/nolan/32/info.png">
-                                </a>
-                            </td>
-                            @break
-
-                        @case('edit')
-                            <td>
-                                <a href="{{ route("{$view->controller}.edit", $dado->id) }}">
-                                    <img title="Edit?" src="https://img.icons8.com/nolan/32/multi-edit.png">
-                                </a>
-                            </td>
-                            @break
-
-                        @case('delete')
-                            <td>
-                                <a onclick="App.Del( `{{ $dado->id }}` )">
-                                    <img title="Delete?" src="https://img.icons8.com/nolan/32/delete-sign.png">
-                                </a>
-                            </td>
-                            @break
-                        
-                        @case('hexadecimal')
-                            <td>
-                                {!! html_entity_decode( App\Helpers\Html::span($dado, $field->type, $field) ) !!}
-                            </td>
-                            @break
-
-                        @default
-                            <span>Something went wrong, please try again</span>
-                    @endswitch
-
-                @endif
-
+        <thead>
+            @foreach($view->header as $key => $header)
+            <th scope="col">{{$header->alias}}</th>
             @endforeach
+        </thead>
 
-        </tr>
-        
-    @endforeach
+        <!-- FOREACH IN EACH REGISTER -->
 
-</table>
+        @foreach($view->list as $key => $dado)
+
+            <tr id="{{ $dado->id }}">
+
+                <!-- FOREACH IN EACH COLUMN -->
+                
+                @foreach($view->header as $kkey => $field)
+
+                    @if($field->type === 'column')
+                        <td>
+                            <span>{{ $dado->{$field->body} }}</span>
+                        </td>
+                    @else
+                        @switch($field->type)
+                            @case('info')
+                                <td>
+                                    <a onclick="App.Show( `{{ $dado->id }}` )" class="alias">
+                                        <img title="More Information?" src="https://img.icons8.com/nolan/32/info.png">
+                                    </a>
+                                </td>
+                                @break
+
+                            @case('edit')
+                                <td>
+                                    <a href="{{ route("{$view->controller}.edit", $dado->id) }}">
+                                        <img title="Edit?" src="https://img.icons8.com/nolan/32/multi-edit.png">
+                                    </a>
+                                </td>
+                                @break
+
+                            @case('delete')
+                                <td>
+                                    <a onclick="App.Del( `{{ $dado->id }}` )">
+                                        <img title="Delete?" src="https://img.icons8.com/nolan/32/delete-sign.png">
+                                    </a>
+                                </td>
+                                @break
+                            
+                            @case('hexadecimal')
+                                <td>
+                                    {!! html_entity_decode( App\Helpers\Html::span($dado, $field->type, $field) ) !!}
+                                </td>
+                                @break
+
+                            @default
+                                <span>Something went wrong, please try again</span>
+                        @endswitch
+
+                    @endif
+
+                @endforeach
+
+            </tr>
+            
+        @endforeach
+
+    </table>
+</div>
 
 @if($view->paginate->total > ($view->paginate->current_page - 1) * $view->paginate->per_page)
     <!-- PAGINATION -->

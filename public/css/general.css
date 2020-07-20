@@ -9,3 +9,8 @@
 .alias {
     cursor: alias;
 }
+
+table table-hover td, tr {
+    word-wrap: break-word;
+    white-space: nowrap;
+}

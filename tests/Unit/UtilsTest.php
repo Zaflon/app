@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 
 class UtilsTest extends TestCase
 {
+    /** @var string */
+    private const STRICT_HEXADECIMAL_COLOR_REGEX = '/^#[\d\w+]{6}$/';
+
     /**
      * Underscore Test.
      * 
@@ -77,5 +80,33 @@ class UtilsTest extends TestCase
         $this->assertTrue($stub == $arr2obj);
 
         $this->assertTrue($stub->{0}->{1}->{2}->{3}->{4}->{5}->{6} === $arr2obj->{0}->{1}->{2}->{3}->{4}->{5}->{6});
+    }
+
+    /**
+     * Test for obtaining a random color in hexadecimal format.
+     * 
+     * @param void
+     */
+    public function testgetHEXRandomColor(): void
+    {
+        $this->assertTrue((bool)(preg_match(self::STRICT_HEXADECIMAL_COLOR_REGEX, \App\Helpers\Utils::getHEXRandomColor())));
+    }
+
+    /**
+     * Test for obtaining an array of random colors in hexadecimal format.
+     * 
+     * @param void
+     */
+    public function testgetArrayOfHexColors()
+    {
+        $n = rand(2, 128);
+
+        $data = \App\Helpers\Utils::getArrayOfHexColors($n);
+
+        $this->assertCount($n, $data);
+
+        foreach ($data as $data) {
+            $this->assertTrue((bool)(preg_match(self::STRICT_HEXADECIMAL_COLOR_REGEX, $data)));
+        }
     }
 }

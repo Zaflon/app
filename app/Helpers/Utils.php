@@ -179,6 +179,34 @@ final class Utils
     }
 
     /**
+     * Method used to return a random color in hex format.
+     * 
+     * @example #\d{2}\d{2}\d{2}
+     *
+     * @param void
+     * 
+     * @return string
+     */
+    public static function getHEXRandomColor(): string
+    {
+        return sprintf('#%02x%02x%02x', rand(0, 255), rand(0, 255), rand(0, 255));
+    }
+
+    /**
+     * Method used to return an array of colors in hexadecimal format.
+     * 
+     * @param int $n
+     * 
+     * @return array
+     */
+    public static function getArrayOfHexColors(int $n = 0): array
+    {
+        return array_map(function () {
+            return \App\Helpers\Utils::getHEXRandomColor();
+        }, array_fill(NULL, $n, NULL));
+    }
+
+    /**
      * It receives a string containing a controller and its namespace and returns the characteristic name of the module in question.
      * 
      * @example App\Http\Controllers\ColorController Color

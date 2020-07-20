@@ -16,9 +16,12 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 32);
+            $table->integer('weight', false, true);
             $table->longText('detail');
+            $table->longText('info');
             $table->unsignedBigInteger('brand_id');
             $table->foreign('brand_id')->references('id')->on('brands');
+            $table->string('image', 64);
             $table->timestamps();
             $table->softDeletes();
         });

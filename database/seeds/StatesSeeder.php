@@ -6,6 +6,9 @@ use Carbon\Carbon;
 
 class StatesSeeder extends Seeder
 {
+    /** @var string */
+    public const URL = "Brazilian States's.JSON";
+
     /**
      * Run the database seeds.
      *
@@ -13,7 +16,7 @@ class StatesSeeder extends Seeder
      */
     public function run()
     {
-        foreach (json_decode(file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'States.JSON')) as $State) {
+        foreach (\App\Helpers\Utils::getSeederJSON(self::URL) as $State) {
             DB::table('states')->insert([
                 'name' => $State->Name,
                 'abbreviation' => $State->Abbreviation,

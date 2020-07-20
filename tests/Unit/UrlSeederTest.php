@@ -6,6 +6,72 @@ use PHPUnit\Framework\TestCase;
 
 class UrlSeederTest extends TestCase
 {
+    /** @var string */
+    private const URL = '@URL@';
+
+    /** @var string */
+    private const COLUMNS = '@COLUMNS@';
+
+    /** @var array */
+    private const FIELDS = [
+        [
+            self::URL => \BrandsSeeder::URL,
+            self::COLUMNS => [
+                'name'
+            ]
+        ],
+        [
+            self::URL => \ColorsSeeder::URL,
+            self::COLUMNS => [
+                'cor',
+                'color',
+                'couleur',
+                'farbe',
+                'colore',
+                'tonalidad',
+                'kleur'
+            ],
+        ],
+        [
+            self::URL => \MeasurementUnitsSeeder::URL,
+            self::COLUMNS => [
+                'measurement_unit',
+                'abbreviation'
+            ],
+        ],
+        [
+            self::URL => \StatesSeeder::URL,
+            self::COLUMNS => [
+                'Name',
+                'Abbreviation',
+                'cUF'
+            ]
+        ]
+    ];
+
+    /**
+     * These fields must to be present in each JSON files.
+     * 
+     * @param void
+     * 
+     * @return void
+     */
+    public function testFields(): void
+    {
+        $data = \App\Helpers\Utils::arr2obj(self::FIELDS);
+
+        foreach ($data as $url) {
+            $content = \App\Helpers\Utils::getSeederJSON($url->{self::URL});
+
+            $first = $content->{array_key_first((array)$content)};
+
+            $this->assertTrue(\App\Helpers\Utils::ArrayContains(
+                (array) $url->{self::COLUMNS},
+                (array) array_keys(get_object_vars($first))
+            ));
+        }
+    }
+
     /**
      * @test
      * 
@@ -29,10 +95,10 @@ class UrlSeederTest extends TestCase
      *
      * @return void
      */
-    public function testValidUrl()
+    public function testValidUrl(): void
     {
-        foreach ($this->list() as $url) {
-            if (is_array(json_decode(file_get_contents($url))) === false) {
+        foreach ($this->URL() as $URL) {
+            if ((bool)(\App\Helpers\Utils::getSeederJSON($URL) instanceof \stdClass) === false) {
                 $this->assertTrue(false);
             }
         }
@@ -45,10 +111,14 @@ class UrlSeederTest extends TestCase
      * 
      * @param void
      */
-    private function list(): array
+    public function URL(): array
     {
-        return [
-            \BrandsSeeder::URL
-        ];
+        $Address = [];
+
+        foreach (self::FIELDS as $KEY => $URL) {
+            $Address[] = $URL[self::URL];
+        }
+
+        return $Address;
     }
 }

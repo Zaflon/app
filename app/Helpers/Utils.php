@@ -40,7 +40,37 @@ final class Utils
     }
 
     /**
-     * Informação que todo módulo possui (create | edit).
+     * User
+     * 
+     * @param void
+     * 
+     * @return stdClass
+     */
+    public static function user(): \stdClass
+    {
+        return self::arr2obj(Session::get(\App\Http\Controllers\UserController::USER_CREDENTIALS));
+    }
+
+    /**
+     * Get an JSON from URL.
+     * 
+     * We can receive a JSON as an array or as an object, so we validate the return.
+     * 
+     * @param string $URL
+     * 
+     * @return \stdClass
+     */
+    public static function getSeederJSON(
+        string $FILE,
+        string $URL = "https://raw.githubusercontent.com/MagicalStrangeQuark/JSON/master/"
+    ): \stdClass {
+        $data = json_decode(file_get_contents($URL . rawurlencode($FILE)));
+
+        return ($data instanceof \stdClass) ? $data : self::arr2obj($data);
+    }
+
+    /**
+     * Information that every module has (create | edit).
      * 
      * @param string $str
      * 
@@ -67,17 +97,21 @@ final class Utils
 
         $list->action = $act;
 
+        $list->report = new \stdClass();
+
+        $list->report->key = array_search($str, \App\Http\Controllers\GenericPDFReportController::all());
+
         return $list;
     }
 
     /**
-     * Converts an array in object.
+     * Converts an array in \stdClass.
      * 
      * @param array $arr
      * 
-     * @return object
+     * @return \stdClass
      */
-    public static function arr2obj(array $arr): object
+    public static function arr2obj(array $arr): \stdClass
     {
         return json_decode(json_encode($arr, JSON_FORCE_OBJECT));
     }
@@ -125,6 +159,7 @@ final class Utils
     {
         return json_encode(self::JSONDestroyArray($status, $id, $model), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
+
     /**
      * Destroy return in Array format.
      * 
@@ -143,9 +178,8 @@ final class Utils
         ];
     }
 
-
     /**
-     * Recebe uma string contendo um controller e o namespace do mesmo e retorna o nome característico do módulo em questão.
+     * It receives a string containing a controller and its namespace and returns the characteristic name of the module in question.
      * 
      * @example App\Http\Controllers\ColorController Color
      * @example App\Http\Controllers\PaymentMethodController PaymentMethod

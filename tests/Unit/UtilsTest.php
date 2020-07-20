@@ -53,4 +53,29 @@ class UtilsTest extends TestCase
             ['wait', 'cherry', 'avocado', 'grape', 'orange', 'passion fruit', 'strawberry']
         ));
     }
+
+    /**
+     * Test Array to Object Recursively.
+     * 
+     * @param void
+     */
+    public function testArr2obj()
+    {
+        $arr = (array) [0 => [1 => [2 => [3 => [4 => [5 => [6 => DIRECTORY_SEPARATOR]]]]]]];
+
+        $arr2obj = \App\Helpers\Utils::arr2obj($arr);
+
+        $stub = new \StdClass();
+        $stub->{0} = new \stdClass();
+        $stub->{0}->{1} = new \stdClass();
+        $stub->{0}->{1}->{2} = new \StdClass();
+        $stub->{0}->{1}->{2}->{3} = new \StdClass();
+        $stub->{0}->{1}->{2}->{3}->{4} = new \StdClass();
+        $stub->{0}->{1}->{2}->{3}->{4}->{5} = new \StdClass();
+        $stub->{0}->{1}->{2}->{3}->{4}->{5}->{6} = DIRECTORY_SEPARATOR;
+
+        $this->assertTrue($stub == $arr2obj);
+
+        $this->assertTrue($stub->{0}->{1}->{2}->{3}->{4}->{5}->{6} === $arr2obj->{0}->{1}->{2}->{3}->{4}->{5}->{6});
+    }
 }

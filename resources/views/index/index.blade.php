@@ -28,65 +28,14 @@
     <div class="d-flex" id="wrapper">
 
         <!-- Sidebar -->
-        <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading text-center"> {{ $view->user->name }}</div>
-
-            <!-- attributes of this module -->
-            <form style="display: hidden" id="data">
-                <input type="hidden" name="controller" value="{{ $view->controller }}">
-                <input type="hidden" name="date" value="{{ date('Y/m/d H:i:s') }}">
-                <input type="hidden" name="url" value="{{ request()->fullUrl() }}">
-                <input type="hidden" name="csrf" value="{{ csrf_token() }}">
-            </form>
-
-            <!-- Wrapper Modules -->
-            <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action bg-light font-weight-bold group" data-target="widespread">🔑 Widespread</a>
-                <div class="wrapper-widespread">
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Dashboard</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Shortcuts</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Overview</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Profile</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Status</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Parameter</a>
-                </div>
-                <a href="#" class="list-group-item list-group-item-action bg-light font-weight-bold group" data-target="user">🔑 User</a>
-                <div class="wrapper-user">
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Panel</a>
-                </div>
-                <a href="#" class="list-group-item list-group-item-action bg-light font-weight-bold group" data-target="register">🔑 Register</a>
-                <div class="wrapper-register">
-                    <a href="{{ route('Color.index') }}" class="list-group-item list-group-item-action bg-light">🗝 Color</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Brand</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Category</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Event</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Inventory</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Measurement Unit</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 NCM</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Person</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Printer</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Product</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Schedule</a>
-                </div>
-                <a href="#" class="list-group-item list-group-item-action bg-light font-weight-bold group" data-target="stock">🔑 Stock</a>
-                <div class="wrapper-stock">
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Product Logger</a>
-                </div>
-                <a href="#" class="list-group-item list-group-item-action bg-light font-weight-bold group" data-target="sale">🔑 Sale</a>
-                <div class="wrapper-sale">
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Devolution</a>
-                </div>
-                <a href="#" class="list-group-item list-group-item-action bg-light font-weight-bold group" data-target="report">🔑 Report</a>
-                <div class="wrapper-report">
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Sale Commission Report</a>
-                </div>
-                <a href="#" class="list-group-item list-group-item-action bg-light font-weight-bold group" data-target="finance">🔑 Finance</a>
-                <div class="wrapper-finance">
-                    <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Installment</a>
-                </div>
-            </div>
-
-        </div>
+        @component('components.menu', [
+            'username' => $view->user->name,
+            'date' => date('Y/m/d H:i:s'),
+            'controller' => $view->controller,
+            'url' => request()->fullUrl(),
+            'csrf' => csrf_token()
+        ])
+        @endcomponent
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
@@ -103,17 +52,21 @@
                 </button>
 
                 <!-- PDF -->
-                <a href="{{ route('GenericPDFReport.show', 1) }}">
-                    <img src="https://img.icons8.com/nolan/64/pdf.png" alt="Pdf Image">
+                <a href="{{ route('GenericPDFReport.show', $view->report->key) }}">
+                    <img src="https://img.icons8.com/officel/48/000000/export-pdf.png" alt="Pdf Image">
                 </a>
 
                 <!-- XML -->
-                <a href="{{ route('GenericXMLReport.show', 1) }}">
-                    <img src="https://img.icons8.com/nolan/64/xml.png" alt="Xml Image">
+                <a href="{{ route('GenericXMLReport.show', $view->report->key) }}">
+                    <img src="https://img.icons8.com/office/48/000000/xml-file.png" alt="Xml Image">
                 </a>
 
-                <a href="{{ route('GenericCSVReport.show', 1) }}">
-                    <img src="https://img.icons8.com/nolan/64/csv.png" alt="Csv Image">
+                <a href="{{ route('GenericCSVReport.show', $view->report->key) }}">
+                    <img src="https://img.icons8.com/officel/48/000000/import-csv.png" alt="Csv Image">
+                </a>
+
+                <a href="{{ route('GenericChartReport.show', $view->report->key) }}">
+                    <img src="https://img.icons8.com/clouds/48/000000/combo-chart.png" alt="Chart">
                 </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

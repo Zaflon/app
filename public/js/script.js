@@ -102,7 +102,7 @@ const App = {
                 type: 'DELETE',
                 context: this,
                 success: (response) => {
-                    alert(`Record #${response.id} deleted successfully!`);
+                    alert(response.message);
                     App.SetDate(response.timestamp);
                     jQuery(`table tr[id=${response.id}]`).remove();
                 },

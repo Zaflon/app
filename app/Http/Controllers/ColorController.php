@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Colors;
 
 class ColorController extends Controller
 {
@@ -17,7 +16,7 @@ class ColorController extends Controller
     public function index()
     {
         return view('index.listing', [
-            'view' => \App\Helpers\Utils::main(Self::class, new \App\Colors())
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\Color())
         ]);
     }
 
@@ -59,13 +58,13 @@ class ColorController extends Controller
             return view('color.create', ['view' => $this->data]);
         }
 
-        Colors::create([
+        \App\Color::create([
             'color' => $request->color,
             'hexadecimal' => strtoupper(str_replace('#', NULL, $request->hexadecimal))
         ]);
 
         return view('index.listing', [
-            'view' => \App\Helpers\Utils::main(Self::class, new \App\Colors())
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\Color())
         ]);
     }
 
@@ -78,7 +77,7 @@ class ColorController extends Controller
      */
     public function show(int $id = 0): string
     {
-        return json_encode(Colors::info($id));
+        return json_encode(\App\Color::info($id));
     }
 
     /**
@@ -111,7 +110,7 @@ class ColorController extends Controller
             'view' => \App\Helpers\Utils::important(
                 Self::class,
                 \App\Helpers\Utils::EDIT,
-                (object) Colors::find($id)->toArray()
+                (object) \App\Color::find($id)->toArray()
             )
         ]);
     }
@@ -137,10 +136,10 @@ class ColorController extends Controller
 
         $request->validate($rules, $messages);
 
-        Colors::where('id', $id)->update(['hexadecimal' => strtoupper(str_replace('#', NULL, $request->hexadecimal)), 'color' => $request->color]);
+        \App\Color::where('id', $id)->update(['hexadecimal' => strtoupper(str_replace('#', NULL, $request->hexadecimal)), 'color' => $request->color]);
 
         return view('index.listing', [
-            'view' => \App\Helpers\Utils::main(Self::class, new \App\Colors())
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\Color())
         ]);
     }
 
@@ -151,7 +150,7 @@ class ColorController extends Controller
      */
     public function destroy(int $id = 0): array
     {
-        Colors::where('id', $id)->delete();
+        \App\Color::where('id', $id)->delete();
 
         return \App\Helpers\Utils::JSONDestroyArray(true, $id, 'Color');
     }

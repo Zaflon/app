@@ -19,3 +19,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/Color/listing', 'ColorController@listing');
+
+/**
+ * Route responsible for receiving a product, in text format and returning the data related to it.
+ * 
+ * @see <http:/127.0.0.1:8000/api/Product/SomeProduct>
+ */
+Route::get('/Product/{name}', function (string $name) {
+    return response()->json([
+        'id' => 64,
+        'name' => $name,
+        'category' => 'Some Category',
+    ], 200, [
+        'Content-Type' => 'application/json',
+    ]);
+})->where('name', '[A-Za-z\d\!]+');

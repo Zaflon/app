@@ -10,7 +10,8 @@ class DatabaseSeeder extends Seeder
         \StatesSeeder::class,
         \MeasurementUnitsSeeder::class,
         \ColorsSeeder::class,
-        \BrandsSeeder::class
+        \BrandsSeeder::class,
+        \ProductsSeeder::class
     ];
 
     /**

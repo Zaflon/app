@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +23,7 @@ Route::get('/', function () {
  */
 Route::prefix('/app')->group(function () {
     /**
-     * Retorna a página inicial do nosso aplicativo.
+     * Returns the homepage of our application.
      * 
      * @see http://127.0.0.1:8000/app
      */
@@ -29,71 +32,51 @@ Route::prefix('/app')->group(function () {
     })->name('app');
 
     /**
-     * Rota responsável por receber um item e seu nome e imprimi-lo na tela
-     * 
-     * @see http://127.0.0.1:8000/app/Item/Mo!la 
-     */
-    Route::get('/Item/{name}', function (string $name = '') {
-        return "<p>Item: {$name}</p>";
-    })->where('name', '[A-Za-z\d\!]+');
-
-    /**
-     * Página responsável pela exibição das configurações do aplicativo
-     * 
-     * @see http://127.0.0.1:8000/app/config
-     */
-    Route::get('/config', function () {
-        return view('config');
-    })->name('app.config');
-
-    /**
      * Color Route.
      */
     Route::resource('Color', 'ColorController');
 
     /**
-     * Reneric PDF Report Route.
+     * User Route.
+     */
+    Route::resource('User', 'UserController');
+
+    /**
+     * Brand Route.
+     */
+    Route::resource('Brand', 'BrandController');
+
+    /**
+     * Product Route.
+     */
+    Route::resource('Product', 'ProductController');
+
+    /**
+     * Generic PDF Report Route.
      */
     Route::resource('GenericPDFReport', 'GenericPDFReportController');
 
     /**
-     * Reneric CSV Report Route.
+     * Generic CSV Report Route.
      */
     Route::resource('GenericCSVReport', 'GenericCSVReportController');
 
     /**
-     * Reneric XML Report Route.
+     * Generic XML Report Route.
      */
     Route::resource('GenericXMLReport', 'GenericXMLReportController');
 
     /**
-     * Exemplo de redirecionamento de rotas, ao chamar a url /Marca, retornamos /config
-     * 
-     * @see 127.0.0.1:8000/app/cor
+     * Generic Chart Report Route.
      */
-    Route::get('/Brand', function () {
-        return redirect()->route('app.config');
-    });
-
-    Route::resource('User', 'UserController');
+    Route::resource('GenericChartReport', 'GenericChartReportController');
 });
 
-/**
- * Método POST, análogo á lógica empregada para o método get, bastando alterar o tipo de requisição.
- */
-Route::post('/exit', function (Request $request) {
-    return json_encode(["status" => true, "mensagem" => "usuário deslogado do sistema"]);
-});
+/** Log Out Route */
+Route::get('/logout', 'UserController@logout')->name('logout');
 
-/** Rota responsável pelo retorno da página de login */
+/** Route responsible for returning the login page */
 Route::get('/login', 'UserController@login')->name('login');
 
-/** Rota de autenticação do usuário, no momento de login junto à página inicial do sistema */
+/** User authentication route, when logging in to the system's home page */
 Route::post('/autenticate', 'UserController@autenticate')->name('autenticate');
-
-/**
- * Método DELETE, análogo á lógica empregada para o método get, bastando alterar o tipo de requisição.
- */
-Route::delete('/delete', function (Request $request) {
-    return json_encode(["status" => true, "mensagem" => "usuário excluído do sistema"]);
-});

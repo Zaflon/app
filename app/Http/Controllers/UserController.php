@@ -109,7 +109,7 @@ class UserController extends Controller
         ) {
             Session::put(self::USER_CREDENTIALS, $LoggerFacts->toArray());
 
-            return redirect('/app');
+            return redirect()->route('app');
         } else {
             return $this->login($request)->withErrors([self::INVALID_CREDENTIALS_MESSAGE]);;
         }

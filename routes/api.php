@@ -29,6 +29,9 @@ Route::get('/Product/{name}', function (string $name) {
     return response()->json([
         'id' => 64,
         'name' => $name,
+        'stock-location'=> [
+
+        ],
         'category' => 'Some Category',
     ], 200, [
         'Content-Type' => 'application/json',

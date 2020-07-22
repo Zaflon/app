@@ -35,7 +35,7 @@ Route::get('/Product/{name}', function (string $name) {
                 'price' => '89,99'
             ],
             'another-place' => [
-                'quantity' => 250,
+                'quantity' => 200,
                 'price' => '85,99'
             ]
         ],

@@ -52,6 +52,9 @@ jobs:
       - run: touch storage/testing.sqlite
       #- run: php artisan migrate --env=testing --database=sqlite_testing --force
 
+      # set encryption key
+      - run: php artisan key:generate
+
       # run tests with phpunit or codecept - now should work
       #- run: ./vendor/bin/phpunit
       #- run: ./vendor/bin/codecept build

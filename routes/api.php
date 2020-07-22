@@ -29,8 +29,15 @@ Route::get('/Product/{name}', function (string $name) {
     return response()->json([
         'id' => 64,
         'name' => $name,
-        'stock-location'=> [
-
+        'stock-location' => [
+            'some-place' => [
+                'quantity' => 100,
+                'price' => '89,99'
+            ],
+            'another-place' => [
+                'quantity' => 250,
+                'price' => '85,99'
+            ]
         ],
         'category' => 'Some Category',
     ], 200, [

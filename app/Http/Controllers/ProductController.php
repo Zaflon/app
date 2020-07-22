@@ -54,11 +54,9 @@ class ProductController extends Controller
 
         $request->validate($rules, $messages);
 
-        $id = \App\Brand::find($request->brand_id)->id;
-
         $Product = new \App\Product();
 
-        $Product->brand_id = (int) $id;
+        $Product->brand_id = (int) \App\Brand::find($request->brand_id)->id;
         $Product->name = (string) $request->name;
         $Product->detail = (string) $request->detail;
         $Product->weight = (int) $request->weight;
@@ -67,6 +65,88 @@ class ProductController extends Controller
 
         return view('index.listing', [
             'view' => \App\Helpers\Utils::main(Self::class, new \App\Product())
+        ]);
+    }
+
+    /**
+     * Return the content of the product.
+     * 
+     * @param string $name
+     * 
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function name(string $type, string $name): \Illuminate\Http\JsonResponse
+    {
+        $ProductArray = \App\Product::with('brand')->where($type, 'like', "%{$name}%");
+
+        $ProductToJSON = [];
+
+        foreach ($ProductArray->get()->toArray() as $key => $product) {
+            $ProductToJSON[] = [
+                'id' => [
+                    'type' => 'bigint(20) unsigned',
+                    'value' => $product['id']
+                ],
+                'info' => [
+                    'type' => 'longtext',
+                    'value' => $product['info']
+                ],
+                'name' => [
+                    'type' => 'varchar(32)',
+                    'value' => $product['name']
+                ],
+                'weight' => [
+                    'type' => 'int(10) unsigned',
+                    'value' => $product['weight']
+                ],
+                'detail' => [
+                    'type' => 'longtext',
+                    'type' => $product['detail']
+                ],
+                'brand_id' => [
+                    'value' => $product['brand_id'],
+                    'type' => 'bigint(20) unsigned'
+                ],
+                "image" => [
+                    'type' => 'varchar(64)',
+                    'value' => $product['image']
+                ],
+                "link" => route('Product.show', $product['id']),
+                'stock-location' => [
+                    'some-place' => [
+                        'quantity' => 100,
+                        'price' => '89,99'
+                    ],
+                    'another-place' => [
+                        'quantity' => 200,
+                        'price' => '85,99'
+                    ]
+                ],
+                "brand" =>  [
+                    "id" => $product['brand']["id"],
+                    "name" => $product['brand']["name"],
+                    "created_at" => $product['brand']["created_at"],
+                    "updated_at" => $product['brand']["updated_at"],
+                    "deleted_at" => $product['brand']["deleted_at"],
+                ],
+                'created_at' => [
+                    'type' => 'timestamp',
+                    'value' => $product['created_at']
+                ],
+                'updated_at' => [
+                    'type' => 'timestamp',
+                    'value' => $product['updated_at']
+                ],
+                'deleted_at' => [
+                    'type' => 'timestamp',
+                    'value' => $product['deleted_at']
+                ],
+                'category' => 'Some Category',
+            ];
+        }
+
+        return response()->json($ProductToJSON, 200, [
+            'Content-Type' => 'application/json'
         ]);
     }
 

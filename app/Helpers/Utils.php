@@ -28,11 +28,17 @@ final class Utils
         string $str,
         \Illuminate\Database\Eloquent\Model $rules
     ): stdClass {
-        $list = self::important($str, self::LISTING, (object) []);
+        $list = self::important(
+            $str,
+            self::LISTING,
+            (object) []
+        );
 
         $list->header = $rules::data();
 
-        $list->paginate = self::arr2obj($rules::paginate(10)->toArray());
+        $list->paginate = self::arr2obj(
+            $rules::paginate(10)->toArray()
+        );
 
         $list->list = $list->paginate->data;
 
@@ -56,6 +62,7 @@ final class Utils
      * 
      * We can receive a JSON as an array or as an object, so we validate the return.
      * 
+     * @param string $FILE
      * @param string $URL
      * 
      * @return \stdClass
@@ -73,6 +80,8 @@ final class Utils
      * Information that every module has (create | edit).
      * 
      * @param string $str
+     * @param string $act
+     * @param string $reg
      * 
      * @return stdClass
      */
@@ -85,13 +94,17 @@ final class Utils
 
         session_start();
 
-        if ((bool) empty($reg) === false) {
+        if (
+            (bool) empty($reg) === false
+        ) {
             $list->register = $reg;
         }
 
         $list->controller = self::ctrlr2string($str);
 
-        if (!((string) $act === self::LOGIN)) {
+        if (
+            !((string) $act === self::LOGIN)
+        ) {
             $list->user = (object) Session::get(\App\Http\Controllers\UserController::USER_CREDENTIALS);
         }
 
@@ -99,7 +112,10 @@ final class Utils
 
         $list->report = new \stdClass();
 
-        $list->report->key = array_search($str, \App\Http\Controllers\GenericPDFReportController::all());
+        $list->report->key = array_search(
+            $str,
+            \App\Http\Controllers\GenericPDFReportController::all()
+        );
 
         return $list;
     }
@@ -147,8 +163,9 @@ final class Utils
      * 
      * @return string
      */
-    public static function underscore(string $str): string
-    {
+    public static function underscore(
+        string $str
+    ): string {
         return mb_strtolower(preg_replace('/(?<=\\w)([A-Z])/', "_" . '\\1', $str));
     }
 
@@ -163,7 +180,7 @@ final class Utils
      */
     public static function JSONDestroyString(
         bool $status = true,
-        $id = 0,
+        int $id = 0,
         string $model
     ): string {
         return json_encode(self::JSONDestroyArray($status, $id, $model), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
@@ -180,7 +197,7 @@ final class Utils
      */
     public static function JSONDestroyArray(
         bool $status = true,
-        $id = 0,
+        int $id = 0,
         string $model
     ): array {
         return [

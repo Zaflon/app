@@ -25,22 +25,4 @@ Route::get('/Color/listing', 'ColorController@listing');
  * 
  * @see <http:/127.0.0.1:8000/api/Product/SomeProduct>
  */
-Route::get('/Product/{name}', function (string $name) {
-    return response()->json([
-        'id' => 64,
-        'name' => $name,
-        'stock-location' => [
-            'some-place' => [
-                'quantity' => 100,
-                'price' => '89,99'
-            ],
-            'another-place' => [
-                'quantity' => 200,
-                'price' => '85,99'
-            ]
-        ],
-        'category' => 'Some Category',
-    ], 200, [
-        'Content-Type' => 'application/json',
-    ]);
-})->where('name', '[A-Za-z\d\!]+');
+Route::get('Product/{type}/{name}', 'ProductController@name')->name('Product.name')->where('type', 'info|detail|name')->where('name', '[A-Za-z\d\!]+');

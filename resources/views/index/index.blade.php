@@ -61,10 +61,12 @@
                     <img src="https://img.icons8.com/office/48/000000/xml-file.png" alt="Xml Image">
                 </a>
 
+                <!-- CSV -->
                 <a href="{{ route('GenericCSVReport.show', $view->report->key) }}">
                     <img src="https://img.icons8.com/officel/48/000000/import-csv.png" alt="Csv Image">
                 </a>
-
+                
+                <!-- CHART -->
                 <a href="{{ route('GenericChartReport.show', $view->report->key) }}">
                     <img src="https://img.icons8.com/clouds/48/000000/combo-chart.png" alt="Chart">
                 </a>

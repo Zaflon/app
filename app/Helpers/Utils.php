@@ -111,8 +111,9 @@ final class Utils
      * 
      * @return \stdClass
      */
-    public static function arr2obj(array $arr): \stdClass
-    {
+    public static function arr2obj(
+        array $arr
+    ): \stdClass {
         return json_decode(json_encode($arr, JSON_FORCE_OBJECT));
     }
 
@@ -124,8 +125,10 @@ final class Utils
      * 
      * @return bool
      */
-    public static function ArrayContains(array $needle, array $arr): bool
-    {
+    public static function ArrayContains(
+        array $needle,
+        array $arr
+    ): bool {
         $c = 0;
 
         foreach ($needle as $array) {
@@ -137,6 +140,8 @@ final class Utils
 
     /**
      * Returns the input CamelCasedString as an underscored_string.
+     * 
+     * Regular expression copied from <https://github.com/cakephp/cakephp/blob/master/src/Utility/Inflector.php>
      * 
      * @param string $str
      * 
@@ -152,11 +157,15 @@ final class Utils
      * 
      * @param bool $status
      * @param int $id
+     * @param string $model
      * 
      * @return string
      */
-    public static function JSONDestroyString($status = true, $id = 0, string $model): string
-    {
+    public static function JSONDestroyString(
+        bool $status = true,
+        $id = 0,
+        string $model
+    ): string {
         return json_encode(self::JSONDestroyArray($status, $id, $model), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 
@@ -165,11 +174,15 @@ final class Utils
      * 
      * @param bool $status
      * @param int $id
+     * @param string $model
      * 
      * @return array
      */
-    public static function JSONDestroyArray($status = true, $id = 0, string $model): array
-    {
+    public static function JSONDestroyArray(
+        bool $status = true,
+        $id = 0,
+        string $model
+    ): array {
         return [
             'status' => $status,
             'timestamp' => date("Y/m/d H:i:s"),
@@ -180,8 +193,6 @@ final class Utils
 
     /**
      * Method used to return a random color in hex format.
-     * 
-     * @example #\d{2}\d{2}\d{2}
      *
      * @param void
      * 
@@ -199,8 +210,9 @@ final class Utils
      * 
      * @return array
      */
-    public static function getArrayOfHexColors(int $n = 0): array
-    {
+    public static function getArrayOfHexColors(
+        int $n = 0
+    ): array {
         return array_map(function () {
             return \App\Helpers\Utils::getHEXRandomColor();
         }, array_fill(NULL, $n, NULL));
@@ -209,15 +221,13 @@ final class Utils
     /**
      * It receives a string containing a controller and its namespace and returns the characteristic name of the module in question.
      * 
-     * @example App\Http\Controllers\ColorController Color
-     * @example App\Http\Controllers\PaymentMethodController PaymentMethod
-     * 
      * @param string $str
      * 
      * @return string
      */
-    public static function ctrlr2string(string $str): string
-    {
-        return (string) preg_replace('/(App\\\\Http\\\\Controllers\\\\)|(Controller)/', '', $str);
+    public static function ctrlr2string(
+        string $str
+    ): string {
+        return (string) preg_replace('/(App\\\\Http\\\\Controllers\\\\)|(Controller)/', NULL, $str);
     }
 }

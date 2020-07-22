@@ -109,4 +109,16 @@ class UtilsTest extends TestCase
             $this->assertTrue((bool)(preg_match(self::STRICT_HEXADECIMAL_COLOR_REGEX, $data)));
         }
     }
+
+    /**
+     * Test the conversion of the controller name, along with the respective namespace to a friendly format.
+     * 
+     * @param void
+     */
+    public function testCtrlr2string()
+    {
+        $this->assertEquals('Color', \App\Helpers\Utils::ctrlr2string('App\Http\Controllers\ColorController'));
+        $this->assertEquals('PaymentMethod', \App\Helpers\Utils::ctrlr2string('App\Http\Controllers\PaymentMethodController'));
+        $this->assertEquals('ProductStockLocation', \App\Helpers\Utils::ctrlr2string('App\Http\Controllers\ProductStockLocationController'));
+    }
 }

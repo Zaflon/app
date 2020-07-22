@@ -52,8 +52,14 @@ jobs:
       - run: touch storage/testing.sqlite
       #- run: php artisan migrate --env=testing --database=sqlite_testing --force
 
-      # set encryption key
+      # set up encryption key
       - run: php artisan key:generate
+
+      # create .env file
+      - run: cp .env.example .env
+
+      - run: sed -i 's/^DB_PASSWORD=[a-zA-Z]*/DB_PASSWORD=P@ssw0rd/' .env
+      - run: sed -i 's/^DB_USERNAME=[a-zA-Z]*/DB_USERNAME=laravel/' .env
 
       # run tests with phpunit or codecept - now should work
       #- run: ./vendor/bin/phpunit

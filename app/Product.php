@@ -18,46 +18,46 @@ final class Product extends Model
     /** @var array */
     protected const DATA = [
         [
-            \App\Helpers\Html::ALIAS => '#',
-            \App\Helpers\Html::BODY => 'id',
-            \App\Helpers\Html::TYPE => \App\Helpers\Html::COLUMN,
+            \App\Helpers\DOM::ALIAS => '#',
+            \App\Helpers\DOM::BODY => 'id',
+            \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
-            \App\Helpers\Html::ALIAS => 'Name',
-            \App\Helpers\Html::BODY => 'name',
-            \App\Helpers\Html::TYPE => \App\Helpers\Html::COLUMN,
+            \App\Helpers\DOM::ALIAS => 'Name',
+            \App\Helpers\DOM::BODY => 'name',
+            \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
-            \App\Helpers\Html::ALIAS => 'Weight (Grams)',
-            \App\Helpers\Html::BODY => 'weight',
-            \App\Helpers\Html::TYPE => \App\Helpers\Html::COLUMN,
+            \App\Helpers\DOM::ALIAS => 'Weight (Grams)',
+            \App\Helpers\DOM::BODY => 'weight',
+            \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
-            \App\Helpers\Html::ALIAS => 'Info',
-            \App\Helpers\Html::BODY => 'info',
-            \App\Helpers\Html::TYPE => \App\Helpers\Html::COLUMN,
+            \App\Helpers\DOM::ALIAS => 'Info',
+            \App\Helpers\DOM::BODY => 'info',
+            \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
-            \App\Helpers\Html::ALIAS => 'Detail',
-            \App\Helpers\Html::BODY => 'detail',
-            \App\Helpers\Html::TYPE => \App\Helpers\Html::COLUMN,
+            \App\Helpers\DOM::ALIAS => 'Detail',
+            \App\Helpers\DOM::BODY => 'detail',
+            \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
-            \App\Helpers\Html::ALIAS => 'Brand Code',
-            \App\Helpers\Html::BODY => 'brand_id',
-            \App\Helpers\Html::TYPE => \App\Helpers\Html::COLUMN,
+            \App\Helpers\DOM::ALIAS => 'Brand Code',
+            \App\Helpers\DOM::BODY => 'brand_id',
+            \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
-            \App\Helpers\Html::ALIAS => 'Information',
-            \App\Helpers\Html::TYPE => 'info',
+            \App\Helpers\DOM::ALIAS => 'Information',
+            \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__INFORMATION,
         ],
         [
-            \App\Helpers\Html::ALIAS => 'Edition',
-            \App\Helpers\Html::TYPE => 'edit',
+            \App\Helpers\DOM::ALIAS => 'Edition',
+            \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__EDITION,
         ],
         [
-            \App\Helpers\Html::ALIAS => 'Delete',
-            \App\Helpers\Html::TYPE => 'delete',
+            \App\Helpers\DOM::ALIAS => 'Delete',
+            \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__DELETE,
         ]
     ];
 
@@ -104,6 +104,8 @@ final class Product extends Model
      * Brand.
      * 
      * @param void.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function brand(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -116,9 +118,9 @@ final class Product extends Model
      * 
      * @param void
      * 
-     * @return object
+     * @return \stdClass
      */
-    public static function data(): object
+    public static function data(): \stdClass
     {
         return \App\Helpers\Utils::arr2obj(self::DATA);
     }

@@ -15,41 +15,41 @@ class Color extends Model
     /** @var array */
     protected const DATA = [
         [
-            \App\Helpers\Html::ALIAS => '#',
-            \App\Helpers\Html::BODY => 'id',
-            \App\Helpers\Html::TYPE => \App\Helpers\Html::COLUMN,
+            \App\Helpers\DOM::ALIAS => '#',
+            \App\Helpers\DOM::BODY => 'id',
+            \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
-            \App\Helpers\Html::ALIAS => 'Description',
-            \App\Helpers\Html::BODY => 'color',
-            \App\Helpers\Html::TYPE => \App\Helpers\Html::COLUMN,
+            \App\Helpers\DOM::ALIAS => 'Description',
+            \App\Helpers\DOM::BODY => 'color',
+            \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
-            \App\Helpers\Html::ALIAS => 'Descrição',
-            \App\Helpers\Html::BODY => 'cor',
-            \App\Helpers\Html::TYPE => \App\Helpers\Html::COLUMN
+            \App\Helpers\DOM::ALIAS => 'Descrição',
+            \App\Helpers\DOM::BODY => 'cor',
+            \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN
         ],
         [
-            \App\Helpers\Html::ALIAS => 'Hexadecimal',
-            \App\Helpers\Html::BODY => 'hexadecimal',
-            \App\Helpers\Html::TYPE => \App\Helpers\Html::COLUMN,
+            \App\Helpers\DOM::ALIAS => 'Hexadecimal',
+            \App\Helpers\DOM::BODY => 'hexadecimal',
+            \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
-            \App\Helpers\Html::ALIAS => 'Information',
-            \App\Helpers\Html::TYPE => 'info',
+            \App\Helpers\DOM::ALIAS => 'Information',
+            \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__INFORMATION,
         ],
         [
-            \App\Helpers\Html::ALIAS => 'Edition',
-            \App\Helpers\Html::TYPE => 'edit',
+            \App\Helpers\DOM::ALIAS => 'Edition',
+            \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__EDITION,
         ],
         [
-            \App\Helpers\Html::ALIAS => 'Delete',
-            \App\Helpers\Html::TYPE => 'delete',
+            \App\Helpers\DOM::ALIAS => 'Delete',
+            \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__DELETE,
         ],
         [
-            \App\Helpers\Html::ALIAS => 'Image',
-            \App\Helpers\Html::BODY => 'hexadecimal',
-            \App\Helpers\Html::TYPE => \App\Helpers\Html::HEXADECIMAL,
+            \App\Helpers\DOM::ALIAS => 'Image',
+            \App\Helpers\DOM::BODY => 'hexadecimal',
+            \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__HEXADECIMAL,
         ]
     ];
 
@@ -117,9 +117,9 @@ class Color extends Model
      * 
      * @param void
      * 
-     * @return object
+     * @return \stdClass
      */
-    public static function data(): object
+    public static function data(): \stdClass
     {
         return \App\Helpers\Utils::arr2obj(self::DATA);
     }

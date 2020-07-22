@@ -1,176 +1,195 @@
 @extends('index.index')
 
 @section('conteudo')
+
 <div class="overflow-auto h-75">
     <table class="table table-hover">
 
         <thead>
             @foreach($view->header as $key => $header)
-            <th scope="col">{{$header->alias}}</th>
+                <th scope="col">{{ $header->{\App\Helpers\DOM::ALIAS} }}</th>
             @endforeach
         </thead>
 
-        <!-- FOREACH IN EACH REGISTER -->
+        {{-- FOREACH IN EACH REGISTER --}}
 
-        @foreach($view->list as $key => $dado)
+        @foreach($view->list as $key => $line)
 
-            <tr id="{{ $dado->id }}">
+        <tr id="{{ $line->id }}">
 
-                <!-- FOREACH IN EACH COLUMN -->
-                
-                @foreach($view->header as $kkey => $field)
+            {{-- FOREACH IN EACH COLUMN --}}
 
-                    @if($field->type === 'column')
+            @foreach($view->header as $kkey => $column)
+
+                @switch($column->{\App\Helpers\DOM::TYPE})
+
+                    {{-- 📣 MORE INFORMATION 📣 --}}
+
+                    @case(\App\Helpers\DOM::__INFORMATION)
                         <td>
-                            <span>{{ $dado->{$field->body} }}</span>
+                            <a onclick="App.Show( `{{ $line->id }}` )" class="alias">
+                                <img title="More Information?" src="https://img.icons8.com/nolan/32/info.png">
+                            </a>
                         </td>
-                    @else
-                        @switch($field->type)
-                            @case('info')
-                                <td>
-                                    <a onclick="App.Show( `{{ $dado->id }}` )" class="alias">
-                                        <img title="More Information?" src="https://img.icons8.com/nolan/32/info.png">
-                                    </a>
-                                </td>
-                                @break
+                    @break
 
-                            @case('edit')
-                                <td>
-                                    <a href="{{ route("{$view->controller}.edit", $dado->id) }}">
-                                        <img title="Edit?" src="https://img.icons8.com/nolan/32/multi-edit.png">
-                                    </a>
-                                </td>
-                                @break
+                    {{-- 📝 EDITION 📝 --}}
 
-                            @case('delete')
-                                <td>
-                                    <a onclick="App.Del( `{{ $dado->id }}` )">
-                                        <img title="Delete?" src="https://img.icons8.com/nolan/32/delete-sign.png">
-                                    </a>
-                                </td>
-                                @break
-                            
-                            @case('hexadecimal')
-                                <td>
-                                    {!! html_entity_decode( App\Helpers\Html::span($dado, $field->type, $field) ) !!}
-                                </td>
-                                @break
+                    @case(\App\Helpers\DOM::__EDITION)
+                        <td>
+                            <a href="{{ route("{$view->controller}.edit", $line->id) }}">
+                                <img title="Edit?" src="https://img.icons8.com/nolan/32/multi-edit.png">
+                            </a>
+                        </td>
+                    @break
 
-                            @default
-                                <span>Something went wrong, please try again</span>
-                        @endswitch
+                    {{-- ❌ DELETE ❌ --}}
 
-                    @endif
+                    @case(\App\Helpers\DOM::__DELETE)
+                        <td>
+                            <a onclick="App.Del( `{{ $line->id }}` )">
+                                <img title="Delete?" src="https://img.icons8.com/nolan/32/delete-sign.png">
+                            </a>
+                        </td>
+                    @break
 
-                @endforeach
+                    {{-- 🎨 HEXADECIMAL COLOR 🎨 --}}
 
-            </tr>
-            
+                    @case(\App\Helpers\DOM::__HEXADECIMAL)
+                        <td>
+                            {!!
+                            \App\Helpers\DOM::DOM()
+                            ->__set(\App\Helpers\DOM::COMPONENT, \App\Helpers\DOM::__SPAN)
+                            ->__set(\App\Helpers\DOM::__CLASS, 'dot')
+                            ->__set(\App\Helpers\DOM::__BACKGROUND_COLOR, $line->hexadecimal)
+                            ->Render()
+                            !!}
+                        </td>
+                    @break
+
+                    {{-- 📃 SAMPLE SPAN WITH SOME TEXT 📃 --}}
+
+                    @case(\App\Helpers\DOM::__COLUMN)
+                        <td>
+                            <span>{{ $line->{ $column->{ \App\Helpers\DOM::BODY } } }}</span>
+                        </td>
+                    @break
+
+                    {{-- 💢 ERROR 💢 --}}
+
+                    @default
+                        {{ "An error occurred. Please contact support" }}
+
+                @endswitch
+
+            @endforeach
+
+        </tr>
+
         @endforeach
 
     </table>
 </div>
 
 @if($view->paginate->total > ($view->paginate->current_page - 1) * $view->paginate->per_page)
-    <!-- PAGINATION -->
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
+{{-- PAGINATION --}}
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
 
-            <!-- 🔙 PREVIOUS 🔙 -->
-            @if($view->paginate->current_page === 1)
-                <li class="page-item disabled">
-                    <a class="page-link" href="{{ $view->paginate->first_page_url }}" tabindex="-1">
-                        Previous
-                    </a>
-                </li>
-            @else
-                <li class="page-item">
-                    <a class="page-link" href="{{ $view->paginate->first_page_url }}" tabindex="-1">
-                        Previous
-                    </a>
-                </li>
-            @endif
+        {{-- 🔙 PREVIOUS 🔙 --}}
+        @if($view->paginate->current_page === 1)
+        <li class="page-item disabled">
+            <a class="page-link" href="{{ $view->paginate->first_page_url }}" tabindex="-1">
+                Previous
+            </a>
+        </li>
+        @else
+        <li class="page-item">
+            <a class="page-link" href="{{ $view->paginate->first_page_url }}" tabindex="-1">
+                Previous
+            </a>
+        </li>
+        @endif
 
-            <!-- 🔛 OPTION: BEGIN 🔛 -->
-            @if($view->paginate->current_page === 1)
-                <!-- 👻 WE ARE HERE 👻 -->
-                <li class="page-item disabled">
-                    <a class="page-link" href="{{ $view->paginate->path.'?page=' . ($view->paginate->current_page) }}">
-                        {{ $view->paginate->current_page }}
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="{{ $view->paginate->path.'?page=' . ($view->paginate->current_page + 1) }}">
-                        {{ $view->paginate->current_page + 1 }}
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="{{ $view->paginate->path.'?page=' . ($view->paginate->current_page + 2) }}">
-                        {{ $view->paginate->current_page + 2 }}
-                    </a>
-                </li>
-            <!-- 🔛 OPTION: END 🔛 -->
-            @elseif($view->paginate->current_page === $view->paginate->last_page)
-                <li class="page-item">
-                    <a class="page-link" href="{{ $view->paginate->path.'?page='.($view->paginate->current_page - 2) }}">
-                        {{ $view->paginate->last_page - 2}}
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="{{ $view->paginate->prev_page_url }}">
-                        {{ $view->paginate->last_page - 1}}
-                    </a>
-                </li>
-                <!-- 👻 WE ARE HERE 👻 -->
-                <li class="page-item disabled">
-                    <a class="page-link" href="{{ $view->paginate->current_page }}">
-                        {{ $view->paginate->last_page}}
-                    </a>
-                </li>
-            <!-- 🔛 OPTION: MIDDLE 🔛 -->
-            @else
-                <li class="page-item">
-                    <a class="page-link" href="{{ $view->paginate->prev_page_url }}">
-                        {{ $view->paginate->current_page - 1}}
-                    </a>
-                </li>
-                <!-- 👻 WE ARE HERE 👻 -->
-                <li class="page-item disabled">
-                    <a class="page-link" href="#">
-                        {{ $view->paginate->current_page }}
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="{{ $view->paginate->next_page_url }}">
-                        {{ $view->paginate->current_page + 1}}
-                    </a>
-                </li>
-            @endif
+        {{-- 🔛 OPTION: BEGIN 🔛 --}}
+        @if($view->paginate->current_page === 1)
+        {{-- 👻 WE ARE HERE 👻 --}}
+        <li class="page-item disabled">
+            <a class="page-link" href="{{ $view->paginate->path.'?page=' . ($view->paginate->current_page) }}">
+                {{ $view->paginate->current_page }}
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="{{ $view->paginate->path.'?page=' . ($view->paginate->current_page + 1) }}">
+                {{ $view->paginate->current_page + 1 }}
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="{{ $view->paginate->path.'?page=' . ($view->paginate->current_page + 2) }}">
+                {{ $view->paginate->current_page + 2 }}
+            </a>
+        </li>
+        {{-- 🔛 OPTION: END 🔛 --}}
+        @elseif($view->paginate->current_page === $view->paginate->last_page)
+        <li class="page-item">
+            <a class="page-link" href="{{ $view->paginate->path.'?page='.($view->paginate->current_page - 2) }}">
+                {{ $view->paginate->last_page - 2}}
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="{{ $view->paginate->prev_page_url }}">
+                {{ $view->paginate->last_page - 1}}
+            </a>
+        </li>
+        {{-- 👻 WE ARE HERE 👻 --}}
+        <li class="page-item disabled">
+            <a class="page-link" href="{{ $view->paginate->current_page }}">
+                {{ $view->paginate->last_page}}
+            </a>
+        </li>
+        {{-- 🔛 OPTION: MIDDLE 🔛 --}}
+        @else
+        <li class="page-item">
+            <a class="page-link" href="{{ $view->paginate->prev_page_url }}">
+                {{ $view->paginate->current_page - 1}}
+            </a>
+        </li>
+        {{-- 👻 WE ARE HERE 👻 --}}
+        <li class="page-item disabled">
+            <a class="page-link" href="#">
+                {{ $view->paginate->current_page }}
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="{{ $view->paginate->next_page_url }}">
+                {{ $view->paginate->current_page + 1}}
+            </a>
+        </li>
+        @endif
 
-            <!-- 🔚 NEXT 🔚 -->
-            @if($view->paginate->current_page === $view->paginate->last_page)
-                <li class="page-item disabled">
-                    <a class="page-link" href="{{ $view->paginate->last_page_url }}">
-                        Next
-                    </a>
-                </li>
-            @else
-                <li class="page-item">
-                    <a class="page-link" href="{{ $view->paginate->last_page_url }}"
-                        >Next
-                    </a>
-                </li>
-            @endif
+        {{-- 🔚 NEXT 🔚 --}}
+        @if($view->paginate->current_page === $view->paginate->last_page)
+        <li class="page-item disabled">
+            <a class="page-link" href="{{ $view->paginate->last_page_url }}">
+                Next
+            </a>
+        </li>
+        @else
+        <li class="page-item">
+            <a class="page-link" href="{{ $view->paginate->last_page_url }}">Next
+            </a>
+        </li>
+        @endif
 
-            <!-- 📜 DISPLAY MESSAGE 📜 -->
-            <li class="page-item disabled">
-                <a class="page-link" href="#">
-                    Showing {{ $view->paginate->per_page }} of {{ $view->paginate->total }} registers
-                </a>
-            </li>
+        {{-- 📜 DISPLAY MESSAGE 📜 --}}
+        <li class="page-item disabled">
+            <a class="page-link" href="#">
+                Showing {{ $view->paginate->per_page }} of {{ $view->paginate->total }} registers
+            </a>
+        </li>
 
-        </ul>
-    </nav>
+    </ul>
+</nav>
 @endif
 
 @endsection

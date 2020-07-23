@@ -21,14 +21,14 @@ Route::get('/', function () {
 /**
  * Todas as rotas estão inseridas no /app
  */
-Route::prefix('/app')->group(function () {
+Route::middleware(App\Http\Middleware\IsUserLogged::class)->prefix('/app')->group(function () {
     /**
      * Returns the homepage of our application.
      * 
      * @see http://127.0.0.1:8000/app
      */
     Route::get('/', function () {
-        return view('app');
+        return redirect()->route(\App\Helpers\Utils::HOMEPAGE);
     })->name('app');
 
     /**

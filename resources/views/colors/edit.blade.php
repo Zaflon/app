@@ -3,18 +3,29 @@
 @section('conteudo')
 
 <form action="{{ route($view->controller.'.update', $view->register->id) }}" method='POST'>
+
     @csrf
+
     @method('PUT')
-    <label for="id">Código</label>
-    <input type="text" name="id" value={{$view->register->id}} readonly><br />
 
-    <label for="color">Color</label>
-    <input type="text" name="color" value={{$view->register->color}}><br />
+    <div class="form-group">
+        <label for="id">Code</label>
+        <input class="form-control" type="text" name="id" value={{$view->register->id}} readonly>
+    </div>
 
-    <label for="hexadecimal" title={{$view->register->hexadecimal}}>Hexadecimal</label>
-    <input type="color" name="hexadecimal" value="#{{$view->register->hexadecimal}}">
+    <div class="form-group">
+        <label for="color">Color</label>
+        <input class="form-control" type="text" name="color" value={{$view->register->color}}>
+    </div>
 
-    <button type="submit" value="Save">Salvar</button>
+    <div class="form-group">
+        <label for="hexadecimal" title={{$view->register->hexadecimal}}>Hexadecimal</label>
+        <input class="form-control" type="color" name="hexadecimal" value="#{{$view->register->hexadecimal}}">
+    </div>
+
+    <button type="submit" class="btn btn-success btn-lg" value="Save">
+        Save
+    </button>
 
     @foreach($errors->all() as $error)
         @component('components.error', ['error' => $error])

@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use stdClass;
 use Illuminate\Support\Facades\Session;
+use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 final class Utils
 {
@@ -18,6 +19,9 @@ final class Utils
 
     /** @var string */
     public const LOGIN = 'Login';
+
+    /** @var string */
+    public const HOMEPAGE = 'Color.index';
 
     /**
      * Set all parameters for main listing.
@@ -54,7 +58,7 @@ final class Utils
      */
     public static function user(): \stdClass
     {
-        return self::arr2obj(Session::get(\App\Http\Controllers\UserController::USER_CREDENTIALS));
+        return self::arr2obj(Session::get(\App\Http\Controllers\UserController::USER_CREDENTIALS) ?? []);
     }
 
     /**
@@ -230,6 +234,12 @@ final class Utils
     public static function getArrayOfHexColors(
         int $n = 0
     ): array {
+        if (
+            $n <= 0
+        ) {
+            throw new InvalidParameterException("The method getArrayOfHexColors expect receive an positive and not null parameter. :{$n} received.");
+        }
+
         return array_map(function () {
             return \App\Helpers\Utils::getHEXRandomColor();
         }, array_fill(NULL, $n, NULL));

@@ -5,10 +5,11 @@
 <form action="{{ route($view->controller.'.update', $view->register->id) }}" method='POST'>
 
     @csrf
+
     @method('PUT')
 
     <div class="form-group">
-        <label for="id">Código</label>
+        <label for="id">Code</label>
         <input type="text" class="form-control" name="id" value="{{ $view->register->id }}" readonly>
     </div>
 
@@ -18,12 +19,12 @@
     </div>
 
     <div class="form-group">
-        <label for="info">Info</label>
+        <label for="info">Information</label>
         <input type="text" class="form-control" name="info" value="{{ $view->register->info }}" placeholder="Product Detail">
     </div>
 
     <div class="form-group">
-        <label for="detail">Detail</label>
+        <label for="detail">More Details</label>
         <input type="text" class="form-control" name="detail" value="{{ $view->register->detail }}" placeholder="Product Detail">
     </div>
 

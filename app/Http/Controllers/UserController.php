@@ -111,7 +111,7 @@ class UserController extends Controller
 
             return redirect()->route('app');
         } else {
-            return $this->login($request)->withErrors([self::INVALID_CREDENTIALS_MESSAGE]);;
+            return $this->login($request)->withErrors([self::INVALID_CREDENTIALS_MESSAGE]);
         }
     }
 
@@ -134,12 +134,12 @@ class UserController extends Controller
      * 
      * @param void
      * 
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function logout(): \Illuminate\View\View
+    public function logout(): \Illuminate\Http\RedirectResponse
     {
-        session_unset();
+        Session::flush();
 
-        return $this->login();
+        return redirect()->route('login');
     }
 }

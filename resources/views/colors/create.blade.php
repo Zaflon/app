@@ -16,7 +16,9 @@
         <input type="color" class="form-control" name="hexadecimal" value="FFFFFF" required>
     </div>
 
-    <button type="submit" value="Save" class="btn btn-success btn-lg">Save</button>
+    <button type="submit" value="Save" class="btn btn-success btn-lg">
+        Save
+    </button>
 
     @foreach($errors->all() as $error)
         @component('components.error', ['error' => $error])

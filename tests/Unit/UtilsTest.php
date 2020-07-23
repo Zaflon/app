@@ -58,7 +58,7 @@ class UtilsTest extends TestCase
     }
 
     /**
-     * Test Array to Object Recursively.
+     * Test array to object recursively.
      * 
      * @param void
      */
@@ -80,6 +80,16 @@ class UtilsTest extends TestCase
         $this->assertTrue($stub == $arr2obj);
 
         $this->assertTrue($stub->{0}->{1}->{2}->{3}->{4}->{5}->{6} === $arr2obj->{0}->{1}->{2}->{3}->{4}->{5}->{6});
+    }
+
+    /**
+     * Test case where the argument is empty.
+     * 
+     * @param void
+     */
+    public function testArr2objWithEmptyArgument()
+    {
+        $this->assertTrue(\App\Helpers\Utils::arr2obj([]) instanceof \stdClass);
     }
 
     /**
@@ -108,6 +118,30 @@ class UtilsTest extends TestCase
         foreach ($data as $data) {
             $this->assertTrue((bool)(preg_match(self::STRICT_HEXADECIMAL_COLOR_REGEX, $data)));
         }
+    }
+
+    /**
+     * Test case where the method getArrayOfHexColors receive an negative value as argument.
+     * 
+     * @param void
+     */
+    public function testgetArrayOfHexColorsWithNegativeArgument()
+    {
+        $this->expectException(\Symfony\Component\Routing\Exception\InvalidParameterException::class);
+
+        \App\Helpers\Utils::getArrayOfHexColors(-1);
+    }
+
+    /**
+     * Test case where the method getArrayOfHexColors receive an null value as argument.
+     * 
+     * @param void
+     */
+    public function testgetArrayOfHexColorsWithZeroasArgument()
+    {
+        $this->expectException(\Symfony\Component\Routing\Exception\InvalidParameterException::class);
+
+        \App\Helpers\Utils::getArrayOfHexColors(0);
     }
 
     /**

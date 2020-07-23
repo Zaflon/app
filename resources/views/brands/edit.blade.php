@@ -5,10 +5,11 @@
 <form action="{{ route($view->controller.'.update', $view->register->id) }}" method="POST">
 
     @csrf
+    
     @method('PUT')
 
     <div class="form-group">
-        <label for="id">Primary Key</label>
+        <label for="id">Code</label>
         <input class="form-control" type="text" name="id" aria-describedby="id" value={{$view->register->id}} readonly>
     </div>
 

@@ -37321,6 +37321,209 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: true
 // });
 
+window.Common = __webpack_require__(/*! ./common */ "./resources/js/common.js")["default"];
+window.Box = __webpack_require__(/*! ./box */ "./resources/js/box.js")["default"];
+
+/***/ }),
+
+/***/ "./resources/js/box.js":
+/*!*****************************!*\
+  !*** ./resources/js/box.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var startX = 0;
+  var startY = 0;
+  var currentPopUp = null;
+  var currentLeft = 0;
+  var currentTop = 0;
+  var move = false;
+  var marginStop = 30;
+  var maxWidth = window.innerWidth - marginStop;
+  var maxHeight = window.innerHeight - marginStop;
+  /**
+   * Ao movimentar o elemento, guarda a nova posição, ou seja, a distância até a margem esquerda e a distância até o topo.
+   */
+
+  jQuery('.popup .title').on('mousedown', function (e) {
+    currentPopUp = this.parentNode;
+    currentLeft = parseInt(currentPopUp.style.left, 10);
+    currentTop = parseInt(currentPopUp.style.top, 10);
+    startX = e.clientX;
+    startY = e.clientY;
+    move = true;
+  });
+  window.addEventListener("mouseup", function () {
+    if (currentPopUp == null) {
+      return;
+    }
+
+    if (jQuery(event.target.parentNode).attr('class') === 'close-popup') {
+      $(".popup").remove();
+    }
+
+    currentPopUp = null;
+    move = false;
+  });
+  jQuery(document).on('mousemove', function (e) {
+    if (move == true) {
+      var newX = currentLeft + e.clientX - startX;
+      var newY = currentTop + e.clientY - startY;
+      if (marginStop > e.clientX) return;
+      if (marginStop > e.clientY) return;
+      if (maxWidth < e.clientX) return;
+      if (maxHeight < e.clientY) return;
+      jQuery(currentPopUp).css({
+        'left': newX,
+        'top': newY
+      });
+    }
+  });
+});
+;
+
+/***/ }),
+
+/***/ "./resources/js/common.js":
+/*!********************************!*\
+  !*** ./resources/js/common.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var Common = {
+  REGEX_LOCALHOST: 'https?:\/\/[0-9]{3}\.[0-9]{1}\.[0-9]{1}\.[0-9]{1}\:[0-9]{4}\/app\/[A-z]*',
+
+  /**
+   * Function responsable for deleting a record.
+   * 
+   * On returning, update the timestamp accordingly with server.
+   * 
+   * @param {Integer} primaryKey
+   * 
+   * @param {String} Url
+   */
+  Del: function Del(primaryKey) {
+    var Url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : Common.Url();
+
+    if (confirm("Would you like to delete this record #".concat(primaryKey, "?"))) {
+      $.ajax({
+        url: "".concat(Url, "/").concat(primaryKey),
+        data: $.param({
+          _token: Common.Csrf()
+        }),
+        type: 'DELETE',
+        context: this,
+        success: function success(response) {
+          alert(response.message);
+          Common.SetDate(response.timestamp);
+          jQuery("table tr[id=".concat(response.id, "]")).remove();
+        },
+        error: function error() {}
+      });
+    }
+  },
+
+  /**
+   * Function responsable for resumed showing of actual record, accordingly with model definition.
+   * 
+   * @param {Integer} primaryKey 
+   * @param {String} Url
+   */
+  Show: function Show(primaryKey) {
+    var Url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : Common.Url();
+    var url = new URL("".concat(Url, "/").concat(primaryKey));
+    url.search = new URLSearchParams({
+      "X-CSRF-TOKEN": Common.Csrf(),
+      "Content-Type": "x-www-form-urlencoded"
+    }).toString();
+    fetch(url).then(function (response) {
+      response.json().then(function (data) {
+        var InfoElement = document.createElement("div");
+        InfoElement.style = "top: 50px; left: 50px; background-color: rgba(1, 1, 1, 0.1); position: fixed; width: ".concat(data.attributes.width, "px; height: 200px; border: 1px solid #000;");
+        InfoElement.className = 'popup';
+        var InnerHTML = "<div class=\"title\" style=\"width: ".concat(data.attributes.width - 10, "px; text-align: center; margin: 5px; background: #CCC; cursor: move;\">");
+        InnerHTML += "       <span>".concat(data.title, "</span>");
+        InnerHTML += "       <span class=\"close-popup\">";
+        InnerHTML += "            <img src=\"https://img.icons8.com/dusk/16/000000/x.png\">";
+        InnerHTML += "       </span>";
+        InnerHTML += "   </div>";
+        InnerHTML += "   <div class=\"p-0 bd-highlight d-flex flex-column bd-highlight\">";
+        InnerHTML += "       <table class=\"table table-hover\">";
+        InnerHTML += "           <thead>";
+        InnerHTML += "               <tr>";
+
+        for (var i = 0; i < Object.keys(data.data).length; i++) {
+          InnerHTML += "<th scope=\"col\" title=\"".concat(data.data[Object.keys(data.data)[i]].title, "\">").concat(Object.keys(data.data)[i], "</th>");
+        }
+
+        InnerHTML += "               </tr>";
+        InnerHTML += "           </thead>";
+        InnerHTML += "           <tbody>";
+        InnerHTML += "               <tr>";
+
+        for (var _i = 0; _i < Object.keys(data.data).length; _i++) {
+          InnerHTML += "<td scope=\"col\" title=\"".concat(data.data[Object.keys(data.data)[_i]].self, "\">").concat(data.data[Object.keys(data.data)[_i]].self, "</td>");
+        }
+
+        InnerHTML += "               </tr>";
+        InnerHTML += "           </tbody>";
+        InnerHTML += "       </table>";
+        InnerHTML += "   </div>";
+        InnerHTML += "   <div class=\"d-flex justify-content-center bd-highlight\">";
+        InnerHTML += "       <span class=\"lds-hourglass d-flex justify-content-center\"></span>";
+        InnerHTML += "   </div>";
+        InnerHTML += " </div>";
+        InfoElement.innerHTML = InnerHTML;
+        document.getElementById("wrapper").appendChild(InfoElement);
+        Box();
+      });
+    })["catch"](function (err) {
+      console.error('Failed retrieving information', err);
+    });
+  },
+  POST: function POST() {
+    var Url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Common.Url();
+    $.ajax({
+      url: Url,
+      data: $.param({
+        _token: Csrf(),
+        color: "blabladab3la",
+        hexadecimal: "FFBLHH"
+      }),
+      type: 'POST',
+      context: this,
+      success: function success(response) {
+        console.log(response);
+      },
+      error: function error(err) {//
+      }
+    });
+  },
+  Controller: function Controller() {
+    return jQuery("#data input[name=controller]").val().toString();
+  },
+  Date: function Date() {
+    return jQuery("#data input[name=date]").val().toString();
+  },
+  SetDate: function SetDate(date) {
+    jQuery("#data input[name=date]").val(date);
+  },
+  Url: function Url() {
+    return jQuery("#data input[name=url]").val().toString().match(this.REGEX_LOCALHOST).join("").toString();
+  },
+  Csrf: function Csrf() {
+    return jQuery("#data input[name=csrf]").val().toString();
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (Common);
+
 /***/ }),
 
 /***/ "./resources/sass/app.scss":
@@ -37341,8 +37544,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/wesleyflores/Documents/TMP/ecommerce-laravel/meu-projeto/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/wesleyflores/Documents/TMP/ecommerce-laravel/meu-projeto/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/wesleyflores/Documents/TMP/ecommerce/ecommerce-laravel/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/wesleyflores/Documents/TMP/ecommerce/ecommerce-laravel/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

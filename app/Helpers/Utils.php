@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use stdClass;
 use Illuminate\Support\Facades\Session;
+use InvalidArgumentException;
 use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 final class Utils
@@ -23,28 +24,27 @@ final class Utils
     /** @var string */
     public const HOMEPAGE = 'Color.index';
 
+    /** @var int */
+    public const PAGINATION = 10;
+
     /**
      * Set all parameters for main listing.
      * 
      * @param void
+     * 
+     * @return \stdClass
      */
     public static function main(
         string $str,
         \Illuminate\Database\Eloquent\Model $rules
     ): stdClass {
-        $list = self::important(
-            $str,
-            self::LISTING,
-            (object) []
-        );
+        $list = self::important($str, self::LISTING, (object) []);
 
         $list->header = $rules::data();
 
-        $list->paginate = self::arr2obj(
-            $rules::paginate(10)->toArray()
-        );
+        $list->paginate = self::arr2obj($rules->index()->toArray());
 
-        $list->list = $list->paginate->data;
+        $list->list = $rules->index()->items();
 
         return $list;
     }
@@ -81,11 +81,36 @@ final class Utils
     }
 
     /**
+     * Extract the column of the table.
+     * 
+     * @param \stdclass $fields
+     * @param \stdClass $obj
+     * 
+     * @return string
+     */
+    public static function extract(
+        \stdClass $fields,
+        object $obj
+    ): string {
+        $data = $obj;
+
+        foreach ($fields as $field) {
+            if (!isset($data->{$field})) {
+                throw new InvalidArgumentException("This field :{$field} was not found.");
+            }
+
+            $data = $data->{$field};
+        }
+
+        return $data;
+    }
+
+    /**
      * Information that every module has (create | edit).
      * 
      * @param string $str
      * @param string $act
-     * @param string $reg
+     * @param object $reg
      * 
      * @return stdClass
      */

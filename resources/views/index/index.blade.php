@@ -12,7 +12,6 @@
 
     <!-- js dependency-->
     <script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/script.js') }}"></script>
 
     <!-- css dependency-->
     <link rel="stylesheet" href="{{URL::asset('css/app.css')}}">

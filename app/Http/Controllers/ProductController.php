@@ -10,6 +10,8 @@ class ProductController extends Controller
      * Display a listing of the resource.
      * 
      * https://dcgamer.dooca.store/carrinho
+     * 
+     * @param void
      *
      * @return \Illuminate\Http\Response
      */
@@ -22,20 +24,24 @@ class ProductController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * 
+     * @param void
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
         return view('products.create', [
-            'view' => \App\Helpers\Utils::important(Self::class, \App\Helpers\Utils::CREATE, (object) [])
+            'view' => \App\Helpers\Utils::important(Self::class, \App\Helpers\Utils::CREATE, (object) []),
+            'brands' => \App\Brand::all()
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
+     * 
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -60,6 +66,8 @@ class ProductController extends Controller
         $Product->name = (string) $request->name;
         $Product->detail = (string) $request->detail;
         $Product->weight = (int) $request->weight;
+        $Product->info = (string) $request->info;
+        $Product->image = (string) "without image";
 
         $Product->save();
 
@@ -165,18 +173,15 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * 
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         return view('products.edit', [
-            'view' => \App\Helpers\Utils::important(
-                Self::class,
-                \App\Helpers\Utils::EDIT,
-                (object) \App\Product::find($id)->toArray()
-            )
+            'view' => \App\Helpers\Utils::important(Self::class, \App\Helpers\Utils::EDIT, (object) \App\Product::find($id)->toArray()),
+            'brands' => \App\Brand::all()
         ]);
     }
 
@@ -188,7 +193,7 @@ class ProductController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $rules =  [
             "brand_id" => "required|integer",

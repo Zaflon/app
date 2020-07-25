@@ -16,12 +16,12 @@ class Brand extends Model
     protected const DATA = [
         [
             \App\Helpers\DOM::ALIAS => '#',
-            \App\Helpers\DOM::BODY => 'id',
+            \App\Helpers\DOM::BODY => ['id'],
             \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
             \App\Helpers\DOM::ALIAS => 'Description',
-            \App\Helpers\DOM::BODY => 'name',
+            \App\Helpers\DOM::BODY => ['name'],
             \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
@@ -79,5 +79,17 @@ class Brand extends Model
     public static function data(): object
     {
         return \App\Helpers\Utils::arr2obj(self::DATA);
+    }
+
+    /**
+     * Get data to index listing.
+     * 
+     * @param void
+     * 
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function index(): \Illuminate\Contracts\Pagination\LengthAwarePaginator
+    {
+        return $this->paginate(\App\Helpers\Utils::PAGINATION);
     }
 }

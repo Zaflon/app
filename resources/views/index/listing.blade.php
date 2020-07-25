@@ -27,7 +27,7 @@
 
                     @case(\App\Helpers\DOM::__INFORMATION)
                         <td>
-                            <a onclick="App.Show( `{{ $line->id }}` )" class="alias">
+                            <a onclick="Common.Show( `{{ $line->id }}` )" class="alias">
                                 <img title="More Information?" src="https://img.icons8.com/nolan/32/info.png">
                             </a>
                         </td>
@@ -47,7 +47,7 @@
 
                     @case(\App\Helpers\DOM::__DELETE)
                         <td>
-                            <a onclick="App.Del( `{{ $line->id }}` )">
+                            <a onclick="Common.Del( `{{ $line->id }}` )">
                                 <img title="Delete?" src="https://img.icons8.com/nolan/32/delete-sign.png">
                             </a>
                         </td>
@@ -58,11 +58,11 @@
                     @case(\App\Helpers\DOM::__HEXADECIMAL)
                         <td>
                             {!!
-                            \App\Helpers\DOM::DOM()
-                            ->__set(\App\Helpers\DOM::COMPONENT, \App\Helpers\DOM::__SPAN)
-                            ->__set(\App\Helpers\DOM::__CLASS, 'dot')
-                            ->__set(\App\Helpers\DOM::__BACKGROUND_COLOR, $line->hexadecimal)
-                            ->Render()
+                                \App\Helpers\DOM::DOM()
+                                    ->__set(\App\Helpers\DOM::COMPONENT, \App\Helpers\DOM::__SPAN)
+                                    ->__set(\App\Helpers\DOM::__CLASS, 'dot')
+                                    ->__set(\App\Helpers\DOM::__BACKGROUND_COLOR, \App\Helpers\Utils::extract( $column->{ \App\Helpers\DOM::BODY }, $line ) )
+                                ->Render()
                             !!}
                         </td>
                     @break
@@ -71,7 +71,7 @@
 
                     @case(\App\Helpers\DOM::__COLUMN)
                         <td>
-                            <span>{{ $line->{ $column->{ \App\Helpers\DOM::BODY } } }}</span>
+                            <span>{{ \App\Helpers\Utils::extract( $column->{ \App\Helpers\DOM::BODY }, $line ) }}</span>
                         </td>
                     @break
 

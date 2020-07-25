@@ -1,88 +1,6 @@
-const REGEX_LOCALHOST = 'https?:\/\/[0-9]{3}\.[0-9]{1}\.[0-9]{1}\.[0-9]{1}\:[0-9]{4}\/app\/[A-z]*';
+const Common = {
+    REGEX_LOCALHOST: 'https?:\/\/[0-9]{3}\.[0-9]{1}\.[0-9]{1}\.[0-9]{1}\:[0-9]{4}\/app\/[A-z]*',
 
-var movePopUp = () => {
-
-    let startX = 0;
-    let startY = 0;
-
-    let currentPopUp = null;
-
-    let currentLeft = 0;
-    let currentTop = 0;
-
-    let move = false;
-
-    let marginStop = 30;
-
-    let maxWidth = window.innerWidth - marginStop;
-    let maxHeight = window.innerHeight - marginStop;
-
-    /**
-     * Ao movimentar o elemento, guarda a nova posição, ou seja, a distância até a margem esquerda e a distância até o topo.
-     */
-    jQuery('.popup .title').on('mousedown', function (e) {
-        currentPopUp = this.parentNode;
-
-        currentLeft = parseInt(currentPopUp.style.left, 10);
-        currentTop = parseInt(currentPopUp.style.top, 10);
-
-        startX = e.clientX;
-        startY = e.clientY;
-
-        move = true;
-    });
-
-    window.addEventListener("mouseup", () => {
-        if (currentPopUp == null) {
-            return;
-        }
-
-        if (jQuery(event.target.parentNode).attr('class') === 'close-popup') {
-            $(".popup").remove();
-        }
-
-        currentPopUp = null;
-        move = false;
-    });
-
-    jQuery(document).on('mousemove', function (e) {
-        if (move == true) {
-            var newX = currentLeft + e.clientX - startX;
-            var newY = currentTop + e.clientY - startY;
-
-            if (marginStop > e.clientX) return;
-            if (marginStop > e.clientY) return;
-            if (maxWidth < e.clientX) return;
-            if (maxHeight < e.clientY) return;
-
-            jQuery(currentPopUp).css({
-                'left': newX,
-                'top': newY,
-            });
-        }
-    });
-};
-
-function POST(Url = App.Url()) {
-    $.ajax({
-        url: Url,
-        data: $.param({
-            _token: Csrf(),
-            color: "blabladab3la",
-            hexadecimal: "FFBLHH"
-        }),
-        type: 'POST',
-        context: this,
-        success: (response) => {
-            console.log(response);
-        },
-        error: (err) => {
-            //
-        }
-    });
-}
-
-const App = {
     /**
      * Function responsable for deleting a record.
      * 
@@ -92,35 +10,39 @@ const App = {
      * 
      * @param {String} Url
      */
-    Del: (primaryKey, Url = App.Url()) => {
+    Del(primaryKey, Url = Common.Url()) {
         if (confirm(`Would you like to delete this record #${primaryKey}?`)) {
             $.ajax({
                 url: `${Url}/${primaryKey}`,
                 data: $.param({
-                    _token: App.Csrf(),
+                    _token: Common.Csrf(),
                 }),
                 type: 'DELETE',
                 context: this,
                 success: (response) => {
                     alert(response.message);
-                    App.SetDate(response.timestamp);
-                    jQuery(`table tr[id=${response.id}]`).remove();
+                    Common.SetDate(response.timestamp);
+
+                    if (response.status === true) {
+                        jQuery(`table tr[id=${response.id}]`).remove();
+                    }
                 },
                 error: () => { }
             });
         }
     },
+
     /**
      * Function responsable for resumed showing of actual record, accordingly with model definition.
      * 
      * @param {Integer} primaryKey 
      * @param {String} Url
      */
-    Show: (primaryKey, Url = App.Url()) => {
+    Show(primaryKey, Url = Common.Url()) {
         const url = new URL(`${Url}/${primaryKey}`);
 
         url.search = new URLSearchParams({
-            "X-CSRF-TOKEN": App.Csrf(),
+            "X-CSRF-TOKEN": Common.Csrf(),
             "Content-Type": "x-www-form-urlencoded"
         }).toString();
 
@@ -171,30 +93,52 @@ const App = {
 
                     document.getElementById("wrapper").appendChild(InfoElement);
 
-                    movePopUp();
+                    Box();
                 });
             })
             .catch(function (err) {
                 console.error('Failed retrieving information', err);
             });
     },
-    Controller: () => {
+
+    POST(Url = Common.Url()) {
+        $.ajax({
+            url: Url,
+            data: $.param({
+                _token: Csrf(),
+                color: "blabladab3la",
+                hexadecimal: "FFBLHH"
+            }),
+            type: 'POST',
+            context: this,
+            success: (response) => {
+                console.log(response);
+            },
+            error: (err) => {
+                //
+            }
+        });
+    },
+
+    Controller() {
         return jQuery(`#data input[name=controller]`).val().toString();
     },
-    Date: () => {
+
+    Date() {
         return jQuery(`#data input[name=date]`).val().toString();
     },
-    SetDate: (date) => {
+
+    SetDate(date) {
         jQuery(`#data input[name=date]`).val(date);
     },
-    Url: () => {
-        return jQuery(`#data input[name=url]`).val().toString().match(REGEX_LOCALHOST).join(``).toString();
+
+    Url() {
+        return jQuery(`#data input[name=url]`).val().toString().match(this.REGEX_LOCALHOST).join(``).toString();
     },
-    Csrf: () => {
+
+    Csrf() {
         return jQuery(`#data input[name=csrf]`).val().toString();
     }
 };
 
-window.onload = (e) => {
-    //
-}
+export default Common;

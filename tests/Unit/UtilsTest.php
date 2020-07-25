@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class UtilsTest extends TestCase
@@ -97,7 +98,7 @@ class UtilsTest extends TestCase
      * 
      * @param void
      */
-    public function testgetHEXRandomColor(): void
+    public function testgetHEXRandomColor()
     {
         $this->assertTrue((bool)(preg_match(self::STRICT_HEXADECIMAL_COLOR_REGEX, \App\Helpers\Utils::getHEXRandomColor())));
     }
@@ -154,5 +155,45 @@ class UtilsTest extends TestCase
         $this->assertEquals('Color', \App\Helpers\Utils::ctrlr2string('App\Http\Controllers\ColorController'));
         $this->assertEquals('PaymentMethod', \App\Helpers\Utils::ctrlr2string('App\Http\Controllers\PaymentMethodController'));
         $this->assertEquals('ProductStockLocation', \App\Helpers\Utils::ctrlr2string('App\Http\Controllers\ProductStockLocationController'));
+    }
+
+    /**
+     * Test the extraction of a value from object.
+     * 
+     * @param void
+     */
+    public function testExtractWithAllArgumentsPresent()
+    {
+        $stub = new \stdClass();
+
+        $stub->{'a'} = new \stdClass();
+        $stub->{'a'}->{'b'} = new \stdClass();
+        $stub->{'a'}->{'b'}->{'c'} = new \stdClass();
+        $stub->{'a'}->{'b'}->{'c'}->{'d'} = new \stdClass();
+
+        $stub->{'a'}->{'b'}->{'c'}->{'d'}->{'e'} = 'e';
+
+        $this->assertEquals('e', \App\Helpers\Utils::extract((object) ['a', 'b', 'c', 'd', 'e'], $stub));
+    }
+
+    /**
+     * Test for the case where the order of arguments passed differs from the present in the object.
+     * 
+     * @param void
+     */
+    public function testExtractWithNonExistantArgument()
+    {
+        $stub = new \stdClass();
+
+        $stub->{'a'} = new \stdClass();
+        $stub->{'a'}->{'b'} = new \stdClass();
+        $stub->{'a'}->{'b'}->{'c'} = new \stdClass();
+        $stub->{'a'}->{'b'}->{'c'}->{'d'} = new \stdClass();
+
+        $stub->{'a'}->{'b'}->{'c'}->{'d'}->{'e'} = 'some-argument';
+
+        $this->expectException(InvalidArgumentException::class);
+
+        \App\Helpers\Utils::extract((object) ['b', 'a', 'c', 'd', 'e'], $stub);
     }
 }

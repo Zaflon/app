@@ -12,13 +12,22 @@
     </div>
 
     <div class="form-group">
-        <label for="detail">Detail</label>
+        <label for="info">Information</label>
+        <input type="text" class="form-control" name="info" placeholder="Information">
+    </div>
+
+    <div class="form-group">
+        <label for="detail">More Details</label>
         <input type="text" class="form-control" name="detail" placeholder="Product Detail">
     </div>
 
     <div class="form-group">
-        <label for="brand_id">Brand Code</label>
-        <input type="text" class="form-control" name="brand_id" placeholder="Brand Code">
+        <label for="brand_id">Brand</label>
+        <select type="text" class="form-control" name="brand_id" placeholder="Brand Name">
+            @foreach($brands as $key => $brand)
+                <option value="{{ $brand->id }}">{{$brand->name}}</option>
+            @endforeach
+        </select>
     </div>
 
     <div class="form-group">

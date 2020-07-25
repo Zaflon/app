@@ -20,7 +20,7 @@
 
     <div class="form-group">
         <label for="info">Information</label>
-        <input type="text" class="form-control" name="info" value="{{ $view->register->info }}" placeholder="Product Detail">
+        <input type="text" class="form-control" name="info" value="{{ $view->register->info }}" placeholder="Information">
     </div>
 
     <div class="form-group">
@@ -29,8 +29,17 @@
     </div>
 
     <div class="form-group">
-        <label for="brand_id">Brand Code</label>
-        <input type="text" class="form-control" name="brand_id" value="{{ $view->register->brand_id }}" placeholder="Brand Code">
+        <label for="brand_id">Brand</label>
+        
+        <select type="text" class="form-control" name="brand_id" placeholder="Brand Name">
+            @foreach($brands as $key => $brand)
+                @if($brand->id === $view->register->brand_id)
+                    <option value="{{ $brand->id }}" selected="{{ $view->register->brand_id }}">{{$brand->name}}</option>
+                @else
+                    <option value="{{ $brand->id }}">{{$brand->name}}</option>
+                @endif
+            @endforeach
+        </select>
     </div>
 
     <div class="form-group">

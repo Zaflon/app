@@ -16,22 +16,22 @@ class Color extends Model
     protected const DATA = [
         [
             \App\Helpers\DOM::ALIAS => '#',
-            \App\Helpers\DOM::BODY => 'id',
+            \App\Helpers\DOM::BODY => ['id'],
             \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
             \App\Helpers\DOM::ALIAS => 'Description',
-            \App\Helpers\DOM::BODY => 'color',
+            \App\Helpers\DOM::BODY => ['color'],
             \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
             \App\Helpers\DOM::ALIAS => 'Descrição',
-            \App\Helpers\DOM::BODY => 'cor',
+            \App\Helpers\DOM::BODY => ['cor'],
             \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN
         ],
         [
             \App\Helpers\DOM::ALIAS => 'Hexadecimal',
-            \App\Helpers\DOM::BODY => 'hexadecimal',
+            \App\Helpers\DOM::BODY => ['hexadecimal'],
             \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
@@ -48,7 +48,7 @@ class Color extends Model
         ],
         [
             \App\Helpers\DOM::ALIAS => 'Image',
-            \App\Helpers\DOM::BODY => 'hexadecimal',
+            \App\Helpers\DOM::BODY => ['hexadecimal'],
             \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__HEXADECIMAL,
         ]
     ];
@@ -160,5 +160,17 @@ class Color extends Model
                 ]
             ],
         ];
+    }
+
+    /**
+     * Get data to index listing.
+     * 
+     * @param void
+     * 
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function index(): \Illuminate\Contracts\Pagination\LengthAwarePaginator
+    {
+        return $this->paginate(\App\Helpers\Utils::PAGINATION);
     }
 }

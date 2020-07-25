@@ -19,32 +19,37 @@ final class Product extends Model
     protected const DATA = [
         [
             \App\Helpers\DOM::ALIAS => '#',
-            \App\Helpers\DOM::BODY => 'id',
+            \App\Helpers\DOM::BODY => ['id'],
             \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
             \App\Helpers\DOM::ALIAS => 'Name',
-            \App\Helpers\DOM::BODY => 'name',
+            \App\Helpers\DOM::BODY => ['name'],
             \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
             \App\Helpers\DOM::ALIAS => 'Weight (Grams)',
-            \App\Helpers\DOM::BODY => 'weight',
+            \App\Helpers\DOM::BODY => ['weight'],
             \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
             \App\Helpers\DOM::ALIAS => 'Info',
-            \App\Helpers\DOM::BODY => 'info',
+            \App\Helpers\DOM::BODY => ['info'],
             \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
             \App\Helpers\DOM::ALIAS => 'Detail',
-            \App\Helpers\DOM::BODY => 'detail',
+            \App\Helpers\DOM::BODY => ['detail'],
             \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
             \App\Helpers\DOM::ALIAS => 'Brand Code',
-            \App\Helpers\DOM::BODY => 'brand_id',
+            \App\Helpers\DOM::BODY => ['brand_id'],
+            \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
+        ],
+        [
+            \App\Helpers\DOM::ALIAS => 'Brand Name',
+            \App\Helpers\DOM::BODY => ['brand', 'name'],
             \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
@@ -123,5 +128,17 @@ final class Product extends Model
     public static function data(): \stdClass
     {
         return \App\Helpers\Utils::arr2obj(self::DATA);
+    }
+
+    /**
+     * Get data to index listing.
+     * 
+     * @param void
+     * 
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function index(): \Illuminate\Contracts\Pagination\LengthAwarePaginator
+    {
+        return $this::with('brand')->paginate(\App\Helpers\Utils::PAGINATION);
     }
 }

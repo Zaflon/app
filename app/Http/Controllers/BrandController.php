@@ -119,12 +119,23 @@ class BrandController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * 
+     * We cannot destroy a brand that is linked to a product.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id): array
     {
+        if (($count = \App\Product::where('brand_id', $id)->count()) > 0) {
+            return [
+                'status' => false,
+                'timestamp' => date("Y/m/d H:i:s"),
+                "message" => "This brand cannot be deleted from the system, as {$count} product(s) are related to it.",
+                "id" => $id
+            ];
+        }
+
         \App\Brand::where('id', $id)->delete();
 
         return \App\Helpers\Utils::JSONDestroyArray(true, $id, 'Brand');

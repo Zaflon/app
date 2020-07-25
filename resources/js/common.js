@@ -22,7 +22,10 @@ const Common = {
                 success: (response) => {
                     alert(response.message);
                     Common.SetDate(response.timestamp);
-                    jQuery(`table tr[id=${response.id}]`).remove();
+
+                    if (response.status === true) {
+                        jQuery(`table tr[id=${response.id}]`).remove();
+                    }
                 },
                 error: () => { }
             });

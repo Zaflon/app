@@ -16,12 +16,12 @@ class Brand extends Model
     protected const DATA = [
         [
             \App\Helpers\DOM::ALIAS => '#',
-            \App\Helpers\DOM::BODY => 'id',
+            \App\Helpers\DOM::BODY => ['id'],
             \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [
             \App\Helpers\DOM::ALIAS => 'Description',
-            \App\Helpers\DOM::BODY => 'name',
+            \App\Helpers\DOM::BODY => ['name'],
             \App\Helpers\DOM::TYPE => \App\Helpers\DOM::__COLUMN,
         ],
         [

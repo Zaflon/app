@@ -15,12 +15,12 @@
 
     <div class="form-group">
         <label for="color">Color</label>
-        <input class="form-control" type="text" name="color" value={{$view->register->color}}>
+        <input class="form-control" type="text" name="color" value={{$view->register->color}} required >
     </div>
 
     <div class="form-group">
         <label for="hexadecimal" title={{$view->register->hexadecimal}}>Hexadecimal</label>
-        <input class="form-control" type="color" name="hexadecimal" value="#{{$view->register->hexadecimal}}">
+        <input class="form-control" type="color" name="hexadecimal" value="#{{$view->register->hexadecimal}}" required>
     </div>
 
     <button type="submit" class="btn btn-success btn-lg" value="Save">

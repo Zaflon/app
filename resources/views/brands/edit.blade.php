@@ -5,7 +5,7 @@
 <form action="{{ route($view->controller.'.update', $view->register->id) }}" method="POST">
 
     @csrf
-    
+
     @method('PUT')
 
     <div class="form-group">
@@ -15,9 +15,9 @@
 
     <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" name="name" value={{$view->register->name}}>
+        <input type="text" class="form-control" name="name" value={{$view->register->name}} required>
     </div>
-    
+
     <button type="submit" value="Save" class="btn btn-success btn-lg">
         Save
     </button>

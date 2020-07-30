@@ -196,4 +196,16 @@ class UtilsTest extends TestCase
 
         \App\Helpers\Utils::extract((object) ['b', 'a', 'c', 'd', 'e'], $stub);
     }
+
+    /**
+     * Test case for obtaining the model name for the informed controller.
+     *  
+     * @param void
+     */
+    public function testCtrlr2model()
+    {
+        $this->assertSame(\App\Helpers\Utils::ctrlr2model(\App\Http\Controllers\BrandController::class), "\\" . \App\Brand::class);
+        $this->assertSame(\App\Helpers\Utils::ctrlr2model(\App\Http\Controllers\ProductController::class), "\\" . \App\Product::class);
+        $this->assertSame(\App\Helpers\Utils::ctrlr2model(\App\Http\Controllers\CouponController::class), "\\" . \App\Coupon::class);
+    }
 }

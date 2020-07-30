@@ -106,6 +106,19 @@ final class Utils
     }
 
     /**
+     * Get an model instance from controller name.
+     * 
+     * @param string $str
+     * 
+     * @return string
+     */
+    public static function ctrlr2model(
+        string $str
+    ): string {
+        return "\\App\\" . \App\Helpers\Utils::ctrlr2string($str);
+    }
+
+    /**
      * Information that every module has (create | edit).
      * 
      * @param string $str

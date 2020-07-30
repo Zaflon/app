@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use PharIo\Manifest\InvalidUrlException;
 
 final class GenericPDFReportController extends Controller
 {
@@ -10,8 +11,12 @@ final class GenericPDFReportController extends Controller
     private const REPORT = [
         1 => \App\Http\Controllers\ColorController::class,
         2 => \App\Http\Controllers\ProductController::class,
-        3 => \App\Http\Controllers\BrandController::class
+        3 => \App\Http\Controllers\BrandController::class,
+        4 => \App\Http\Controllers\CouponController::class
     ];
+
+    /** @var array */
+    private const __ERROR_PDF_NOT_CREATED = "Exporting the listing via PDF for this module has not yet been developed.";
 
     /**
      * Get Listing.
@@ -75,14 +80,11 @@ final class GenericPDFReportController extends Controller
      */
     public function show(int $id): void
     {
-        if (defined("{$this->pdf($id)}::REPORT")) {
-            \App\Report\Report::create()->PDF(
-                \App\Helpers\Utils::arr2obj($this->pdf($id)::REPORT),
-                $this->pdf($id)::all()->take(42)
-            );
-        } else {
-            dd("Report not found...");
+        if (!defined("{$this->pdf($id)}::REPORT")) {
+            throw new InvalidUrlException(self::__ERROR_PDF_NOT_CREATED);
         }
+
+        \App\Report\Report::create()->PDF($this->config($id), $this->data($id));
     }
 
     /**
@@ -95,6 +97,30 @@ final class GenericPDFReportController extends Controller
     public function pdf(int $id): string
     {
         return "\\App\\" . \App\Helpers\Utils::ctrlr2string($this->__get($id));
+    }
+
+    /**
+     * Get Data.
+     * 
+     * @param int $id
+     * 
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function data(int $id): \Illuminate\Database\Eloquent\Collection
+    {
+        return $this->pdf($id)::all()->take(42);
+    }
+
+    /**
+     * Get Configuration for some PDF.
+     * 
+     * @param int $id
+     * 
+     * @return \stdClass
+     */
+    public function config(int $id): \stdClass
+    {
+        return \App\Helpers\Utils::arr2obj(\App\Helpers\Utils::ctrlr2model($this->__get($id))::REPORT);
     }
 
     /**

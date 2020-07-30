@@ -25,7 +25,9 @@ class CouponController extends Controller
      */
     public function create()
     {
-        //
+        return view('coupons.create', [
+            'view' => \App\Helpers\Utils::important(Self::class, \App\Helpers\Utils::CREATE, (object) [])
+        ]);
     }
 
     /**
@@ -36,7 +38,15 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        \App\Coupon::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'detail' => $request->detail
+        ]);
+
+        return view('index.listing', [
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\Coupon())
+        ]);
     }
 
     /**
@@ -58,7 +68,13 @@ class CouponController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('coupons.edit', [
+            'view' => \App\Helpers\Utils::important(
+                Self::class,
+                \App\Helpers\Utils::EDIT,
+                (object) \App\Coupon::find($id)->toArray()
+            )
+        ]);
     }
 
     /**
@@ -70,7 +86,15 @@ class CouponController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        \App\Coupon::where('id', $id)->update([
+            'name' => $request->name,
+            'price' => $request->price,
+            'detail' => $request->detail
+        ]);
+
+        return view('index.listing', [
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\Coupon())
+        ]);
     }
 
     /**
@@ -81,6 +105,8 @@ class CouponController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \App\Coupon::where('id', $id)->delete();
+
+        return \App\Helpers\Utils::JSONDestroyArray(true, $id, 'Coupon');
     }
 }

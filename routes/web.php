@@ -37,6 +37,11 @@ Route::middleware(App\Http\Middleware\IsUserLogged::class)->prefix('/app')->grou
     Route::resource('Color', 'ColorController');
 
     /**
+     * Coupon Route.
+     */
+    Route::resource('Coupon', 'CouponController');
+
+    /**
      * User Route.
      */
     Route::resource('User', 'UserController');

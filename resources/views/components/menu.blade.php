@@ -26,9 +26,10 @@
         </div>
         <a href="#" class="list-group-item list-group-item-action bg-light font-weight-bold group" data-target="register">🔑 Register</a>
         <div class="wrapper-register">
-            <a href="{{ route('Color.index') }}" class="list-group-item list-group-item-action bg-light">🗝 Color</a>
             <a href="{{ route('Brand.index') }}" class="list-group-item list-group-item-action bg-light">🗝 Brand</a>
             <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Category</a>
+            <a href="{{ route('Color.index') }}" class="list-group-item list-group-item-action bg-light">🗝 Color</a>
+            <a href="{{ route('Coupon.index') }}" class="list-group-item list-group-item-action bg-light">🗝 Coupon</a>
             <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Event</a>
             <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Inventory</a>
             <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Measurement Unit</a>

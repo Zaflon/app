@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 
 class ReportTest extends TestCase
 {
+    /** @var int */
+    private const WIDTH = 200;
+
     /**
      * Test Width Sum.
      * 
@@ -46,5 +49,23 @@ class ReportTest extends TestCase
     public function testInstanceofReport()
     {
         $this->assertTrue(\App\Report\Report::create() instanceof \App\Report\Report);
+    }
+
+    /**
+     * Test case to verify that all reports are the same width.
+     * 
+     * @param void
+     */
+    public function testAllReportsMustToHaveTheSameWidth()
+    {
+        foreach (\App\Http\Controllers\GenericPDFReportController::all() as $pdf) {
+            $CONFIG = \App\Helpers\Utils::ctrlr2model($pdf)::REPORT;
+
+            $WIDTH = \App\Report\Report::width(
+                \App\Helpers\Utils::arr2obj($CONFIG)->{\App\Report\Report::FIELDS}
+            );
+
+            $this->assertEquals($WIDTH, self::WIDTH);
+        }
     }
 }

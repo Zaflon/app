@@ -82,7 +82,7 @@ final class Product extends Model
                 \App\Report\Report::ACTIVE => true
             ],
             'detail' => [
-                \App\Report\Report::WIDTH => 20,
+                \App\Report\Report::WIDTH => 90,
                 \App\Report\Report::ACTIVE => true
             ],
             'deleted_at' => [

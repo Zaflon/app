@@ -6,6 +6,9 @@ use Carbon\Carbon;
 
 class UserSeeder extends Seeder
 {
+    /** @var string */
+    private const USER_PASSWORD = 'P@ssw0rd';
+
     /**
      * Run the database seeds.
      *
@@ -16,7 +19,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
-            'password' => 'P@ssw0rd',
+            'password' => \Illuminate\Support\Facades\Hash::make(self::USER_PASSWORD),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);

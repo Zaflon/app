@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    <!-- @see https://www.seomarketing.com.br/meta-tags-google.php -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Wesley Flôres">
@@ -33,7 +32,7 @@
             'controller' => $view->controller,
             'url' => request()->fullUrl(),
             'csrf' => csrf_token()
-        ])
+            ])
         @endcomponent
         <!-- /#sidebar-wrapper -->
 
@@ -47,27 +46,27 @@
                 <button class="btn btn-success ml-1" title="Cadastrar {{ $view->controller }}">
                     <a href='{{ route("{$view->controller}.create") }}' style="color: white;">
                         Register (+)
-                        <a />
+                    </a>
                 </button>
 
                 <!-- PDF -->
                 <a href="{{ route('GenericPDFReport.show', $view->report->key) }}">
-                    <img src="https://img.icons8.com/officel/48/000000/export-pdf.png" alt="Pdf Image">
+                    <img src="{{URL::asset('img/export-pdf.png')}}" alt="Pdf Image">
                 </a>
 
                 <!-- XML -->
                 <a href="{{ route('GenericXMLReport.show', $view->report->key) }}">
-                    <img src="https://img.icons8.com/office/48/000000/xml-file.png" alt="Xml Image">
+                    <img src="{{URL::asset('img/xml-file.png')}}" alt="Xml Image">
                 </a>
 
                 <!-- CSV -->
                 <a href="{{ route('GenericCSVReport.show', $view->report->key) }}">
-                    <img src="https://img.icons8.com/officel/48/000000/import-csv.png" alt="Csv Image">
+                    <img src="{{URL::asset('img/import-csv.png')}}" alt="Csv Image">
                 </a>
-                
+
                 <!-- CHART -->
                 <a href="{{ route('GenericChartReport.show', $view->report->key) }}">
-                    <img src="https://img.icons8.com/clouds/48/000000/combo-chart.png" alt="Chart">
+                    <img src="{{URL::asset('img/combo-chart.png')}}" alt="Chart">
                 </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -97,17 +97,12 @@ class UserController extends Controller
      */
     public function autenticate(Request $request)
     {
-        $RequestArray = [
-            'password' => (string) $request->password,
-            'email' => (string) $request->email
-        ];
-
-        $LoggerFacts = User::where($RequestArray)->first();
+        $User = \App\User::select(['id', 'name', 'email', 'password'])->where('email', $request->email)->first();
 
         if (
-            (bool) ($LoggerFacts instanceof \App\User) === true
+            (bool) (\Illuminate\Support\Facades\Hash::check($request->password, $User->password)) === true
         ) {
-            Session::put(self::USER_CREDENTIALS, $LoggerFacts->toArray());
+            Session::put(self::USER_CREDENTIALS, $User->toArray());
 
             return redirect()->route('app');
         } else {

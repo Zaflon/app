@@ -62,6 +62,16 @@ final class Utils
     }
 
     /**
+     * Update User Session.
+     * 
+     * @param void
+     */
+    public static function update(int $id)
+    {
+        Session::put(\App\Http\Controllers\UserController::USER_CREDENTIALS, \App\User::find($id)->toArray());
+    }
+
+    /**
      * Get an JSON from URL.
      * 
      * We can receive a JSON as an array or as an object, so we validate the return.
@@ -152,14 +162,31 @@ final class Utils
 
         $list->action = $act;
 
-        $list->report = new \stdClass();
-
-        $list->report->key = array_search(
-            $str,
-            \App\Http\Controllers\GenericPDFReportController::all()
-        );
+        $list->report = self::report($str);
 
         return $list;
+    }
+
+    /**
+     * Report.
+     * 
+     * @param void
+     * 
+     * @return \stdClass
+     */
+    private static function report(string $str): \stdClass
+    {
+        $stub = new \stdClass();
+
+        $key = array_search($str, \App\Http\Controllers\GenericPDFReportController::all());
+
+        if ((bool)((int) $key) === true) {
+            $stub->key = $key;
+
+            return $stub;
+        }
+
+        throw new \Exception("Report for this module :{$str} not yet registered in the system.");
     }
 
     /**

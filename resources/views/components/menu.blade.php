@@ -38,6 +38,7 @@
             <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Printer</a>
             <a href="{{ route('Product.index') }}" class="list-group-item list-group-item-action bg-light">🗝 Product</a>
             <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Schedule</a>
+            <a href="{{ route('User.index') }}" class="list-group-item list-group-item-action bg-light">🗝 User</a>
         </div>
         <a href="#" class="list-group-item list-group-item-action bg-light font-weight-bold group" data-target="stock">🔑 Stock</a>
         <div class="wrapper-stock">

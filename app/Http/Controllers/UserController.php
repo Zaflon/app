@@ -21,7 +21,9 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        //
+        return view('index.listing', [
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\User())
+        ]);
     }
 
     /**
@@ -31,7 +33,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create', [
+            'view' => \App\Helpers\Utils::important(Self::class, \App\Helpers\Utils::CREATE, (object) [])
+        ]);
     }
 
     /**
@@ -42,7 +46,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('index.listing', [
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\User())
+        ]);
     }
 
     /**
@@ -53,6 +59,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        return view('components.box');
         //
     }
 
@@ -64,7 +71,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('users.edit', [
+            'view' => \App\Helpers\Utils::important(Self::class, \App\Helpers\Utils::EDIT, (object) \App\User::find($id)->toArray())
+        ]);
     }
 
     /**
@@ -76,7 +85,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        \App\User::where('id', $id)->update([
+            'email' => $request->email,
+            'name' => $request->name
+        ]);
+
+        \App\Helpers\Utils::update($id);
+
+        return view('index.listing', [
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\User())
+        ]);
     }
 
     /**
@@ -87,7 +105,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        return \App\Helpers\Utils::JSONDestroyString(true, $id);
+        return \App\Helpers\Utils::JSONDestroyArray(true, $id, 'User');
     }
 
     /**
@@ -102,7 +120,7 @@ class UserController extends Controller
         if (
             (bool) (\Illuminate\Support\Facades\Hash::check($request->password, $User->password)) === true
         ) {
-            Session::put(self::USER_CREDENTIALS, $User->toArray());
+            \App\Helpers\Utils::update($User->id);
 
             return redirect()->route('app');
         } else {

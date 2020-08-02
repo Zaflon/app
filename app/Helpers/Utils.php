@@ -58,7 +58,7 @@ final class Utils
      */
     public static function user(): \stdClass
     {
-        return self::arr2obj(Session::get(\App\Http\Controllers\UserController::USER_CREDENTIALS) ?? []);
+        return self::arr2obj(Session::get(\App\Http\Controllers\UserController::class) ?? []);
     }
 
     /**
@@ -68,7 +68,7 @@ final class Utils
      */
     public static function update(int $id)
     {
-        Session::put(\App\Http\Controllers\UserController::USER_CREDENTIALS, \App\User::find($id)->toArray());
+        Session::put(\App\Http\Controllers\UserController::class, \App\User::find($id)->toArray());
     }
 
     /**
@@ -157,7 +157,7 @@ final class Utils
         if (
             !((string) $act === self::LOGIN)
         ) {
-            $list->user = (object) Session::get(\App\Http\Controllers\UserController::USER_CREDENTIALS);
+            $list->user = (object) Session::get(\App\Http\Controllers\UserController::class);
         }
 
         $list->action = $act;

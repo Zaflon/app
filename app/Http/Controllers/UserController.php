@@ -11,9 +11,6 @@ class UserController extends Controller
     /** @var string */
     private const INVALID_CREDENTIALS_MESSAGE = 'Sorry, the email or password you entered is incorrect. Please try again.';
 
-    /** @var string */
-    public const USER_CREDENTIALS = 'User';
-
     /**
      * Display a listing of the resource.
      *
@@ -136,7 +133,9 @@ class UserController extends Controller
             'name' => $request->name
         ]);
 
-        \App\Helpers\Utils::update($id);
+        if (((int) \App\Helpers\Utils::user()->id) === ((int) $request->id)) {
+            \App\Helpers\Utils::update($id);
+        }
 
         return view('index.listing', [
             'view' => \App\Helpers\Utils::main(Self::class, new \App\User())

@@ -109,7 +109,7 @@ final class GenericPDFReportController extends Controller
      */
     public function data(int $id): \Illuminate\Database\Eloquent\Collection
     {
-        return $this->pdf($id)::all()->take(42);
+        return $this->pdf($id)::all();
     }
 
     /**

@@ -46,6 +46,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
+            'name' => 'required|unique:users|max:255',
+            'email' => 'required|max:255',
+            'first-password' => 'required|max:255',
+            'second-password' => 'required|max:255'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('User.create')->withErrors($validator)->withInput();
+        } elseif ((string)$request->{"second-password"} !== (string)$request->{"first-password"}) {
+            return redirect()->route('User.create')->withErrors(['password' => 'Passwords entered do not match.']);
+        }
+
+        \App\User::create([
+            'name' => (string) $request->name,
+            'email' => (string) $request->email,
+            'password' => \Illuminate\Support\Facades\Hash::make($request->{"first-password"})
+        ]);
+
         return view('index.listing', [
             'view' => \App\Helpers\Utils::main(Self::class, new \App\User())
         ]);
@@ -115,17 +134,17 @@ class UserController extends Controller
      */
     public function autenticate(Request $request)
     {
-        $User = \App\User::select(['id', 'name', 'email', 'password'])->where('email', $request->email)->first();
+        $build = \App\User::select(['id', 'name', 'email', 'password'])->where('email', $request->email);
 
-        if (
-            (bool) (\Illuminate\Support\Facades\Hash::check($request->password, $User->password)) === true
-        ) {
-            \App\Helpers\Utils::update($User->id);
+        if ($build->count() > 0) {
+            if ((bool) (\Illuminate\Support\Facades\Hash::check($request->password, $build->first()->password)) === true) {
+                \App\Helpers\Utils::update($build->first()->id);
 
-            return redirect()->route('app');
-        } else {
-            return $this->login($request)->withErrors([self::INVALID_CREDENTIALS_MESSAGE]);
+                return redirect()->route('app');
+            }
         }
+
+        return $this->login($request)->withErrors([self::INVALID_CREDENTIALS_MESSAGE]);
     }
 
     /**

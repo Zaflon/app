@@ -20,11 +20,11 @@
         <div class="row">
             <div class="col">
                 <label for="first-password">Password</label>
-                <input type="text" class="form-control" name="first-password" required>
+                <input type="password" class="form-control" name="first-password" required>
             </div>
             <div class="col">
                 <label for="second-password">Confirm Password</label>
-                <input type="text" class="form-control" name="second-password" required>
+                <input type="password" class="form-control" name="second-password" required>
             </div>
         </div>
     </div>

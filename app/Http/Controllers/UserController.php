@@ -47,21 +47,27 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
-            'name' => 'required|unique:users|max:255',
-            'email' => 'required|max:255',
+            'name' => 'required|unique:users|max:255|unique:users',
+            'email' => 'required|max:255|unique:users',
             'first-password' => 'required|max:255',
             'second-password' => 'required|max:255'
         ]);
 
-        if ($validator->fails()) {
+        if (
+            $validator->fails()
+        ) {
             return redirect()->route('User.create')->withErrors($validator)->withInput();
-        } elseif ((string)$request->{"second-password"} !== (string)$request->{"first-password"}) {
+        }
+
+        if (
+            (string) $request->{"second-password"} !== (string) $request->{"first-password"}
+        ) {
             return redirect()->route('User.create')->withErrors(['password' => 'Passwords entered do not match.']);
         }
 
         \App\User::create([
-            'name' => (string) $request->name,
-            'email' => (string) $request->email,
+            'name' => $request->name,
+            'email' => $request->email,
             'password' => \Illuminate\Support\Facades\Hash::make($request->{"first-password"})
         ]);
 
@@ -79,7 +85,6 @@ class UserController extends Controller
     public function show($id)
     {
         return view('components.box');
-        //
     }
 
     /**
@@ -91,8 +96,20 @@ class UserController extends Controller
     public function edit($id)
     {
         return view('users.edit', [
-            'view' => \App\Helpers\Utils::important(Self::class, \App\Helpers\Utils::EDIT, (object) \App\User::find($id)->toArray())
+            'view' => $this->view($id)
         ]);
+    }
+
+    /**
+     * View.
+     * 
+     * @param int $id
+     * 
+     * @return \stdClass
+     */
+    private function view(int $id): \stdClass
+    {
+        return \App\Helpers\Utils::important(Self::class, \App\Helpers\Utils::EDIT, (object) \App\User::find($id)->toArray());
     }
 
     /**
@@ -100,10 +117,20 @@ class UserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
+     * 
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
+            'name' => "required|max:255|unique:users,name,{$request->id}",
+            'email' => "required|max:255|unique:users,email,{$request->id}"
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('User.edit', [$id, 'view' => $this->view($id)])->withErrors($validator)->withInput();
+        }
+
         \App\User::where('id', $id)->update([
             'email' => $request->email,
             'name' => $request->name

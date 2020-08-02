@@ -42,8 +42,8 @@ class UrlSeederTest extends TestCase
         [
             self::URL => \StatesSeeder::URL,
             self::COLUMNS => [
-                'Name',
-                'Abbreviation',
+                'name',
+                'abbreviation',
                 'cUF'
             ]
         ]

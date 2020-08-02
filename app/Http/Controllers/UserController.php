@@ -115,17 +115,17 @@ class UserController extends Controller
      */
     public function autenticate(Request $request)
     {
-        $User = \App\User::select(['id', 'name', 'email', 'password'])->where('email', $request->email)->first();
+        $build = \App\User::select(['id', 'name', 'email', 'password'])->where('email', $request->email);
 
-        if (
-            (bool) (\Illuminate\Support\Facades\Hash::check($request->password, $User->password)) === true
-        ) {
-            \App\Helpers\Utils::update($User->id);
+        if ($build->count() > 0) {
+            if ((bool) (\Illuminate\Support\Facades\Hash::check($request->password, $build->first()->password)) === true) {
+                \App\Helpers\Utils::update($build->first()->id);
 
-            return redirect()->route('app');
-        } else {
-            return $this->login($request)->withErrors([self::INVALID_CREDENTIALS_MESSAGE]);
+                return redirect()->route('app');
+            }
         }
+
+        return $this->login($request)->withErrors([self::INVALID_CREDENTIALS_MESSAGE]);
     }
 
     /**

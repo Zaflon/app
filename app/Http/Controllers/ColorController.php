@@ -122,8 +122,8 @@ class ColorController extends Controller
     public function update(Request $request, int $id = 0)
     {
         $rules =  [
-            "color" => "required",
-            "hexadecimal" => "required|min:7|max:7"
+            "color" => "required|unique:colors,color,{$request->id}",
+            "hexadecimal" => "required|unique:colors,hexadecimal,{$request->hexadecimal}|min:7|max:7"
         ];
 
         $messages = [

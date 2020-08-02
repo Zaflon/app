@@ -46,6 +46,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
+            'name' => 'required|unique:users|max:255',
+            'email' => 'required|max:255',
+            'first-password' => 'required|max:255',
+            'second-password' => 'required|max:255'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('User.create')->withErrors($validator)->withInput();
+        } elseif ((string)$request->{"second-password"} !== (string)$request->{"first-password"}) {
+            return redirect()->route('User.create')->withErrors(['password' => 'Passwords entered do not match.']);
+        }
+
+        \App\User::create([
+            'name' => (string) $request->name,
+            'email' => (string) $request->email,
+            'password' => \Illuminate\Support\Facades\Hash::make($request->{"first-password"})
+        ]);
+
         return view('index.listing', [
             'view' => \App\Helpers\Utils::main(Self::class, new \App\User())
         ]);

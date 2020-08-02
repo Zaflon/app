@@ -17,11 +17,15 @@
     <link rel="stylesheet" href="{{URL::asset('css/general.css')}}">
     <link rel="stylesheet" href="{{URL::asset('css/popup.css')}}">
 
+    <!-- box css dependency-->
+    <link rel="stylesheet" href="{{URL::asset('css/box.css')}}">
+
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/simple-sidebar.css') }}" rel="stylesheet">
 </head>
 
 <body>
+    <div class="box-wrapper"></div>
     <!-- @see https://startbootstrap.com/templates/simple-sidebar/ -->
     <div class="d-flex" id="wrapper">
 

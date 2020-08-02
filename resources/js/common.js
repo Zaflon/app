@@ -48,53 +48,13 @@ const Common = {
 
         fetch(url)
             .then(function (response) {
-                response.json().then(function (data) {
+                response.text().then(function (HTMLResponse) {
+                    const BoxWrapper = document.querySelector(".box-wrapper");
 
-                    const InfoElement = document.createElement("div");
+                    BoxWrapper.innerHTML = HTMLResponse;
 
-                    InfoElement.style = `top: 50px; left: 50px; background-color: rgba(1, 1, 1, 0.1); position: fixed; width: ${data.attributes.width}px; height: 200px; border: 1px solid #000;`;
-                    InfoElement.className = 'popup';
-
-                    let InnerHTML = `<div class="title" style="width: ${data.attributes.width - 10}px; text-align: center; margin: 5px; background: #CCC; cursor: move;">`;
-
-                    InnerHTML += `       <span>${data.title}</span>`;
-                    InnerHTML += `       <span class="close-popup">`;
-                    InnerHTML += `            <img src="https://img.icons8.com/dusk/16/000000/x.png">`;
-                    InnerHTML += `       </span>`;
-                    InnerHTML += `   </div>`;
-                    InnerHTML += `   <div class="p-0 bd-highlight d-flex flex-column bd-highlight">`;
-                    InnerHTML += `       <table class="table table-hover">`;
-                    InnerHTML += `           <thead>`;
-                    InnerHTML += `               <tr>`;
-
-                    for (let i = 0; i < Object.keys(data.data).length; i++) {
-                        InnerHTML += `<th scope="col" title="${data.data[Object.keys(data.data)[i]].title}">${Object.keys(data.data)[i]}</th>`;
-                    }
-
-                    InnerHTML += `               </tr>`;
-                    InnerHTML += `           </thead>`;
-                    InnerHTML += `           <tbody>`;
-                    InnerHTML += `               <tr>`;
-
-                    for (let i = 0; i < Object.keys(data.data).length; i++) {
-                        InnerHTML += `<td scope="col" title="${data.data[Object.keys(data.data)[i]].self}">${data.data[Object.keys(data.data)[i]].self}</td>`;
-                    }
-
-                    InnerHTML += `               </tr>`;
-                    InnerHTML += `           </tbody>`;
-                    InnerHTML += `       </table>`;
-                    InnerHTML += `   </div>`;
-                    InnerHTML += `   <div class="d-flex justify-content-center bd-highlight">`;
-                    InnerHTML += `       <span class="lds-hourglass d-flex justify-content-center"></span>`;
-                    InnerHTML += `   </div>`;
-                    InnerHTML += ` </div>`;
-
-                    InfoElement.innerHTML = InnerHTML;
-
-                    document.getElementById("wrapper").appendChild(InfoElement);
-
-                    Box();
-                });
+                    new Box().run();
+                })
             })
             .catch(function (err) {
                 console.error('Failed retrieving information', err);

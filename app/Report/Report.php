@@ -59,10 +59,14 @@ class Report
 
         $pdf->SetFont('Arial', NULL, 8);
 
-        foreach ($db as $color) {
+        foreach ($db as $info) {
             foreach ($data->{self::FIELDS} as $KEY => $INFO) {
                 if ($INFO->{self::ACTIVE} === true) {
-                    $pdf->Cell($INFO->{self::WIDTH}, $data->{self::INFO}->{self::HEIGHT}, $color->{$KEY}, true, 0, false);
+                    if (is_null($info->{$KEY})) {
+                        throw new \Exception("The key: { {$KEY} } does not exist for the model in question.");
+                    }
+
+                    $pdf->Cell($INFO->{self::WIDTH}, $data->{self::INFO}->{self::HEIGHT}, $info->{$KEY}, true, 0, false);
                 }
             }
 

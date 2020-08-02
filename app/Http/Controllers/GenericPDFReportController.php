@@ -12,7 +12,8 @@ final class GenericPDFReportController extends Controller
         1 => \App\Http\Controllers\ColorController::class,
         2 => \App\Http\Controllers\ProductController::class,
         3 => \App\Http\Controllers\BrandController::class,
-        4 => \App\Http\Controllers\CouponController::class
+        4 => \App\Http\Controllers\CouponController::class,
+        5 => \App\Http\Controllers\UserController::class
     ];
 
     /** @var array */

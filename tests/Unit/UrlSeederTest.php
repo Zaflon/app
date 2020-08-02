@@ -6,49 +6,6 @@ use PHPUnit\Framework\TestCase;
 
 class UrlSeederTest extends TestCase
 {
-    /** @var string */
-    private const URL = '@URL@';
-
-    /** @var string */
-    private const COLUMNS = '@COLUMNS@';
-
-    /** @var array */
-    private const FIELDS = [
-        [
-            self::URL => \BrandsSeeder::URL,
-            self::COLUMNS => [
-                'name'
-            ]
-        ],
-        [
-            self::URL => \ColorsSeeder::URL,
-            self::COLUMNS => [
-                'cor',
-                'color',
-                'couleur',
-                'farbe',
-                'colore',
-                'tonalidad',
-                'kleur'
-            ],
-        ],
-        [
-            self::URL => \MeasurementUnitsSeeder::URL,
-            self::COLUMNS => [
-                'measurement_unit',
-                'abbreviation'
-            ],
-        ],
-        [
-            self::URL => \StatesSeeder::URL,
-            self::COLUMNS => [
-                'name',
-                'abbreviation',
-                'cUF'
-            ]
-        ]
-    ];
-
     /**
      * These fields must to be present in each JSON files.
      * 
@@ -58,15 +15,15 @@ class UrlSeederTest extends TestCase
      */
     public function testFields(): void
     {
-        $data = \App\Helpers\Utils::arr2obj(self::FIELDS);
+        $data = \App\Helpers\Utils::arr2obj(\DatabaseSeeder::FIELDS);
 
         foreach ($data as $url) {
-            $content = \App\Helpers\Utils::getSeederJSON($url->{self::URL});
+            $content = \App\Helpers\Utils::getSeederJSON($url->{\DatabaseSeeder::URL});
 
             $first = $content->{array_key_first((array)$content)};
 
             $this->assertTrue(\App\Helpers\Utils::ArrayContains(
-                (array) $url->{self::COLUMNS},
+                (array) $url->{\DatabaseSeeder::COLUMNS},
                 (array) array_keys(get_object_vars($first))
             ));
         }
@@ -115,8 +72,8 @@ class UrlSeederTest extends TestCase
     {
         $Address = [];
 
-        foreach (self::FIELDS as $KEY => $URL) {
-            $Address[] = $URL[self::URL];
+        foreach (\DatabaseSeeder::FIELDS as $KEY => $URL) {
+            $Address[] = $URL[\DatabaseSeeder::URL];
         }
 
         return $Address;

@@ -18,13 +18,13 @@ class CreateTableColors extends Migration
         Schema::create('colors', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('cor', 32)->nullable(true);
-            $table->string('color', 32);
+            $table->string('color', 32)->nullable(true);;
             $table->string('couleur', 32)->nullable(true);
             $table->string('farbe', 32)->nullable(true);
             $table->string('colore', 32)->nullable(true);
             $table->string('tonalidad', 32)->nullable(true);
             $table->string('kleur', 32)->nullable(true);
-            $table->string('hexadecimal', 6);
+            $table->string('hexadecimal', 6)->unique()->nullable(false);
             $table->softDeletes();
             $table->timestamps();
         });

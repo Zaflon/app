@@ -54,6 +54,9 @@ class Color extends Model
     ];
 
     /** @var array */
+    public const FILTERS = [];
+
+    /** @var array */
     public const REPORT = [
         \App\Report\Report::FIELDS => [
             'id' => [

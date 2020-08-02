@@ -107,11 +107,7 @@ class ColorController extends Controller
     public function edit(int $id = 0)
     {
         return view('colors.edit', [
-            'view' => \App\Helpers\Utils::important(
-                Self::class,
-                \App\Helpers\Utils::EDIT,
-                (object) \App\Color::find($id)->toArray()
-            )
+            'view' => \App\Helpers\Utils::important(Self::class, \App\Helpers\Utils::EDIT, (object) \App\Color::find($id)->toArray())
         ]);
     }
 

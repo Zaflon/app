@@ -15,8 +15,8 @@ class CreateMeasurementUnitsTable extends Migration
     {
         Schema::create('measurement_units', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('measurement_unit', 32)->unique();
-            $table->string('abbreviation', 8)->unique();
+            $table->string('measurement_unit', 32)->nullable(false)->unique();
+            $table->string('abbreviation', 8)->nullable(false)->unique();
             $table->timestamps();
             $table->softDeletes();
         });

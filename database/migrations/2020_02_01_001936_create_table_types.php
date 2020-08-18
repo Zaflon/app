@@ -15,7 +15,7 @@ class CreateTableTypes extends Migration
     {
         Schema::create('types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->longText('detail');
+            $table->longText('detail')->nullable(false)->unique();
             $table->softDeletes();
             $table->timestamps();
         });

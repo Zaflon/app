@@ -16,8 +16,8 @@ class CreateCouponsTable extends Migration
         Schema::create('coupons', function (Blueprint $table) {
             $table->id();
             $table->string('name', 32);
-            $table->string('detail');
-            $table->integer('price', false, true);
+            $table->string('detail')->nullable(false);
+            $table->integer('price', false, true)->nullable(false);
             $table->timestamps();
         });
     }

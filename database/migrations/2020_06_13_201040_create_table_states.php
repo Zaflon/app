@@ -15,9 +15,9 @@ class CreateTableStates extends Migration
     {
         Schema::create('states', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('abbreviation', 2)->unique();
-            $table->string('name', 32)->unique();
-            $table->smallInteger('cUF')->unique();
+            $table->string('abbreviation', 2)->nullable(false)->unique();
+            $table->string('name', 32)->nullable(false)->unique();
+            $table->smallInteger('cUF')->nullable(false)->unique();
             $table->timestamps();
             $table->softDeletes();
         });

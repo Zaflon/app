@@ -34,9 +34,15 @@
             </div>
 
             <div class="form-group col-md-2">
-                <a href='{{ route("{$view->controller}.download", $view->register->id) }}'>
-                    <button type="button" class="btn btn-success form-control">Download</button>
-                </a>
+                @if(\Illuminate\Support\Facades\Storage::disk('public')->exists(\App\User::find($view->register->id)->image))
+                    <a href='{{ route("{$view->controller}.download", $view->register->id) }}'>
+                        <button type="button" class="btn btn-success form-control">Download</button>
+                    </a>
+                @else
+                    <a href="#">
+                        <button type="button" class="btn btn-success form-control" disabled>Download</button>
+                    </a>
+                @endif
             </div>
         </div>
     </div>

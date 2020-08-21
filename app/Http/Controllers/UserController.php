@@ -158,13 +158,9 @@ class UserController extends Controller
      */
     public function download(int $id)
     {
-        if (\Illuminate\Support\Facades\Storage::disk('public')->exists(User::find($id)->image)) {
-            return response()->download(
-                \Illuminate\Support\Facades\Storage::disk('public')->getDriver()->getAdapter()->applyPathPrefix(User::find($id)->image)
-            );
-        }
-
-        return response()->json(["data" => "file doesn't exists on filesystem"]);
+        return response()->download(
+            \Illuminate\Support\Facades\Storage::disk('public')->getDriver()->getAdapter()->applyPathPrefix(User::find($id)->image)
+        );
     }
 
     /**

@@ -15,7 +15,7 @@ class ProductsSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 25; $i++) {
             DB::table('products')->insert([
                 'name' => $faker->firstName,
                 'weight' => rand($min = pow(2, 2), $max = pow(8, 8)),

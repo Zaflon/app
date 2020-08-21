@@ -70,6 +70,18 @@ class Brand extends Model
     ];
 
     /**
+     * Product.
+     * 
+     * @param void
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function products(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(\App\Product::class);
+    }
+
+    /**
      * Get informations about listing.
      * 
      * @param void

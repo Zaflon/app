@@ -128,18 +128,10 @@ class UserController extends Controller
             return redirect()->route('User.edit', [$id, 'view' => $this->view($id)])->withErrors($validator)->withInput();
         }
 
-        if (!is_null($request->file('image'))) {
-            if ($path = $request->file('image')->store('users', 'public') !== \App\Helpers\Utils::user()->image) {
-                \Illuminate\Support\Facades\Storage::disk('public')->delete(\App\Helpers\Utils::user()->image);
-            }
-        } else {
-            $path = \App\Helpers\Utils::user()->image;
-        }
-
         \App\User::where('id', $id)->update([
             'email' => $request->email,
             'name' => $request->name,
-            'image' => $path
+            'image' => $request->file('image')->store('users', 'public')
         ]);
 
         if (((int) \App\Helpers\Utils::user()->id) === ((int) $request->id)) {

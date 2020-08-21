@@ -61,8 +61,7 @@ class ProductController extends Controller
         $request->validate($rules, $messages);
 
         $Product = new \App\Product();
-
-        $Product->brand_id = (int) \App\Brand::find($request->brand_id)->id;
+        $Product->brand()->associate(\App\Brand::find($request->brand_id));
         $Product->name = (string) $request->name;
         $Product->detail = (string) $request->detail;
         $Product->weight = (int) $request->weight;

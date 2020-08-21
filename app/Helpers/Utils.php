@@ -83,7 +83,7 @@ final class Utils
      */
     public static function getSeederJSON(
         string $FILE,
-        string $URL = "https://raw.githubusercontent.com/MagicalStrangeQuark/JSON/master/"
+        string $URL = "https://raw.githubusercontent.com/MagicalStrangeQuark/JSON/master/JSON/"
     ): \stdClass {
         $data = json_decode(file_get_contents($URL . rawurlencode($FILE)));
 

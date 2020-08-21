@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => \Illuminate\Support\Facades\Hash::make(self::USER_PASSWORD),
+            'image' => Illuminate\Support\Str::random(64),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -31,6 +32,7 @@ class UserSeeder extends Seeder
                 'name' => $Faker->firstName,
                 'email' => $Faker->unique()->safeEmail,
                 'password' => Illuminate\Support\Facades\Hash::make(Illuminate\Support\Str::random(rand(0, 255))),
+                'image' => Illuminate\Support\Str::random(64),
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]);

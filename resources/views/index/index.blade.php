@@ -35,8 +35,9 @@
             'date' => date('Y/m/d H:i:s'),
             'controller' => $view->controller,
             'url' => request()->fullUrl(),
-            'csrf' => csrf_token()
-            ])
+            'csrf' => csrf_token(),
+            'image' => $view->user->image
+        ])
         @endcomponent
         <!-- /#sidebar-wrapper -->
 

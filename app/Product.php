@@ -117,7 +117,6 @@ final class Product extends Model
         return $this->belongsTo(\App\Brand::class);
     }
 
-
     /**
      * Get informations about listing.
      * 

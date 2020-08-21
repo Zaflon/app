@@ -2,7 +2,7 @@
 
 @section("conteudo")
 
-<form action="{{ route($view->controller.'.update', $view->register->id) }}" method="POST">
+<form action="{{ route($view->controller.'.update', $view->register->id) }}" method="POST" enctype="multipart/form-data">
 
     @csrf
 
@@ -21,6 +21,24 @@
     <div class="form-group">
         <label for="email">Email</label>
         <input type="text" class="form-control" name="email" value={{ $view->register->email }} required>
+    </div>
+
+    <div class="form-group">
+        <label for="image">Image</label>
+        <div class="form-row">
+            <div class="form-group col-md-10">
+                <div class="custom-file">
+                    <label class="custom-file-label" for="image">Choose file...</label>
+                    <input type="file" class="custom-file-input form-control" name="image">
+                </div>
+            </div>
+
+            <div class="form-group col-md-2">
+                <a href='{{ route("{$view->controller}.download", $view->register->id) }}'>
+                    <button type="button" class="btn btn-success form-control">Download</button>
+                </a>
+            </div>
+        </div>
     </div>
 
     <div class="alert alert-danger" role="alert">

@@ -57,6 +57,11 @@ Route::middleware(App\Http\Middleware\IsUserLogged::class)->prefix('/app')->grou
     Route::resource('Product', 'ProductController');
 
     /**
+     * Download Image.
+     */
+    Route::get('User/{user}/download', 'UserController@download')->name('User.download');
+
+    /**
      * Generic PDF Report Route.
      */
     Route::resource('GenericPDFReport', 'GenericPDFReportController');

@@ -3,6 +3,7 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
  */
+
 body {
     overflow-x: hidden;
 }
@@ -21,6 +22,10 @@ body {
     font-size: 1.2rem;
 }
 
+#sidebar-wrapper .sidebar-heading>img {
+    width: 50px;
+}
+
 #sidebar-wrapper .list-group {
     width: 15rem;
 }
@@ -37,12 +42,10 @@ body {
     #sidebar-wrapper {
         margin-left: 0;
     }
-
     #page-content-wrapper {
         min-width: 0;
         width: 100%;
     }
-
     #wrapper.toggled #sidebar-wrapper {
         margin-left: -15rem;
     }

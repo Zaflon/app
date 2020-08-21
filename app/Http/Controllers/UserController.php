@@ -128,9 +128,18 @@ class UserController extends Controller
             return redirect()->route('User.edit', [$id, 'view' => $this->view($id)])->withErrors($validator)->withInput();
         }
 
+        if (!is_null($request->file('image'))) {
+            if ($path = $request->file('image')->store('users', 'public') !== \App\Helpers\Utils::user()->image) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete(\App\Helpers\Utils::user()->image);
+            }
+        } else {
+            $path = \App\Helpers\Utils::user()->image;
+        }
+
         \App\User::where('id', $id)->update([
             'email' => $request->email,
-            'name' => $request->name
+            'name' => $request->name,
+            'image' => $path
         ]);
 
         if (((int) \App\Helpers\Utils::user()->id) === ((int) $request->id)) {
@@ -140,6 +149,22 @@ class UserController extends Controller
         return view('index.listing', [
             'view' => \App\Helpers\Utils::main(Self::class, new \App\User())
         ]);
+    }
+
+    /**
+     * Download the user image.
+     * 
+     * @param int $id
+     */
+    public function download(int $id)
+    {
+        if (\Illuminate\Support\Facades\Storage::disk('public')->exists(User::find($id)->image)) {
+            return response()->download(
+                \Illuminate\Support\Facades\Storage::disk('public')->getDriver()->getAdapter()->applyPathPrefix(User::find($id)->image)
+            );
+        }
+
+        return response()->json(["data" => "file doesn't exists on filesystem"]);
     }
 
     /**

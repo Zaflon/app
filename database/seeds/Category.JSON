@@ -1,0 +1,967 @@
+{
+    "Automotive and Transport": {
+        "Automotive": {
+            "Automotive Aftermarket": {},
+            "Automotive Finance": {},
+            "Automotive Leasing and Rental": {},
+            "Automotive Manufacturing": {},
+            "Automotive Parts": {
+                "Automotive Batteries": {},
+                "Automotive Body, Trim and Glass": {},
+                "Automotive Commodities": {},
+                "Automotive Drivetrain and Transmission Components": {},
+                "Automotive Fuel Systems": {},
+                "Automotive Interior Components": {
+                    "Automotive Seats and Components": {}
+                },
+                "Automotive Materials": {},
+                "Automotive Safety": {},
+                "Automotive Tires": {},
+                "Brake Systems and Components": {},
+                "Engines and Engine Parts": {},
+                "Exhaust Systems and Components": {},
+                "Filters": {},
+                "Seatbelts and Airbags": {},
+                "Steering Systems and Components": {},
+                "Suspension Systems and Components": {},
+                "Telematics and Vehicle Electronics": {
+                    "Automotive Climate Control Systems": {},
+                    "Automotive Sensors": {},
+                    "In Car Entertainment Systems": {}
+                }
+            },
+            "Automotive Repair": {},
+            "Automotive Sales": {},
+            "Car Fleet": {},
+            "Cars": {},
+            "Commercial Vehicles": {
+                "Trucks": {}
+            },
+            "Electric and Hybrid Vehicles": {},
+            "Emergency Vehicles": {},
+            "Motorcycles": {},
+            "RVs and Mobile Homes": {},
+            "Used Vehicles": {}
+        },
+        "Commercial Aerospace": {
+            "Aircraft": {},
+            "Aircraft Parts": {},
+            "Airport Security": {},
+            "Airports and Air raffic Control": {},
+            "Aviation Freight and Cargo": {},
+            "Avionics": {},
+            "Space Systems, Satellites and Launchers": {},
+            "Unmanned Aerial Vehicles (UAVs) - Drones": {}
+        },
+        "Maritime": {
+            "Fishing Vessels and Equipment": {},
+            "Ports and Harbors": {},
+            "Sea and Water Freight": {},
+            "Shipbuilding and Ship Parts": {}
+        },
+        "Private Transport Services": {},
+        "Public Transport": {},
+        "Rail": {
+            "Rail Transport Vehicles": {}
+        }
+    },
+    "Business and Finance": {
+        "Banking": {
+            "Commercial Banking": {},
+            "Credit and Loans": {},
+            "Foreign Exchange": {},
+            "Investment Banking": {
+                "Wealth Management": {}
+            },
+            "Mortgages": {},
+            "Online Banking": {},
+            "Retail Banking": {
+                "ATM": {},
+                "Bank Cards": {
+                    "Credit Cards": {},
+                    "Debit Cards": {}
+                },
+                "Pensions": {},
+                "Personal Finance": {}
+            }
+        },
+        "Business": {
+            "Accounting": {
+                "Payroll": {},
+                "Tax": {}
+            },
+            "Advertising and Marketing": {
+                "Branding": {},
+                "Demographics": {},
+                "Direct Marketing": {},
+                "Marketing Lists": {},
+                "Online Advertising": {},
+                "Outdoor Advertising": {}
+            },
+            "Business Communication and Presentation": {},
+            "Consulting and Outsourcing": {},
+            "Corporate Governance": {},
+            "CRM (Customer Relationship Management)": {},
+            "Facilities Management": {},
+            "Franchise": {},
+            "Management": {
+                "Leadership and Motivation": {},
+                "Operations Research and Decision Making": {},
+                "Organizational Theory and Behavior": {},
+                "Production and Quality Management": {},
+                "Project Management": {}
+            },
+            "Mergers and Acquisitions": {},
+            "Nonprofit Sector": {},
+            "Personnel and Human Resources": {
+                "Professional Development and Training": {
+                    "IT Training": {}
+                },
+                "Recruitment and Employment Agencies": {}
+            },
+            "Public Relations": {}
+        },
+        "Economics": {
+            "International Trade": {},
+            "Macroeconomics": {},
+            "Microeconomics": {}
+        },
+        "Finance": {
+            "Capital Markets": {
+                "Derivatives": {},
+                "Hedge Funds": {},
+                "Securitization": {}
+            },
+            "Corporate Finance": {},
+            "Islamic Finance": {},
+            "Leasing": {},
+            "Private Equity": {},
+            "Project Finance": {},
+            "Venture Capital": {}
+        },
+        "Insurance": {
+            "Automotive Insurance": {},
+            "Health Insurance": {},
+            "Life Insurance": {},
+            "Property Insurance": {},
+            "Reinsurance": {},
+            "Travel Insurance": {}
+        },
+        "Legal": {
+            "Bankruptcy": {},
+            "Commercial Law": {},
+            "Construction Law": {},
+            "Criminal Law": {},
+            "Employment Law": {},
+            "Human Rights Law": {},
+            "Intellectual Property": {
+                "Patents": {}
+            },
+            "International Law": {},
+            "Medical Law": {},
+            "Property Law": {}
+        },
+        "Property": {
+            "Agents and Brokers": {},
+            "Commercial Property": {},
+            "Residential Property": {}
+        }
+    },
+    "Chemicals and Materials": {
+        "Adhesives and Sealants": {
+            "Acrylic Adhesives": {},
+            "Construction Adhesives": {},
+            "Epoxy Adhesives": {}
+        },
+        "Advanced Materials": {},
+        "Ceramics": {
+            "Clay and Porcelain": {}
+        },
+        "Chemicals": {
+            "Agrochemicals and Fertilizers": {},
+            "Fertilizer": {},
+            "Catalysts": {},
+            "Chemical Auxiliary Agents": {},
+            "Cosmetic Chemicals": {},
+            "Detergent Chemicals": {},
+            "Disinfectants": {},
+            "Dyes and Pigments": {},
+            "Dyestuff Intermediates": {},
+            "Pigments": {},
+            "Electronic Chemicals": {},
+            "Explosives": {},
+            "Feed Additives": {},
+            "Flame Retardants": {},
+            "Food Additive Chemicals": {},
+            "Fragrance, Flavor and Aroma Chemicals": {},
+            "Aldehydes": {},
+            "Essential Oils": {},
+            "Esters": {},
+            "Fuel Additives": {},
+            "Hair Care Chemicals": {},
+            "Industrial and Specialty Gases": {},
+            "Lubricants and Greases": {},
+            "Oilfield Chemicals": {},
+            "Oral Care Chemicals": {},
+            "Organic Acids": {},
+            "Paints and Coatings": {},
+            "Electrical Insulating Varnishes": {},
+            "Petrochemicals": {},
+            "Plastic Additives": {},
+            "Refrigerants": {},
+            "Rubber Auxiliary Agents": {},
+            "Silicones": {},
+            "Solvents": {},
+            "Surfactants": {},
+            "Water Treatment Chemicals": {}
+        },
+        "Composites": {},
+        "Glass": {
+            "Safety Glass": {}
+        },
+        "Metals and Minerals": {
+            "Carbonate Minerals": {},
+            "Chalk": {},
+            "Ferrous Metals": {},
+            "Iron and Steel": {},
+            "Non Ferrous Metals": {},
+            "Aluminum": {},
+            "Copper": {},
+            "Nickel": {},
+            "Precious Metals": {},
+            "Salts": {},
+            "Wire and Cables": {}
+        },
+        "Nanomaterials": {},
+        "Packaging": {
+            "Beverage Packaging": {},
+            "Food Packaging": {},
+            "Labels": {},
+            "Metal Packaging": {},
+            "Paper and Board Packaging": {},
+            "Pharmaceutical Packaging": {},
+            "Plastic Packaging": {}
+        },
+        "Plastics": {
+            "Bioplastics": {},
+            "Engineering Plastics": {},
+            "Plastic Films": {},
+            "Plastic Resins": {},
+            "Polyurethanes": {}
+        },
+        "Pulp and Paper": {},
+        "Recycling and Recycled Materials": {},
+        "Rubber": {},
+        "Textiles": {
+            "Animal Textiles": {},
+            "Mineral Textiles": {},
+            "Plant Textiles": {},
+            "Synthetic Textiles": {
+                "Technical Textiles": {}
+            }
+        },
+        "Wax": {},
+        "Wood and Wood Products": {}
+    },
+    "Company Reports": {},
+    "Consumer Goods and Services": {
+        "Arts and Crafts Supplies": {},
+        "Baby and Child Products": {},
+        "Clothing": {
+            "Apparel Accessories": {},
+            "Baby and Childrenswear": {},
+            "Footwear": {},
+            "Handbags, Purses and Wallets": {},
+            "Jewelry and Watches": {},
+            "Luggage and Travel Bags": {},
+            "Menswear": {},
+            "Sportswear": {},
+            "Womenswear": {
+                "Lingerie and Hosiery": {}
+            },
+            "Workwear": {}
+        },
+        "Consumer Electronics": {
+            "Audio Equipment": {},
+            "Cameras and Camera Equipment": {},
+            "Car Electronics and GPS": {},
+            "Computer Accessories": {},
+            "Desktop Computers and Monitors": {},
+            "Laptops and Notebooks": {},
+            "Lighting Equipment": {},
+            "Smartphones and Mobile Devices": {},
+            "Tablets and E-Readers": {},
+            "Televisions and Television Services": {},
+            "Video Games and Consoles": {},
+            "Wearable Technology": {}
+        },
+        "Consumer Services": {
+            "Fitness Centers and Health Clubs": {},
+            "Florists": {},
+            "Funeral Services": {},
+            "Hair and Beauty Services": {},
+            "Interior Design and Decorative Arts": {},
+            "Landscaping Services": {},
+            "Laundromats and Dry Cleaners": {},
+            "Pet Care and Services": {},
+            "Photography Services": {}
+        },
+        "Household": {
+            "Do It Yourself": {},
+            "Furniture": {
+                "Beds and Bedding": {},
+                "Chairs and Seats": {},
+                "Office Furniture": {}
+            },
+            "Gardening Supplies and Equipment": {},
+            "Home Security and Safety": {},
+            "Household Appliances": {},
+            "Household Cleaners": {
+                "Air Fresheners": {},
+                "Laundry Care and Detergents": {}
+            },
+            "Office Supplies and Equipment": {
+                "Stationery and Greeting Cards": {}
+            },
+            "Pest Control Products": {}
+        },
+        "Media and Entertainment": {},
+        "Broadcast": {
+            "Radio Broadcasting": {}
+        },
+        "Cable Television": {},
+        "Entertainment": {},
+        "Film and Motion Picture": {},
+        "Gambling": {
+            "Casinos": {},
+            "Online Gambling": {}
+        },
+        "Gaming": {},
+        "Multimedia": {},
+        "Music": {},
+        "Publishing and Printing": {
+            "Books and Ebooks": {},
+            "Magazines and Periodicals": {},
+            "Newspapers": {}
+        },
+        "Video on Demand": {},
+        "Video, DVD and Blu-ray": {},
+        "Personal Care Products": {},
+        "Baby Care Products": {},
+        "Cosmetics": {},
+        "Depilatories": {},
+        "Eye Care and Eyewear": {},
+        "Feminine Hygiene Products": {},
+        "Fragrances": {
+            "Deodorants and Anti Perspirants": {}
+        },
+        "Hair Care Products": {},
+        "Men's Grooming Products": {},
+        "Oral Care Products": {},
+        "Skin Care Products": {
+            "Sun Care Products": {}
+        },
+        "Soap, Bath and Shower Products": {},
+        "Retail": {
+            "Convenience Stores and Service Stations": {},
+            "Department Stores": {},
+            "Discount Retail": {},
+            "Drugstores and Pharmacies": {},
+            "Duty Free": {},
+            "Electronic Device Retailing": {},
+            "Electronic Retailing, Mail Order and Catalogs": {},
+            "Food and Grocery Retailing": {},
+            "Furniture Retailing": {},
+            "Home Centers and Hardware Stores": {},
+            "Supermarkets": {},
+            "Superstores": {}
+        },
+        "Sporting Goods and Equipment": {
+            "Angling and Hunting Equipment": {},
+            "Bikes and Cycling Equipment": {},
+            "Golf Equipment": {},
+            "Tennis and Racket Sports Equipment": {}
+        },
+        "Toys": {},
+        "Travel and Tourism": {
+            "Air Travel": {},
+            "Business Travel": {},
+            "Hotels and Travel Accomodation": {},
+            "Medical Tourism": {},
+            "Travel Intermediaries": {}
+        }
+    },
+    "Country Reports": {},
+    "Energy and Natural Resources": {
+        "Biofuels": {},
+        "Combined Heat and Power (CHP)": {},
+        "Electricity": {
+            "Generators": {},
+            "Smart Grid": {}
+        },
+        "Energy Maps": {},
+        "Energy Storage": {
+            "Battery Technology": {},
+            "Fuel Cells": {}
+        },
+        "Environmental": {
+            "Air Purification": {},
+            "Carbon Emissions and Capture": {},
+            "Waste Management": {}
+        },
+        "Fossil Fuels": {
+            "Coal": {},
+            "Gas": {
+                "LNG (Liquefied Natural Gas)": {},
+                "LPG (Liquefied Petroleum Gas)": {},
+                "Natural Gas": {}
+            },
+            "Oil": {
+                "Gasoline and Diesel": {},
+                "Oilfield Equipment and Services": {}
+            },
+            "Oil and Gas Exploration and Production": {}
+        },
+        "Mining": {
+            "Coal Mining": {},
+            "Gold and Silver Mining": {},
+            "Iron Ore Mining": {},
+            "Mining Equipment": {},
+            "Uranium Mining": {}
+        },
+        "Nuclear Power": {},
+        "Pipelines": {},
+        "Renewable Energy": {
+            "Geothermal Energy": {},
+            "Hydro Power": {},
+            "Solar Power": {
+                "Photovoltaics": {}
+            },
+            "Wind Power": {}
+        },
+        "Utilities": {},
+        "Water": {
+            "Water Treatment": {}
+        }
+    },
+    "Food and Beverage": {
+        "Agriculture": {
+            "Agribusiness": {},
+            "Animal Feedstuffs": {},
+            "Aquaculture": {},
+            "Commercial Fishing": {},
+            "Crop Farming": {
+                "Seeds": {}
+            },
+            "Forestry": {},
+            "Livestock": {}
+        },
+        "Beverage": {
+            "Alcoholic Beverages": {
+                "Beer": {},
+                "Brandy": {},
+                "Cider": {},
+                "Spirits": {
+                    "Gin": {},
+                    "Rum": {},
+                    "Tequila": {},
+                    "Vodka": {},
+                    "Whiskey": {}
+                },
+                "Wine": {}
+            },
+            "Bottled Water": {},
+            "Hot Drinks": {
+                "Coffee": {},
+                "Tea": {}
+            },
+            "Juice": {},
+            "Soft Drinks": {},
+            "Sport, Energy and Functional Drinks": {}
+        },
+        "Food": {
+            "Baby Food": {},
+            "Baked Goods": {},
+            "Breakfast Cereals": {},
+            "Canned Food": {},
+            "Cereals, Grains and Pulses": {},
+            "Condiments and Dressings": {},
+            "Dairy Products": {
+                "Butter": {},
+                "Cheese": {},
+                "Milk and Cream": {},
+                "Yogurt": {}
+            },
+            "Desserts": {},
+            "Fast Food and Take Out": {},
+            "Fish and Seafood": {},
+            "Frozen Food": {
+                "Ice Cream": {}
+            },
+            "Fruit and Vegetables": {},
+            "Health Food and Sports Nutrition": {
+                "Nutraceuticals and Weight Loss": {}
+            },
+            "Jellies, Preserves and Spreads": {},
+            "Meat, Poultry and Eggs": {},
+            "Nuts, Seeds and Dried Fruit": {},
+            "Oils and Fats": {},
+            "Organic Foods": {},
+            "Pasta and Noodles": {},
+            "Pet Food": {},
+            "Pizza": {},
+            "Processed Food": {},
+            "Rice and Rice Products": {},
+            "Snacks and Confectionery": {
+                "Chocolate and Cocoa Products": {},
+                "Savory Snacks": {}
+            },
+            "Soup": {}
+        },
+        "Food Ingredients": {
+            "Food Additives": {
+                "Spices and Seasonings": {},
+                "Sugar and Sweeteners": {}
+            }
+        },
+        "Food Processing": {},
+        "Food Safety": {},
+        "Food Service": {
+            "Catering": {},
+            "Restaurants, Bars and Cafés": {},
+            "Vending Machines": {}
+        },
+        "Tobacco": {
+            "E-Cigarettes": {}
+        }
+    },
+    "Government and Public Sector": {
+        "Government": {
+            "Local Government": {}
+        },
+        "International Relations": {},
+        "Public Sector": {
+            "Education": {
+                "Higher and Further Education": {},
+                "Philosophy and Theory of Education": {},
+                "Special Education Needs Teaching": {},
+                "Teaching Skills and Equipment": {}
+            }
+        }
+    },
+    "Healthcare": {
+        "Biotechnology": {
+            "Bioinformatics": {},
+            "Biomarkers": {},
+            "Biomaterials": {},
+            "Enzymes": {},
+            "Genomics": {},
+            "Nanomedicine": {},
+            "Proteomics": {},
+            "Stem Cells": {}
+        },
+        "Healthcare Services": {
+            "Animal Healthcare/Veterinary": {},
+            "Blood Banking": {},
+            "Clinical Skills": {},
+            "Dental": {},
+            "Diagnostics": {
+                "Cholesterol Testing": {},
+                "Coagulation and Hemostasis Testing": {},
+                "Drug Abuse Screening": {},
+                "Glucose Testing": {},
+                "Home Testing and Home Healthcare": {},
+                "In Vitro Diagnostics": {
+                    "Molecular Diagnostics": {}
+                },
+                "Infectious Disease Testing": {},
+                "In-Office Testing": {},
+                "Laboratory Testing": {},
+                "Point-of-Care Diagnostics": {}
+            },
+            "Hospital Management": {
+                "E-Healthcare": {
+                    "Healthcare Analytics": {},
+                    "Hospital Information Systems": {}
+                },
+                "Healthcare Administration": {},
+                "Other Healthcare Facilities": {}
+            },
+            "Managed Care": {},
+            "Nursing": {},
+            "Optical": {},
+            "Surgical Procedures": {},
+            "Therapeutic Area": {
+                "Allergy and Immunology": {},
+                "Alternative and Complementary Medicine": {},
+                "Anatomy": {},
+                "Cardiology": {},
+                "Clinical Therapies": {},
+                "Dermatology": {},
+                "Endocrinology": {},
+                "Gastroenterology": {},
+                "Hematology": {},
+                "Hepatology": {},
+                "Intensive Care and Emergency Medicine": {},
+                "Maternal and Neonatal Care": {},
+                "Mental Health": {},
+                "Neurology": {},
+                "Nuclear Medicine and Radiopharmacology": {},
+                "Oncology": {},
+                "Palliative Care": {},
+                "Pediatrics": {},
+                "Pulmonary Medicine": {},
+                "Sports Medicine and Physiotherapy": {},
+                "Urology and Nephrology": {},
+                "Women's Health": {}
+            },
+            "Wound Care": {}
+        },
+        "Laboratory Equipment": {},
+        "Medical Devices": {
+            "Cardiovascular Devices": {},
+            "Catheters": {},
+            "Diabetes Devices": {},
+            "Dialysis": {},
+            "ENT Devices": {},
+            "Hearing Aids and Implants": {},
+            "Hospital Disposables": {},
+            "Medical Device Coatings": {},
+            "Medical Imaging": {
+                "Computed Tomography": {},
+                "Contrast Media": {},
+                "Endoscopy": {},
+                "Magnetic Resonance Imaging (MRI)": {},
+                "Mammography": {},
+                "Radiography": {},
+                "Ultrasound": {}
+            },
+            "Medical Plastics": {},
+            "Medical Textiles": {},
+            "Needles and Syringes": {},
+            "Neurology Devices": {},
+            "Orthopedic Devices": {},
+            "Patient Monitoring Equipment": {},
+            "Respiratory Devices": {},
+            "Stents": {},
+            "Surgical Devices": {},
+            "Wheelchairs and Mobility Aids": {}
+        }
+    },
+    "Humanities Books": {
+        "Library and Information Science": {},
+        "Political Science": {},
+        "Psychology": {},
+        "Society and Social Sciences": {
+            "Sociology": {}
+        }
+    },
+    "Industry Standards": {},
+    "Manufacturing and Construction": {
+        "Construction": {
+            "Architecture and Urban Planning": {},
+            "Building Materials": {
+                "Brick": {},
+                "Cement and Concrete": {},
+                "Doors and Windows": {},
+                "Flooring": {},
+                "Insulation": {},
+                "Stone": {},
+                "Tile": {}
+            },
+            "Commercial Building Construction": {},
+            "Elevators and Escalators": {},
+            "Fire Protection Materials and Devices": {},
+            "Hand Tools": {},
+            "Heavy Machinery": {
+                "Cranes and Lifting Equipment": {},
+                "Excavation and Earthmoving Equipment": {},
+                "Road Construction Equipment": {}
+            },
+            "HVAC (Heating, Ventilation, and Air Conditioning)": {},
+            "Infrastructure Construction": {
+                "Road and Highway Construction": {}
+            },
+            "Plumbing Fixtures": {},
+            "Residential Construction": {},
+            "Specialty Trade Contractors": {}
+        },
+        "Engineering": {
+            "Chemical Engineering": {},
+            "Civil Engineering": {},
+            "Electrical Engineering": {
+                "Microelectromechanical Systems (MEMS)": {}
+            },
+            "Mechanical Engineering": {}
+        },
+        "Manufacturing and Industry": {
+            "3D Printing": {},
+            "Heat Exchangers and Cooling Towers": {},
+            "Industrial Automation": {},
+            "Industrial Ovens": {},
+            "Industrial Refrigeration": {},
+            "Logistics": {
+                "Supply Chain Management": {}
+            },
+            "Machinery": {
+                "Agricultural Machinery and Equipment": {
+                    "Forestry Machinery and Equipment": {},
+                    "Tractors": {}
+                },
+                "Compressors": {},
+                "Industrial Machinery": {
+                    "Textile Machinery": {}
+                },
+                "Machine Parts": {
+                    "Bearings": {},
+                    "Belt and Chain Drives": {},
+                    "Electrical Switches": {},
+                    "Fasteners": {},
+                    "Pipes": {},
+                    "Valves": {}
+                },
+                "Machine Tools": {},
+                "Motors": {},
+                "Pumps": {},
+                "Turbines": {}
+            },
+            "Material Handling Equipment": {
+                "Conveyors": {},
+                "Forklifts": {}
+            },
+            "Process Industry": {}
+        },
+        "Security Services": {}
+    },
+    "Military Aerospace and Defense": {
+        "Ammunition": {},
+        "Biodefense": {},
+        "C4ISR": {},
+        "Homeland Defense": {},
+        "Infantry Weapons and Equipment": {},
+        "Military Aircraft": {},
+        "Military Logistics": {},
+        "Military Unmanned Systems": {},
+        "Missiles and Missiles Technology": {},
+        "Naval Vessels": {},
+        "Radar Systems": {},
+        "Tanks and Armored Vehicles": {}
+    },
+    "Pharmaceuticals": {
+        "Anesthetic Drugs": {},
+        "Animal Pharmaceuticals": {},
+        "Antibiotics": {},
+        "Biopharmaceuticals": {
+            "Biosimilars and Biosuperiors": {},
+            "Vaccines": {
+                "Cancer Vaccines": {}
+            }
+        },
+        "Clinical Trials": {},
+        "Drug Delivery": {
+            "Infusions and Injectables": {},
+            "Inhalers and Nebulisers": {},
+            "Transdermal and Transmucosal Drug Delivery": {}
+        },
+        "Drug Discovery": {},
+        "Drugs by Therapeutic Area": {
+            "Addiction Disorders Drugs": {},
+            "Analgesics": {},
+            "Anti-Obesity Drugs": {},
+            "Cardiovascular Drugs": {},
+            "Central Nervous System Drugs": {
+                "Alzheimer's Disease Drugs": {}
+            },
+            "Dermatological Drugs": {
+                "Acne Drugs": {},
+                "Psoriasis Drugs": {}
+            },
+            "Endocrine and Metabolic Disorders Drugs": {
+                "Diabetes Drugs": {}
+            },
+            "Gastrointestinal Drugs": {},
+            "Hematological Drugs": {},
+            "Immune Disorders Drugs": {
+                "Allergy Drugs": {},
+                "Immunosuppressive Drugs": {}
+            },
+            "Infectious Diseases Drugs": {
+                "HIV/AIDS Drugs": {}
+            },
+            "Liver and Kidney Disorders Drugs": {},
+            "Mental Disorders Drugs": {
+                "Anxiety Drugs": {},
+                "Schizophrenia Drugs": {}
+            },
+            "Musculoskeletal Disorders Drugs": {},
+            "Optical Disorders Drugs": {},
+            "Respiratory Drugs": {
+                "Asthma Drugs": {},
+                "Bronchitis Drugs": {}
+            },
+            "Sexual and Reproductive Health Drugs": {},
+            "Urological Disorders Drugs": {}
+        },
+        "Generic Drugs": {},
+        "Oncology Drugs": {
+            "Bladder Cancer Drugs": {},
+            "Brain Cancer Drugs": {},
+            "Breast Cancer Drugs": {},
+            "Cervical Cancer Drugs": {},
+            "Colon Cancer Drugs": {},
+            "Kidney Cancer Drugs": {},
+            "Leukemia Drugs": {},
+            "Liver Cancer Drugs": {},
+            "Lung Cancer Drugs": {},
+            "Lymphoma Drugs": {},
+            "Ovarian Cancer Drugs": {},
+            "Pancreatic Cancer Drugs": {},
+            "Prostate Cancer Drugs": {},
+            "Skin Cancer Drugs": {},
+            "Thyroid Cancer Drugs": {},
+            "Uterine Cancer Drugs": {}
+        },
+        "Over the Counter (OTC) Drugs": {
+            "Cough and Cold Drugs": {}
+        },
+        "Pharmaceutical Intermediates": {},
+        "Pharmaceutical Manufacturing": {},
+        "Pharmacoeconomics": {},
+        "Vitamins and Dietary Supplements": {}
+    },
+    "Science Books": {
+        "Biology and Life Sciences": {
+            "Biochemistry": {},
+            "Botany and Plant Sciences": {},
+            "Cellular Biology and Cytology": {},
+            "Developmental Biology": {},
+            "Earth Sciences": {},
+            "Genetics": {},
+            "Marine Biology": {},
+            "Microbiology": {},
+            "Molecular Biology": {},
+            "Neurosciences": {},
+            "Zoology and Animal Sciences": {}
+        },
+        "Chemistry": {
+            "Analytical Chemistry": {},
+            "Inorganic Chemistry": {},
+            "Organic Chemistry": {},
+            "Physical Chemistry": {}
+        },
+        "Geography": {},
+        "Mathematics": {
+            "Applied mathematics": {},
+            "Calculus and Mathematical Analysis": {},
+            "Geometry": {},
+            "Mathematical Foundations": {},
+            "Probability and statistics": {}
+        },
+        "Physics": {
+            "Atomic and molecular physics": {},
+            "Biophysics": {},
+            "Classical Mechanics": {},
+            "Electricity, electromagnetism and magnetism": {},
+            "Materials and States of Matter": {},
+            "Optical physics": {},
+            "Quantum physics and Quantum Mechanics": {}
+        }
+    },
+    "Telecommunications and Computing": {
+        "Computing and Technology": {},
+        "Artificial Intelligence": {
+            "Machine Learning and Data Mining": {},
+            "Natural Language Processing": {}
+        },
+        "Biometrics": {},
+        "Computing": {
+            "High Performance Computing": {}
+        },
+        "Computing Services": {},
+        "Hardware": {
+            "Processing Units": {},
+            "Tablet and Mobile Device Hardware": {}
+        },
+        "Internet of Things and M2M": {},
+        "IT Security": {},
+        "Nanotechnology": {},
+        "Optoelectronics": {
+            "Lasers": {},
+            "LED (Light Emitting Diodes)": {
+                "OLED (Organic Light Emitting Diodes)": {}
+            }
+        },
+        "Physical Access Control": {},
+        "Point of Sale Equipment": {},
+        "Printed Electronics": {},
+        "RFID": {
+            "Mobile and Contactless Payments": {},
+            "Near Field Communication": {}
+        },
+        "Robotics": {},
+        "Semiconductor": {},
+        "Sensors": {
+            "Acoustic Sensors": {},
+            "Capacitive Sensors": {},
+            "Gas and Chemical Sensors": {},
+            "Motion Sensors": {},
+            "Optical Sensors": {},
+            "Temperature and Heat Sensors": {},
+            "Vibration Sensors": {},
+            "Wireless Sensors": {}
+        },
+        "Smart Cards": {},
+        "Software": {
+            "Animation Software": {},
+            "CAD, CAM and CAE Software": {},
+            "Global Positioning Systems Software": {},
+            "Operating Systems": {},
+            "Programming Languages": {},
+            "Software Design and Development": {},
+            "Software Testing": {}
+        },
+        "Video Surveillance": {},
+        "Virtual and Augmented Reality": {},
+        "Data Storage and Management": {
+            "Big Data": {},
+            "Cloud Computing and Storage": {},
+            "Data Analytics": {},
+            "Data Centers": {},
+            "Information Management": {}
+        },
+        "Internet and E-Commerce": {
+            "Bitcoin": {},
+            "Content Management": {},
+            "E-Business": {},
+            "M-Commerce": {},
+            "Social Media": {},
+            "Website and Application Development": {}
+        },
+        "Telecommunications and Networks": {
+            "Broadband": {},
+            "Call Centres": {},
+            "Enterprise Mobility Management": {},
+            "Fixed Line Telecoms": {},
+            "Networks": {
+                "Home Networks": {},
+                "Mobile Networks": {}
+            },
+            "Satellite Communications": {},
+            "Telecommunications Equipment": {
+                "Networking Equipment": {}
+            },
+            "Unified Communications": {},
+            "VoIP and Videoconferencing": {},
+            "Wireless Telecommunications": {
+                "4G and 5G": {},
+                "Bluetooth": {},
+                "Location Based Services": {},
+                "Mobile Content": {},
+                "SMS and MMS": {},
+                "WiFi and WiMax": {},
+                "Wireless Broadband": {},
+                "WLAN": {}
+            }
+        }
+    }
+}

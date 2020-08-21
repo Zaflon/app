@@ -54,7 +54,9 @@ class DatabaseSeeder extends Seeder
         \StatesSeeder::class,
         \UserSeeder::class,
         \ColorsSeeder::class,
-        \ProductsSeeder::class
+        \ProductsSeeder::class,
+        \CategoriesSeeder::class,
+        \ProductsCategoriesSeeder::class
     ];
 
     /**

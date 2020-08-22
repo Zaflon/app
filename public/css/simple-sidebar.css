@@ -40,6 +40,18 @@ body {
     margin-left: 0;
 }
 
+.dropdown-menu div.dropdown-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropdown-menu div.dropdown-item img {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 5rem;
+}
+
 @media (min-width: 768px) {
     #sidebar-wrapper {
         margin-left: 0;

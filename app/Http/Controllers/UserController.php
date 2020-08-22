@@ -11,6 +11,9 @@ class UserController extends Controller
     /** @var string */
     private const INVALID_CREDENTIALS_MESSAGE = 'Sorry, the email or password you entered is incorrect. Please try again.';
 
+    /** @var string */
+    private const INVALID_IMAGE_UPLOAD = "No image registered";
+
     /**
      * Display a listing of the resource.
      *
@@ -128,10 +131,22 @@ class UserController extends Controller
             return redirect()->route('User.edit', [$id, 'view' => $this->view($id)])->withErrors($validator)->withInput();
         }
 
+        $thereIsAlreadyARegisteredImage = (bool) \Illuminate\Support\Facades\Storage::disk('public')->exists(\App\User::find($id)->image);
+
+        if (is_null($request->file('image'))) {
+            if (!$thereIsAlreadyARegisteredImage) {
+                return redirect()->route('User.edit', [$id, 'view' => $this->view($id)])->withErrors([self::INVALID_IMAGE_UPLOAD]);
+            } else {
+                $image = \App\User::find($id)->image;
+            }
+        } else {
+            $image = $request->file('image')->store('users', 'public');
+        }
+
         \App\User::where('id', $id)->update([
             'email' => $request->email,
             'name' => $request->name,
-            'image' => $request->file('image')->store('users', 'public')
+            'image' => $image
         ]);
 
         if (((int) \App\Helpers\Utils::user()->id) === ((int) $request->id)) {
@@ -150,9 +165,7 @@ class UserController extends Controller
      */
     public function download(int $id)
     {
-        return response()->download(
-            \Illuminate\Support\Facades\Storage::disk('public')->getDriver()->getAdapter()->applyPathPrefix(User::find($id)->image)
-        );
+        return \Illuminate\Support\Facades\Storage::download("public" . DIRECTORY_SEPARATOR . User::find($id)->image);
     }
 
     /**

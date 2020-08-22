@@ -90,6 +90,10 @@
                                 Options
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-item">
+                                    <img src='{{ URL::asset("storage/{$view->user->image}") }}' alt="User" />
+                                </div>
+
                                 <a class="dropdown-item" href="#">
                                     <img src="https://img.icons8.com/nolan/32/exit.png" alt="Logout Image"> Action
                                 </a>
@@ -118,7 +122,7 @@
 
     <!-- Menu Toggle Script -->
     <script>
-        const Wrapper = jQuery(`div.list-group a.group`);
+        const Wrapper = document.querySelectorAll("div.list-group a.group");
 
         $("#menu-toggle").click(function(e) {
             e.preventDefault();
@@ -128,11 +132,16 @@
 
         $('.toast').toast('show');
 
-        Wrapper.on(`click`, (e) => {
-            $(`div.wrapper-${$(e.target).data(`target`)}`).toggle();
-        });
+        Wrapper.forEach((element, index, array) => {
+            element.addEventListener(`click`, e => {
+                const TARGET = `.wrapper-${e.target.dataset.target}`;
+                const HTMLElement = document.querySelector(TARGET);
 
-        Wrapper.click();
+                HTMLElement.style.display = (HTMLElement.style.display === `none`) ? `block` : `none`;
+            });
+
+            element.click();
+        });
     </script>
 </body>
 

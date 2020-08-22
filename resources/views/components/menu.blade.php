@@ -1,7 +1,6 @@
 <div class="bg-light border-right" id="sidebar-wrapper">
     <div class="sidebar-heading text-center">
         <span>{{ $username }}</span>
-        <img src='{{ URL::asset("storage/{$image}") }}' alt="User">
     </div>
 
     <!-- attributes of this module -->
@@ -60,5 +59,4 @@
             <a href="#" class="list-group-item list-group-item-action bg-light">🗝 Installment</a>
         </div>
     </div>
-
 </div>

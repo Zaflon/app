@@ -49,6 +49,7 @@ class DatabaseSeeder extends Seeder
 
     /** @var const */
     private const DATA = [
+        \CouponsSeeder::class,
         \MeasurementUnitsSeeder::class,
         \BrandsSeeder::class,
         \StatesSeeder::class,

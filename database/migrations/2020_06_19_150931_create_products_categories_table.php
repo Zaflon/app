@@ -15,12 +15,12 @@ class CreateProductsCategoriesTable extends Migration
     {
         Schema::create('products_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
-            $table->softDeletes();
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

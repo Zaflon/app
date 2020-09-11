@@ -18,6 +18,7 @@ class CreateTelephoneNumbersTable extends Migration
             $table->string('telephone_number', 15)->nullable(false)->unique();
             $table->unsignedBigInteger('person_id');
             $table->foreign('person_id')->references('id')->on('persons');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

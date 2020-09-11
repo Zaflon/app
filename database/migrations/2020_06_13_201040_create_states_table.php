@@ -18,8 +18,8 @@ class CreateStatesTable extends Migration
             $table->string('abbreviation', 2)->nullable(false)->unique();
             $table->string('name', 32)->nullable(false)->unique();
             $table->smallInteger('cUF')->nullable(false)->unique();
-            $table->timestamps();
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 

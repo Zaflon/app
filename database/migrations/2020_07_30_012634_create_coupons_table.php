@@ -18,6 +18,7 @@ class CreateCouponsTable extends Migration
             $table->string('name', 32);
             $table->string('detail')->nullable(false);
             $table->integer('price', false, true)->nullable(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -22,8 +22,8 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('brand_id');
             $table->foreign('brand_id')->references('id')->on('brands');
             $table->string('image', 64)->nullable(false)->unique();
-            $table->timestamps();
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 

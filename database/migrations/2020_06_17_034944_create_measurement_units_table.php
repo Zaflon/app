@@ -17,8 +17,8 @@ class CreateMeasurementUnitsTable extends Migration
             $table->bigIncrements('id');
             $table->string('measurement_unit', 32)->nullable(false)->unique();
             $table->string('abbreviation', 8)->nullable(false)->unique();
-            $table->timestamps();
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 

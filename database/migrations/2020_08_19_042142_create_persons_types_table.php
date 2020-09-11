@@ -15,6 +15,7 @@ class CreatePersonsTypesTable extends Migration
     {
         Schema::create('persons_types', function (Blueprint $table) {
             $table->id();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

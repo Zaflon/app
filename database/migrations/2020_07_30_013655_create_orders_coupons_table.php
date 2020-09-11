@@ -19,6 +19,7 @@ class CreateOrdersCouponsTable extends Migration
             $table->foreign('order_id')->references('id')->on('orders');
             $table->unsignedBigInteger('coupon_id');
             $table->foreign('coupon_id')->references('id')->on('coupons');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

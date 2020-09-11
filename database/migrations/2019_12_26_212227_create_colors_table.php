@@ -25,8 +25,8 @@ class CreateColorsTable extends Migration
             $table->string('tonalidad', 32)->nullable(true);
             $table->string('kleur', 32)->nullable(true);
             $table->string('hexadecimal', 6)->unique()->nullable(false);
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

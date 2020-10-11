@@ -1,7 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -10,7 +11,7 @@ class Color extends Model
     /** @var array */
     protected $fillable = ['color', 'hexadecimal'];
 
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     /** @var array */
     protected const DATA = [

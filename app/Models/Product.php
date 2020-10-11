@@ -1,11 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 final class Product extends Model
 {
+    use HasFactory;
+
     /** @var array */
     protected $fillable = [
         'name',
@@ -114,7 +117,7 @@ final class Product extends Model
      */
     public function brand(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(\App\Brand::class);
+        return $this->belongsTo(\App\Models\Brand::class);
     }
 
     /**

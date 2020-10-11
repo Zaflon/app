@@ -68,7 +68,7 @@ final class Utils
      */
     public static function update(int $id)
     {
-        Session::put(\App\Http\Controllers\UserController::class, \App\User::find($id)->toArray());
+        Session::put(\App\Http\Controllers\UserController::class, \App\Models\User::find($id)->toArray());
     }
 
     /**
@@ -125,7 +125,7 @@ final class Utils
     public static function ctrlr2model(
         string $str
     ): string {
-        return "\\App\\" . \App\Helpers\Utils::ctrlr2string($str);
+        return "\\App\\Models\\" . \App\Helpers\Utils::ctrlr2string($str);
     }
 
     /**

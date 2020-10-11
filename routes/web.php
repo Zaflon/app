@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
-})->name('welcome');
+});
 
 /**
  * Todas as rotas estão inseridas no /app
@@ -34,59 +33,59 @@ Route::middleware(App\Http\Middleware\IsUserLogged::class)->prefix('/app')->grou
     /**
      * Color Route.
      */
-    Route::resource('Color', 'ColorController');
+    Route::resource('Color', \App\Http\Controllers\ColorController::class);
 
     /**
      * Coupon Route.
      */
-    Route::resource('Coupon', 'CouponController');
+    Route::resource('Coupon', \App\Http\Controllers\CouponController::class);
 
     /**
      * User Route.
      */
-    Route::resource('User', 'UserController');
+    Route::resource('User', \App\Http\Controllers\UserController::class);
 
     /**
      * Brand Route.
      */
-    Route::resource('Brand', 'BrandController');
+    Route::resource('Brand', \App\Http\Controllers\BrandController::class);
 
     /**
      * Product Route.
      */
-    Route::resource('Product', 'ProductController');
+    Route::resource('Product', \App\Http\Controllers\ProductController::class);
 
     /**
      * Download Image.
      */
-    Route::get('User/{user}/download', 'UserController@download')->name('User.download');
+    Route::get('User/{user}/download', [\App\Http\Controllers\UserController::class, 'download'])->name('User.download');
 
     /**
      * Generic PDF Report Route.
      */
-    Route::resource('GenericPDFReport', 'GenericPDFReportController');
+    Route::resource('GenericPDFReport', \App\Http\Controllers\GenericPDFReportController::class);
 
     /**
      * Generic CSV Report Route.
      */
-    Route::resource('GenericCSVReport', 'GenericCSVReportController');
+    Route::resource('GenericCSVReport', \App\Http\Controllers\GenericCSVReportController::class);
 
     /**
      * Generic XML Report Route.
      */
-    Route::resource('GenericXMLReport', 'GenericXMLReportController');
+    Route::resource('GenericXMLReport', \App\Http\Controllers\GenericXMLReportController::class);
 
     /**
      * Generic Chart Report Route.
      */
-    Route::resource('GenericChartReport', 'GenericChartReportController');
+    Route::resource('GenericChartReport', \App\Http\Controllers\GenericChartReportController::class);
 });
 
 /** Log Out Route */
-Route::get('/logout', 'UserController@logout')->name('logout');
+Route::get('/logout',  [\App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 
 /** Route responsible for returning the login page */
-Route::get('/login', 'UserController@login')->name('login');
+Route::get('/login',  [\App\Http\Controllers\UserController::class, 'login'])->name('login');
 
 /** User authentication route, when logging in to the system's home page */
-Route::post('/autenticate', 'UserController@autenticate')->name('autenticate');
+Route::post('/autenticate',  [\App\Http\Controllers\UserController::class, 'autenticate'])->name('autenticate');

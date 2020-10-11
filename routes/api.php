@@ -18,11 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/Color/listing', 'ColorController@listing');
+Route::get('/Color/listing', [\App\Http\Controllers\ColorController::class, 'listing']);
 
 /**
  * Route responsible for receiving a product, in text format and returning the data related to it.
  * 
  * @see <http:/127.0.0.1:8000/api/Product/SomeProduct>
  */
-Route::get('Product/{type}/{name}', 'ProductController@name')->name('Product.name')->where('type', 'info|detail|name')->where('name', '[A-Za-z\d\!]+');
+Route::get('Product/{type}/{name}', [\App\Http\Controllers\ProductController::class, 'name'])->name('Product.name')->where('type', 'info|detail|name')->where('name', '[A-Za-z\d\!]+');

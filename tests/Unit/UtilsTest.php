@@ -204,8 +204,8 @@ class UtilsTest extends TestCase
      */
     public function testCtrlr2model()
     {
-        $this->assertSame(\App\Helpers\Utils::ctrlr2model(\App\Http\Controllers\BrandController::class), "\\" . \App\Brand::class);
-        $this->assertSame(\App\Helpers\Utils::ctrlr2model(\App\Http\Controllers\ProductController::class), "\\" . \App\Product::class);
-        $this->assertSame(\App\Helpers\Utils::ctrlr2model(\App\Http\Controllers\CouponController::class), "\\" . \App\Coupon::class);
+        $this->assertSame(\App\Helpers\Utils::ctrlr2model(\App\Http\Controllers\BrandController::class), "\\" . \App\Models\Brand::class);
+        $this->assertSame(\App\Helpers\Utils::ctrlr2model(\App\Http\Controllers\ProductController::class), "\\" . \App\Models\Product::class);
+        $this->assertSame(\App\Helpers\Utils::ctrlr2model(\App\Http\Controllers\CouponController::class), "\\" . \App\Models\Coupon::class);
     }
 }

@@ -15,15 +15,15 @@ class UrlSeederTest extends TestCase
      */
     public function testFields(): void
     {
-        $data = \App\Helpers\Utils::arr2obj(\DatabaseSeeder::FIELDS);
+        $data = \App\Helpers\Utils::arr2obj(\Database\Seeders\DatabaseSeeder::FIELDS);
 
         foreach ($data as $url) {
-            $content = \App\Helpers\Utils::getSeederJSON($url->{\DatabaseSeeder::URL});
+            $content = \App\Helpers\Utils::getSeederJSON($url->{\Database\Seeders\DatabaseSeeder::URL});
 
             $first = $content->{array_key_first((array)$content)};
 
             $this->assertTrue(\App\Helpers\Utils::ArrayContains(
-                (array) $url->{\DatabaseSeeder::COLUMNS},
+                (array) $url->{\Database\Seeders\DatabaseSeeder::COLUMNS},
                 (array) array_keys(get_object_vars($first))
             ));
         }
@@ -38,7 +38,7 @@ class UrlSeederTest extends TestCase
      */
     public function assertPreConditions(): void
     {
-        foreach (\DatabaseSeeder::data() as $data) {
+        foreach (\Database\Seeders\DatabaseSeeder::data() as $data) {
             if ((bool)(class_exists($data)) === false) {
                 $this->assertTrue(false);
             }
@@ -72,8 +72,8 @@ class UrlSeederTest extends TestCase
     {
         $Address = [];
 
-        foreach (\DatabaseSeeder::FIELDS as $KEY => $URL) {
-            $Address[] = $URL[\DatabaseSeeder::URL];
+        foreach (\Database\Seeders\DatabaseSeeder::FIELDS as $KEY => $URL) {
+            $Address[] = $URL[\Database\Seeders\DatabaseSeeder::URL];
         }
 
         return $Address;

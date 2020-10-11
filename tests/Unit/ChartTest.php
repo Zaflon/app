@@ -19,7 +19,6 @@ class ChartTest extends TestCase
         $this->assertTrue(true);
     }
 
-
     public function testBarChart()
     {
         $expected = [

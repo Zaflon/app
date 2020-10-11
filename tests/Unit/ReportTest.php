@@ -59,10 +59,11 @@ class ReportTest extends TestCase
     public function testAllReportsMustToHaveTheSameWidth()
     {
         foreach (\App\Http\Controllers\GenericPDFReportController::all() as $pdf) {
-            $CONFIG = \App\Helpers\Utils::ctrlr2model($pdf)::REPORT;
+            $config = \App\Helpers\Utils::ctrlr2model($pdf)::REPORT;
+
 
             $WIDTH = \App\Report\Report::width(
-                \App\Helpers\Utils::arr2obj($CONFIG)->{\App\Report\Report::FIELDS}
+                \App\Helpers\Utils::arr2obj($config)->{\App\Report\Report::FIELDS}
             );
 
             $this->assertEquals($WIDTH, self::WIDTH);

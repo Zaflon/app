@@ -8,10 +8,13 @@ class StockController extends Controller
 {
     /** @var string */
     public const INCREMENT = 45;
+
     /** @var string */
     public const DECREMENT = 43;
+
     /** @var string */
     public const EVENT = 'StockCreation';
+    
     /** @var string */
     public const INVALID_INTEGER_EXCEPTION_MESSAGE = "Item code value must to be greater than zero";
 
@@ -110,7 +113,7 @@ class StockController extends Controller
      */
     public function add(
         int $id = 0,
-        \App\StockLocation $stock
+        \App\Models\StockLocation $stock
     ): Self {
         if ((bool) ($id > 0) === false || !filter_var($id, FILTER_VALIDATE_INT)) {
             throw new \InvalidArgumentException(self::INVALID_INTEGER_EXCEPTION_MESSAGE);
@@ -130,7 +133,7 @@ class StockController extends Controller
      */
     public function change(
         int $id = 0,
-        \App\StockLocation $stock,
+        \App\Models\StockLocation $stock,
         int $quantity = 0,
         int $type = self::INCREMENT
     ): Self {
@@ -147,7 +150,7 @@ class StockController extends Controller
      */
     public function remove(
         int $id = 0,
-        \App\StockLocation $stock
+        \App\Models\StockLocation $stock
     ): Self {
         return $this;
     }

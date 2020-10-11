@@ -14,7 +14,7 @@ class CouponController extends Controller
     public function index()
     {
         return view('index.listing', [
-            'view' => \App\Helpers\Utils::main(Self::class, new \App\Coupon())
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\Models\Coupon())
         ]);
     }
 
@@ -38,14 +38,14 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
-        \App\Coupon::create([
+        \App\Models\Coupon::create([
             'name' => $request->name,
             'price' => $request->price,
             'detail' => $request->detail
         ]);
 
         return view('index.listing', [
-            'view' => \App\Helpers\Utils::main(Self::class, new \App\Coupon())
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\Models\Coupon())
         ]);
     }
 
@@ -72,7 +72,7 @@ class CouponController extends Controller
             'view' => \App\Helpers\Utils::important(
                 Self::class,
                 \App\Helpers\Utils::EDIT,
-                (object) \App\Coupon::find($id)->toArray()
+                (object) \App\Models\Coupon::find($id)->toArray()
             )
         ]);
     }
@@ -86,14 +86,14 @@ class CouponController extends Controller
      */
     public function update(Request $request, $id)
     {
-        \App\Coupon::where('id', $id)->update([
+        \App\Models\Coupon::where('id', $id)->update([
             'name' => $request->name,
             'price' => $request->price,
             'detail' => $request->detail
         ]);
 
         return view('index.listing', [
-            'view' => \App\Helpers\Utils::main(Self::class, new \App\Coupon())
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\Models\Coupon())
         ]);
     }
 
@@ -105,7 +105,7 @@ class CouponController extends Controller
      */
     public function destroy($id)
     {
-        \App\Coupon::where('id', $id)->delete();
+        \App\Models\Coupon::where('id', $id)->delete();
 
         return \App\Helpers\Utils::JSONDestroyArray(true, $id, 'Coupon');
     }

@@ -16,7 +16,7 @@ class BrandController extends Controller
     public function index()
     {
         return view('index.listing', [
-            'view' => \App\Helpers\Utils::main(Self::class, new \App\Brand())
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\Models\Brand())
         ]);
     }
 
@@ -41,7 +41,7 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         $rules =  [
-            "name" => "required|max:64"
+            "name" => "required|max:64|unique:brands",
         ];
 
         $messages = [
@@ -54,12 +54,12 @@ class BrandController extends Controller
             return view('brands.create', ['view' => $this->data]);
         }
 
-        \App\Brand::create([
+        \App\Models\Brand::create([
             'name' => $request->name,
         ]);
 
         return view('index.listing', [
-            'view' => \App\Helpers\Utils::main(Self::class, new \App\Brand())
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\Models\Brand())
         ]);
     }
 
@@ -86,7 +86,7 @@ class BrandController extends Controller
             'view' => \App\Helpers\Utils::important(
                 Self::class,
                 \App\Helpers\Utils::EDIT,
-                (object) \App\Brand::find($id)->toArray()
+                (object) \App\Models\Brand::find($id)->toArray()
             )
         ]);
     }
@@ -110,10 +110,10 @@ class BrandController extends Controller
 
         $request->validate($rules, $messages);
 
-        \App\Brand::where('id', $id)->update(['name' => $request->name]);
+        \App\Models\Brand::where('id', $id)->update(['name' => $request->name]);
 
         return view('index.listing', [
-            'view' => \App\Helpers\Utils::main(Self::class, new \App\Brand())
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\Models\Brand())
         ]);
     }
 
@@ -127,7 +127,7 @@ class BrandController extends Controller
      */
     public function destroy($id): array
     {
-        if (($count = \App\Product::where('brand_id', $id)->count()) > 0) {
+        if (($count = \App\Models\Product::where('brand_id', $id)->count()) > 0) {
             return [
                 'status' => false,
                 'timestamp' => date("Y/m/d H:i:s"),
@@ -136,7 +136,7 @@ class BrandController extends Controller
             ];
         }
 
-        \App\Brand::where('id', $id)->delete();
+        \App\Models\Brand::where('id', $id)->delete();
 
         return \App\Helpers\Utils::JSONDestroyArray(true, $id, 'Brand');
     }

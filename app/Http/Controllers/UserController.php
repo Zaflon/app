@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\User;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -17,12 +15,13 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(\Illuminate\Http\Request $request)
     {
         return view('index.listing', [
-            'view' => \App\Helpers\Utils::main(Self::class, new \App\User())
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\Models\User())
         ]);
     }
 
@@ -41,10 +40,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(\Illuminate\Http\Request $request)
     {
         $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
             'name' => 'required|unique:users|max:255|unique:users',
@@ -65,21 +64,21 @@ class UserController extends Controller
             return redirect()->route('User.create')->withErrors(['password' => 'Passwords entered do not match.']);
         }
 
-        \App\User::create([
+        \App\Models\User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => \Illuminate\Support\Facades\Hash::make($request->{"first-password"})
         ]);
 
         return view('index.listing', [
-            'view' => \App\Helpers\Utils::main(Self::class, new \App\User())
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\Models\User())
         ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -90,7 +89,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -109,18 +108,18 @@ class UserController extends Controller
      */
     private function view(int $id): \stdClass
     {
-        return \App\Helpers\Utils::important(Self::class, \App\Helpers\Utils::EDIT, (object) \App\User::find($id)->toArray());
+        return \App\Helpers\Utils::important(Self::class, \App\Helpers\Utils::EDIT, (object) \App\Models\User::find($id)->toArray());
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * 
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(\Illuminate\Http\Request $request, $id)
     {
         $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
             'name' => "required|max:255|unique:users,name,{$request->id}",
@@ -131,19 +130,19 @@ class UserController extends Controller
             return redirect()->route('User.edit', [$id, 'view' => $this->view($id)])->withErrors($validator)->withInput();
         }
 
-        $thereIsAlreadyARegisteredImage = (bool) \Illuminate\Support\Facades\Storage::disk('public')->exists(\App\User::find($id)->image);
+        $thereIsAlreadyARegisteredImage = (bool) \Illuminate\Support\Facades\Storage::disk('public')->exists(\App\Models\User::find($id)->image);
 
         if (is_null($request->file('image'))) {
             if (!$thereIsAlreadyARegisteredImage) {
                 return redirect()->route('User.edit', [$id, 'view' => $this->view($id)])->withErrors([self::INVALID_IMAGE_UPLOAD]);
             } else {
-                $image = \App\User::find($id)->image;
+                $image = \App\Models\User::find($id)->image;
             }
         } else {
             $image = $request->file('image')->store('users', 'public');
         }
 
-        \App\User::where('id', $id)->update([
+        \App\Models\User::where('id', $id)->update([
             'email' => $request->email,
             'name' => $request->name,
             'image' => $image
@@ -154,7 +153,7 @@ class UserController extends Controller
         }
 
         return view('index.listing', [
-            'view' => \App\Helpers\Utils::main(Self::class, new \App\User())
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\Models\User())
         ]);
     }
 
@@ -165,13 +164,13 @@ class UserController extends Controller
      */
     public function download(int $id)
     {
-        return \Illuminate\Support\Facades\Storage::download("public" . DIRECTORY_SEPARATOR . User::find($id)->image);
+        return \Illuminate\Support\Facades\Storage::download("public" . DIRECTORY_SEPARATOR . \App\Models\User::find($id)->image);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -182,11 +181,11 @@ class UserController extends Controller
     /**
      * Validate an User.
      * 
-     * @param Request $request
+     * @param \Illuminate\Http\Request $request
      */
-    public function autenticate(Request $request)
+    public function autenticate(\Illuminate\Http\Request $request)
     {
-        $build = \App\User::select(['id', 'name', 'email', 'password'])->where('email', $request->email);
+        $build = \App\Models\User::select(['id', 'name', 'email', 'password'])->where('email', $request->email);
 
         if ($build->count() > 0) {
             if ((bool) (\Illuminate\Support\Facades\Hash::check($request->password, $build->first()->password)) === true) {

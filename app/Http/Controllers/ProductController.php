@@ -18,7 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('index.listing', [
-            'view' => \App\Helpers\Utils::main(Self::class, new \App\Product())
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\Models\Product())
         ]);
     }
 
@@ -33,7 +33,7 @@ class ProductController extends Controller
     {
         return view('products.create', [
             'view' => \App\Helpers\Utils::important(Self::class, \App\Helpers\Utils::CREATE, (object) []),
-            'brands' => \App\Brand::all()
+            'brands' => \App\Models\Brand::all()
         ]);
     }
 
@@ -60,8 +60,8 @@ class ProductController extends Controller
 
         $request->validate($rules, $messages);
 
-        $Product = new \App\Product();
-        $Product->brand()->associate(\App\Brand::find($request->brand_id));
+        $Product = new \App\Models\Product();
+        $Product->brand()->associate(\App\Models\Brand::find($request->brand_id));
         $Product->name = (string) $request->name;
         $Product->detail = (string) $request->detail;
         $Product->weight = (int) $request->weight;
@@ -71,7 +71,7 @@ class ProductController extends Controller
         $Product->save();
 
         return view('index.listing', [
-            'view' => \App\Helpers\Utils::main(Self::class, new \App\Product())
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\Models\Product())
         ]);
     }
 
@@ -84,7 +84,7 @@ class ProductController extends Controller
      */
     public function name(string $type, string $name): \Illuminate\Http\JsonResponse
     {
-        $ProductArray = \App\Product::with('brand')->where($type, 'like', "%{$name}%");
+        $ProductArray = \App\Models\Product::with('brand')->where($type, 'like', "%{$name}%");
 
         $ProductToJSON = [];
 
@@ -179,8 +179,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         return view('products.edit', [
-            'view' => \App\Helpers\Utils::important(Self::class, \App\Helpers\Utils::EDIT, (object) \App\Product::find($id)->toArray()),
-            'brands' => \App\Brand::all()
+            'view' => \App\Helpers\Utils::important(Self::class, \App\Helpers\Utils::EDIT, (object) \App\Models\Product::find($id)->toArray()),
+            'brands' => \App\Models\Brand::all()
         ]);
     }
 
@@ -208,10 +208,10 @@ class ProductController extends Controller
 
         $request->validate($rules, $messages);
 
-        \App\Product::find($id)->update($request->all());
+        \App\Models\Product::find($id)->update($request->all());
 
         return view('index.listing', [
-            'view' => \App\Helpers\Utils::main(Self::class, new \App\Product())
+            'view' => \App\Helpers\Utils::main(Self::class, new \App\Models\Product())
         ]);
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -38,7 +40,7 @@ class CategoriesSeeder extends Seeder
 
         $flatted = [];
 
-        foreach (new RecursiveIteratorIterator(new RecursiveArrayIterator($arr), RecursiveIteratorIterator::SELF_FIRST) as $key => $value) {
+        foreach (new \RecursiveIteratorIterator(new \RecursiveArrayIterator($arr), \RecursiveIteratorIterator::SELF_FIRST) as $key => $value) {
             array_push($flatted, $key);
         }
 

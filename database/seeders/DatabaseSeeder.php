@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -49,15 +51,15 @@ class DatabaseSeeder extends Seeder
 
     /** @var const */
     private const DATA = [
-        \CouponsSeeder::class,
-        \MeasurementUnitsSeeder::class,
-        \BrandsSeeder::class,
-        \StatesSeeder::class,
-        \UserSeeder::class,
-        \ColorsSeeder::class,
-        \ProductsSeeder::class,
-        \CategoriesSeeder::class,
-        \ProductsCategoriesSeeder::class
+        \Database\Seeders\CouponsSeeder::class,
+        \Database\Seeders\MeasurementUnitsSeeder::class,
+        \Database\Seeders\BrandsSeeder::class,
+        \Database\Seeders\StatesSeeder::class,
+        \Database\Seeders\UserSeeder::class,
+        \Database\Seeders\ColorsSeeder::class,
+        \Database\Seeders\ProductsSeeder::class,
+        \Database\Seeders\CategoriesSeeder::class,
+        \Database\Seeders\ProductsCategoriesSeeder::class
     ];
 
     /**
